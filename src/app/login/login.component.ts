@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     this.authenticationService
       .login(loginData.username, loginData.password)
-      .then((userDetails: UserDetails) => {
+      .then(() => {
         this.loading = false;
         console.log('Login success!');
       })

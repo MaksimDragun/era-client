@@ -1,6 +1,6 @@
 {
 	"/api": {
-		"target": "http://localhost:8087/sras-web",
+		"target": "http://localhost:8087/era-web",
 		"secure": false
 	}
 }
