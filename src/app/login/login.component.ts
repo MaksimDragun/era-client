@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
     private router: Router) {}
 
   ngOnInit() {
+    this.authenticationService.logout();
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     this.loginData = new LoginData();
   }
@@ -33,9 +34,9 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     this.authenticationService
       .login(loginData.username, loginData.password)
-      .then(() => {
+      .then((data) => {
         this.loading = false;
-        console.log('Login success!');
+        this.router.navigate([this.returnUrl]);
       })
       .catch((error: any) => {
         this.loading = false;

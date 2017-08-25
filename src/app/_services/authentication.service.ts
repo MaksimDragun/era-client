@@ -8,13 +8,13 @@ import {UserDetails} from '../_models/user-details';
 @Injectable()
 export class AuthenticationService {
 
-  private authUrl = 'api/aut';
+  private loginUrl = 'api/login';
   private headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(private http: Http) {}
 
   login(username: string, password: string) {
-    return this.http.post(this.authUrl, JSON.stringify({username: username, password: password}), {headers: this.headers})
+    return this.http.post(this.loginUrl, JSON.stringify({username: username, password: password}), {headers: this.headers})
       .toPromise()
       .then(response => {
         // login successful if there's a jwt token in the response

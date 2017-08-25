@@ -4,13 +4,14 @@ import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 
 import {AppComponent} from './app.component';
-import {CookieService} from 'angular2-cookie/services/cookies.service';
 import {routing} from './app.routing';
 
 import {AuthenticationService} from './_services/';
 
 import {HomeComponent} from './home/index';
 import {LoginComponent} from './login/index';
+
+import { AuthGuard } from './_guards/index';
 
 @NgModule({
   imports: [
@@ -26,7 +27,7 @@ import {LoginComponent} from './login/index';
   ],
   providers: [
     AuthenticationService,
-    CookieService
+    AuthGuard,
   ],
   bootstrap: [AppComponent]
 })
