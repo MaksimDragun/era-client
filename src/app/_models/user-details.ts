@@ -1,5 +1,5 @@
 export class UserDetails {
   id: number;
   username: string;
-  authToken: string;
+  roles: Array<string>;
 }

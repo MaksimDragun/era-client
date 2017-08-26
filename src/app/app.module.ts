@@ -11,8 +11,9 @@ import {HomeComponent} from './home/index';
 import {LoginComponent} from './login/index';
 import {MainComponent} from './main.component';
 
-import {AuthenticationService} from './_services/';
+import {AuthenticationService} from './_services/authentication.service';
 import {AuthGuard} from './_guards/index';
+import {MenuService} from './_services/menu.service';
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import {AuthGuard} from './_guards/index';
   providers: [
     AuthenticationService,
     AuthGuard,
+    MenuService
   ],
   bootstrap: [AppComponent]
 })

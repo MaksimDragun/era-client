@@ -8,7 +8,7 @@ import {MainComponent} from './main.component';
 import {AuthGuard} from './_guards/index';
 
 export const mainRoutes: Routes = [
- {
+  {
     path: '',
     component: MainComponent,
     canActivate: [AuthGuard],
@@ -17,7 +17,12 @@ export const mainRoutes: Routes = [
         path: 'registrations',
         loadChildren: 'app/registrations/registrations.module#RegistrationsModule',
         canActivate: [AuthGuard]
-      }
+      },
+      {
+        path: 'administration',
+        loadChildren: 'app/administration/administration.module#AdministrationModule',
+        canActivate: [AuthGuard]
+      },
     ]
   }
 ];

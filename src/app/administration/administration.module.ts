@@ -2,9 +2,9 @@ import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {NgModule} from '@angular/core';
 
-import {RegistrationsRoutingModule} from './registrations-routing.module';
+import {RegistrationsRoutingModule} from './administration-routing.module';
 
-import {RegistrationsListComponent} from './component/registrations-list.component';
+import {UserAccountsComponent} from './component/user-accounts.component';
 
 @NgModule({
   imports: [
@@ -13,13 +13,13 @@ import {RegistrationsListComponent} from './component/registrations-list.compone
     RegistrationsRoutingModule
   ],
   declarations: [
-    RegistrationsListComponent
+    UserAccountsComponent
   ],
   exports: [
-    RegistrationsListComponent
+    UserAccountsComponent
   ],
   providers: [
 
   ]
 })
-export class RegistrationsModule {}
+export class AdministrationModule {}

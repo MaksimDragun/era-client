@@ -1,17 +1,17 @@
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 
-import {RegistrationsListComponent} from './component/registrations-list.component';
+import {UserAccountsComponent} from './component/user-accounts.component';
 
 @NgModule({
   imports: [RouterModule.forChild([
     {
-      path: 'list',
-      component: RegistrationsListComponent
+      path: 'user-accounts',
+      component: UserAccountsComponent
     },
     {
       path: '**',
-      redirectTo: 'list'
+      redirectTo: 'user-accounts'
     }
   ])],
   exports: [RouterModule]
