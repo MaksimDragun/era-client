@@ -5,25 +5,28 @@ import {HttpModule} from '@angular/http';
 
 import {AppComponent} from './app.component';
 import {routing} from './app.routing';
-
-import {AuthenticationService} from './_services/';
+import {MainRoutings} from './main.routing';
 
 import {HomeComponent} from './home/index';
 import {LoginComponent} from './login/index';
+import {MainComponent} from './main.component';
 
-import { AuthGuard } from './_guards/index';
+import {AuthenticationService} from './_services/';
+import {AuthGuard} from './_guards/index';
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing
+    routing,
+    MainRoutings
   ],
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    MainComponent
   ],
   providers: [
     AuthenticationService,
