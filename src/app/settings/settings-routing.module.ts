@@ -2,20 +2,20 @@ import {AuthGuard} from '../_guards/auth.guard';
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 
-import {UserAccountsComponent} from './component/user-accounts.component';
+import {CustomerInfoComponent} from './component/customer-info.component';
 
 @NgModule({
   imports: [RouterModule.forChild([
     {
-      path: 'user-accounts',
-      component: UserAccountsComponent,
+      path: 'customer-info',
+      component: CustomerInfoComponent,
       canActivate: [AuthGuard]
     },
     {
       path: '**',
-      redirectTo: 'user-accounts'
+      redirectTo: 'customer-info'
     }
   ])],
   exports: [RouterModule]
 })
-export class RegistrationsRoutingModule {}
+export class SettingsRoutingModule {}

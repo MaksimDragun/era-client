@@ -4,6 +4,7 @@ import {NgModule} from '@angular/core';
 
 import {RegistrationsRoutingModule} from './registrations-routing.module';
 
+import {RegistrationsCreateComponent} from './component/registrations-create.component';
 import {RegistrationsListComponent} from './component/registrations-list.component';
 
 @NgModule({
@@ -13,9 +14,11 @@ import {RegistrationsListComponent} from './component/registrations-list.compone
     RegistrationsRoutingModule
   ],
   declarations: [
+    RegistrationsCreateComponent,
     RegistrationsListComponent
   ],
   exports: [
+    RegistrationsCreateComponent,
     RegistrationsListComponent
   ],
   providers: [

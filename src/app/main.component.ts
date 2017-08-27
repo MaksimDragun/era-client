@@ -12,6 +12,7 @@ export class MainComponent implements OnInit {
 
   userDetails: UserDetails;
   mainMenu: MenuItem[];
+  currentMenu: MenuItem;
   currentUrl: string;
 
   constructor(
@@ -34,16 +35,28 @@ export class MainComponent implements OnInit {
   }
 
   isMenuActive(url: string): boolean {
-    return url === this.currentUrl;
+    //    console.log(`url=${url}; currentUrl=${this.currentUrl}`);
+    return this.currentUrl && this.currentUrl.startsWith(url);
   }
 
   onNavigationChange(): void {
     this.router.events.subscribe((navigation: any) => {
       if (navigation instanceof NavigationEnd) {
         const nav: NavigationEnd = navigation as NavigationEnd;
-        this.currentUrl = nav.url;
+        this.currentUrl = nav.urlAfterRedirects || nav.url;
+        this.currentMenu = this.findMainMenuItem(this.currentUrl);
+        this.currentUrl = this.currentMenu ? this.currentUrl : '/';
+        //        console.log(`currentUrl: ${this.currentUrl}; navUrl=${nav.url}`);
       }
     });
+  }
+
+  findMainMenuItem(url: string): MenuItem {
+    for (const item of this.mainMenu) {
+      if (url.startsWith(item.action)) {
+        return item;
+      }
+    }
   }
 }
 

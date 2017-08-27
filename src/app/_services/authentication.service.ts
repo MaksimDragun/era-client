@@ -43,10 +43,36 @@ export class AuthenticationService {
       if (this.userDetails) {
         resolve(this.userDetails);
       } else {
-        setTimeout(1000, () => {
+        const userDetails = JSON.parse(localStorage.getItem('currentUser')).userDetails;
+        if (userDetails) {
+          this.userDetails = userDetails;
           resolve(this.userDetails);
-        });
+        } else {
+          setTimeout(1000, () => {
+            resolve(this.userDetails);
+          });
+        }
       }
     });
+  }
+
+  getUserDetailsImmediatly(): UserDetails {
+    return this.userDetails;
+  }
+
+  hasPermissions(userRoles: {authority: string}[], rolesToCheck: string[]): boolean {
+    for (const roleToCheck of rolesToCheck) {
+      let hasRole = false;
+      for (const userRole of userRoles) {
+        if (userRole.authority === roleToCheck) {
+          hasRole = true;
+          break;
+        }
+      }
+      if (!hasRole) {
+        return false;
+      }
+    }
+    return true;
   }
 }

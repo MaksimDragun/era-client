@@ -15,9 +15,9 @@
 	        </div>
 	        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul *ngIf="mainMenu" class="nav navbar-nav">
-					<li *ngFor="let item of mainMenu"
-						[class.active]="isMenuActive(item.action)">
-						<a [routerLink]="[item.action]">{{item.title}}</a>
+					<li *ngFor="let menuItem of mainMenu"
+						[class.active]="isMenuActive(menuItem.action)">
+						<a [routerLink]="[menuItem.action]">{{menuItem.title}}</a>
 					</li>
 				</ul>
 				
@@ -28,7 +28,20 @@
 			</div>
 	    </div>
 	</nav>
-	<router-outlet></router-outlet>
+	<div class=container>
+		<div class="row">
+			<div class="col-md-2">
+				<ul *ngIf="currentMenu && currentMenu.subMenu" class="nav nav-pills nav-stacked">
+					<li *ngFor="let subMenuItem of currentMenu.subMenu" 
+						role="presentation" [class.active]="isMenuActive(subMenuItem.action)">
+						<a [routerLink]="[subMenuItem.action]">{{subMenuItem.title}}</a></li>
+				</ul>
+			</div>
+			<div class="col-md-10">
+				<router-outlet></router-outlet>
+			</div>
+		</div>
+	</div>
 </div>
 <footer class="footer">
 	<div class="container">
