@@ -4,7 +4,6 @@ import {Router, ActivatedRoute} from '@angular/router';
 import {AuthenticationService} from '../_services/authentication.service';
 
 import {UserDetails} from '../_models/user-details';
-import {TranslateService} from '@ngx-translate/core';
 
 export class LoginData {
   username: string;
@@ -23,11 +22,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private authenticationService: AuthenticationService,
-    private router: Router,
-    private translate: TranslateService) {
-      translate.setDefaultLang('ru');
-      translate.use('ru');
-  }
+    private router: Router) {}
 
   ngOnInit() {
     this.authenticationService.logout();

@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-registrations-list',
@@ -7,13 +6,8 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class RegistrationsListComponent implements OnInit {
 
-  constructor(private translate: TranslateService) {
-    translate.setDefaultLang('ru');
-    translate.use('ru');
-  }
+  constructor() {}
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
 }

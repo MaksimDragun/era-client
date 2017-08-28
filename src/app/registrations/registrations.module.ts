@@ -6,7 +6,7 @@ import {RegistrationsRoutingModule} from './registrations-routing.module';
 
 import {RegistrationsCreateComponent} from './component/registrations-create.component';
 import {RegistrationsListComponent} from './component/registrations-list.component';
-import {TranslateModule} from '@ngx-translate/core';
+import {TranslateModule, TranslateService} from '@ngx-translate/core';
 
 @NgModule({
   imports: [

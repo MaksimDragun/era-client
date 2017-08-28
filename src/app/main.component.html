@@ -21,10 +21,8 @@
 					</li>
 				</ul>
 				
-				<ul class="nav navbar-nav navbar-right">
-	            	<li><a (click)="logout()" href="#">{{'main.logout' | translate}}</a></li>
-	        	</ul>
-	        	<p *ngIf="userDetails" class="navbar-text navbar-right">Welcome, {{userDetails.username}}!</p>
+				<button type="button" (click)="logout()" class="btn btn-default navbar-btn navbar-right" style="margin-left: 10px">{{'main.logout' | translate}}</button>
+	        	<p *ngIf="userDetails" class="navbar-text navbar-right">{{ 'main.welcome' | translate: {"username" : userDetails.username} }}</p>
 			</div>
 	    </div>
 	</nav>

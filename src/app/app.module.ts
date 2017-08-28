@@ -15,11 +15,11 @@ import {MainComponent} from './main.component';
 import {AuthenticationService} from './_services/authentication.service';
 import {AuthGuard} from './_guards/index';
 import {MenuService} from './_services/menu.service';
-import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateModule, TranslateLoader, TranslateService} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 export function HttpLoaderFactory(http: HttpClient) {
-    return new TranslateHttpLoader(http);
+  return new TranslateHttpLoader(http);
 }
 
 @NgModule({
@@ -51,4 +51,11 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+
+  constructor(private translate: TranslateService) {
+    translate.setDefaultLang('ru');
+    translate.use('ru');
+  }
+
+}

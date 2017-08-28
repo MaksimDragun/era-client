@@ -10,6 +10,8 @@
 	},
 	"main" : {
 		"logout" : "Выйти",
+		"welcome" : "Вы вошли как {{username}}",
+		
 		"menu" : {
 			"registrations" : {
 				"main" : "Регистрирование",
