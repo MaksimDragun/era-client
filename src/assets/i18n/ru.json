@@ -1,0 +1,34 @@
+{
+	"login" : {
+		"login-page" : "Страница входа",
+		"forgot-password" : "Забыли пароль?",
+		"password" : "Пароль",
+		"password-is-required" : "Вы не ввели пароль!",
+		"login" : "Войти",
+		"username" : "Имя пользователя",
+		"username-is-required" : "Вы не ввели имя пользователя!"
+	},
+	"main" : {
+		"logout" : "Выйти",
+		"menu" : {
+			"registrations" : {
+				"main" : "Регистрирование",
+				"list" : "Список регистраций",
+				"create" : "Новая регистрация"
+			},
+			"settings" : {
+				"main" : "Настройки",
+				"customer-info" : "Информация"
+			},
+			"administration" : {
+				"main" : "Администрирование",
+				"user-accounts" : "Учетные записи"
+			}
+		}
+	},
+	"registrations": {
+		"list" : {
+			"title" : "Список зарегистрированных абитуриентов"
+		}
+	}
+}

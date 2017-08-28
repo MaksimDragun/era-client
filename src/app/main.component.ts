@@ -3,6 +3,7 @@ import {AuthenticationService} from './_services/authentication.service';
 import {MenuService, MenuItem} from './_services/menu.service';
 import {Component, OnInit} from '@angular/core';
 import {Router, NavigationEnd} from '@angular/router';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   moduleId: module.id,
@@ -18,7 +19,11 @@ export class MainComponent implements OnInit {
   constructor(
     private authenticationService: AuthenticationService,
     private menuService: MenuService,
-    private router: Router) {}
+    private router: Router,
+    private translate: TranslateService) {
+    translate.setDefaultLang('ru');
+    translate.use('ru');
+  }
 
   ngOnInit() {
     this.authenticationService.getUserDetails()

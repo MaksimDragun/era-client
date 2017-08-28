@@ -12,14 +12,14 @@ export class MenuItem {
 export const mainMenu: MenuItem[] = [
   {
     action: '/registrations',
-    title: 'Registrations',
+    title: 'main.menu.registrations.main',
     authorities: [
       'ROLE_REGISTRATIONSVIEW'
     ],
     subMenu: [
       {
         action: '/registrations/list',
-        title: 'View List',
+        title: 'main.menu.registrations.list',
         authorities: [
           'ROLE_REGISTRATIONSVIEW'
         ],
@@ -27,7 +27,7 @@ export const mainMenu: MenuItem[] = [
       },
       {
         action: '/registrations/create',
-        title: 'Register',
+        title: 'main.menu.registrations.create',
         authorities: [
           'ROLE_REGISTRATIONSCREATE'
         ],
@@ -37,12 +37,12 @@ export const mainMenu: MenuItem[] = [
   },
   {
     action: '/settings',
-    title: 'Settings',
+    title: 'main.menu.settings.main',
     authorities: [],
     subMenu: [
       {
         action: '/settings/customer-info',
-        title: 'Customer Info',
+        title: 'main.menu.settings.customer-info',
         authorities: [],
         subMenu: []
       }
@@ -50,14 +50,14 @@ export const mainMenu: MenuItem[] = [
   },
   {
     action: '/administration',
-    title: 'Administration',
+    title: 'main.menu.administration.main',
     authorities: [
       'ROLE_ADMINVIEW'
     ],
     subMenu: [
       {
         action: '/administration/user-accounts',
-        title: 'User Accounts',
+        title: 'main.menu.registrations.user-accounts',
         authorities: [],
         subMenu: []
       }

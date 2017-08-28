@@ -1,0 +1,35 @@
+{
+	"login" : {
+		"login-page" : "Login page",
+		"forgot-password" : "Forgot password?",
+		"password" : "Password",
+		"password-is-required" : "Password is required!",
+		"login" : "Login",
+		"username-is-required" : "Username is required!",
+		"username" : "Username"
+	},
+	"main" : {
+		"logout" : "Logout",
+		"menu" : {
+			"registrations" : {
+				"main" : "Registrations",
+				"list" : "Registration List",
+				"create" : "New registration"
+			},
+			"settings" : {
+				"main" : "Settings",
+				"customer-info" : "Customer Info"
+			},
+			"administration" : {
+				"main" : "Administration",
+				"user-accounts" : "User Accounts"
+			}
+		}
+	},
+	"registrations": {
+		"list" : {
+			"title" : "Registered enrollee list"
+		}
+	}
+	
+}

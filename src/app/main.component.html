@@ -17,12 +17,12 @@
 				<ul *ngIf="mainMenu" class="nav navbar-nav">
 					<li *ngFor="let menuItem of mainMenu"
 						[class.active]="isMenuActive(menuItem.action)">
-						<a [routerLink]="[menuItem.action]">{{menuItem.title}}</a>
+						<a [routerLink]="[menuItem.action]">{{menuItem.title | translate}}</a>
 					</li>
 				</ul>
 				
 				<ul class="nav navbar-nav navbar-right">
-	            	<li><a (click)="logout()" href="#">Logout</a></li>
+	            	<li><a (click)="logout()" href="#">{{'main.logout' | translate}}</a></li>
 	        	</ul>
 	        	<p *ngIf="userDetails" class="navbar-text navbar-right">Welcome, {{userDetails.username}}!</p>
 			</div>
@@ -34,7 +34,7 @@
 				<ul *ngIf="currentMenu && currentMenu.subMenu" class="nav nav-pills nav-stacked">
 					<li *ngFor="let subMenuItem of currentMenu.subMenu" 
 						role="presentation" [class.active]="isMenuActive(subMenuItem.action)">
-						<a [routerLink]="[subMenuItem.action]">{{subMenuItem.title}}</a></li>
+						<a [routerLink]="[subMenuItem.action]">{{subMenuItem.title | translate}}</a></li>
 				</ul>
 			</div>
 			<div class="col-md-10">

@@ -6,12 +6,14 @@ import {RegistrationsRoutingModule} from './registrations-routing.module';
 
 import {RegistrationsCreateComponent} from './component/registrations-create.component';
 import {RegistrationsListComponent} from './component/registrations-list.component';
+import {TranslateModule} from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    RegistrationsRoutingModule
+    RegistrationsRoutingModule,
+    TranslateModule.forChild()
   ],
   declarations: [
     RegistrationsCreateComponent,
