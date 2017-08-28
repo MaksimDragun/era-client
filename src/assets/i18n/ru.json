@@ -1,36 +1,39 @@
 {
-	"login" : {
-		"login-page" : "Страница входа",
-		"forgot-password" : "Забыли пароль?",
-		"password" : "Пароль",
-		"password-is-required" : "Вы не ввели пароль!",
-		"login" : "Войти",
-		"username" : "Имя пользователя",
-		"username-is-required" : "Вы не ввели имя пользователя!"
+	"login": {
+		"login-page": "Страница входа",
+		"forgot-password": "Забыли пароль?",
+		"password": "Пароль",
+		"login": "Войти",
+		"username": "Имя пользователя",
+		"error": {
+			"401": "Введенные имя пользователя и/или пароль не совпадают!",
+			"general": "Произошла ошибка на сервере!",
+			"password-is-required": "Вы не ввели пароль!",
+			"username-is-required": "Вы не ввели имя пользователя!"
+		}
 	},
-	"main" : {
-		"logout" : "Выйти",
-		"welcome" : "Вы вошли как {{username}}",
-		
-		"menu" : {
-			"registrations" : {
-				"main" : "Регистрирование",
-				"list" : "Список регистраций",
-				"create" : "Новая регистрация"
+	"main": {
+		"logout": "Выйти",
+		"welcome": "Вы вошли как {{username}}",
+		"menu": {
+			"registrations": {
+				"main": "Регистрирование",
+				"list": "Список регистраций",
+				"create": "Новая регистрация"
 			},
-			"settings" : {
-				"main" : "Настройки",
-				"customer-info" : "Информация"
+			"settings": {
+				"main": "Настройки",
+				"customer-info": "Информация"
 			},
-			"administration" : {
-				"main" : "Администрирование",
-				"user-accounts" : "Учетные записи"
+			"administration": {
+				"main": "Администрирование",
+				"user-accounts": "Учетные записи"
 			}
 		}
 	},
 	"registrations": {
-		"list" : {
-			"title" : "Список зарегистрированных абитуриентов"
+		"list": {
+			"title": "Список зарегистрированных абитуриентов"
 		}
 	}
 }

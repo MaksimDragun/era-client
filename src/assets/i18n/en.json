@@ -3,13 +3,19 @@
 		"login-page" : "Login page",
 		"forgot-password" : "Forgot password?",
 		"password" : "Password",
-		"password-is-required" : "Password is required!",
 		"login" : "Login",
-		"username-is-required" : "Username is required!",
-		"username" : "Username"
+		"username" : "Username",
+		"error": {
+			"401": "Username and/or password are invalid!",
+			"general": "An error has occured on the server",
+			"password-is-required": "Password is required!",
+			"username-is-required": "Username is required!"
+		}
+		
 	},
 	"main" : {
 		"logout" : "Logout",
+		"welcome": "Welcome, {{username}}!",
 		"menu" : {
 			"registrations" : {
 				"main" : "Registrations",

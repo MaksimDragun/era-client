@@ -19,6 +19,9 @@ export class LoginComponent implements OnInit {
   loading = false;
   returnUrl: string;
 
+  error = false;
+  errorMsg = null;
+
   constructor(
     private route: ActivatedRoute,
     private authenticationService: AuthenticationService,
@@ -31,6 +34,8 @@ export class LoginComponent implements OnInit {
   }
 
   login(loginData: LoginData) {
+    this.error = false;
+    this.errorMsg = null;
     this.loading = true;
     this.authenticationService
       .login(loginData.username, loginData.password)
@@ -38,9 +43,10 @@ export class LoginComponent implements OnInit {
         this.loading = false;
         this.router.navigate([this.returnUrl]);
       })
-      .catch((error: any) => {
+      .catch((response: any) => {
         this.loading = false;
-        console.log('Login failed!');
+        this.error = true;
+        this.errorMsg = response.status === 401 ? 'login.error.401' : 'login.error.general';
       });
   }
 }

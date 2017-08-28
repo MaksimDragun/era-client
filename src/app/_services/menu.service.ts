@@ -57,7 +57,7 @@ export const mainMenu: MenuItem[] = [
     subMenu: [
       {
         action: '/administration/user-accounts',
-        title: 'main.menu.registrations.user-accounts',
+        title: 'main.menu.administration.user-accounts',
         authorities: [],
         subMenu: []
       }
