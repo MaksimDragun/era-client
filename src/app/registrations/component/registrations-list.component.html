@@ -8,7 +8,7 @@
 				<select [(ngModel)]="selectedReportTemplate"
 					name="selected-report-template"
 					class="form-control">
-					<option *ngFor="let tmplt of reportTemplateList" [ngValue]="tmplt">{{tmplt.title}}</option>
+					<option *ngFor="let tmplt of reportTemplateList" [ngValue]="tmplt">{{tmplt.fileName}}</option>
 				</select>
 			</div>
 		</div>

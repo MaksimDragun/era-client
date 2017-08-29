@@ -2,7 +2,6 @@ import {Registration} from '../_models/registration';
 import {ReportTemplate} from '../_models/report-template';
 import {Injectable} from '@angular/core';
 
-import {AuthenticationService} from './authentication.service';
 import {Http, Response} from '@angular/http';
 
 import {defaultOptions, fileOptions} from '../_utils/http.utils';
@@ -15,15 +14,18 @@ const fileNameRegExp = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
 export class RegistrationsService {
 
   private fetchRegistrationListUrl = 'api/registrations/fetch-list';
-  private downloadContractUrl = `api/get-registration-contract/${0}/template/${1}`;
+  private fetchReportTemplateUrl = 'api/registrations/fetch-report-templates';
 
-  constructor(
-    private authenticationService: AuthenticationService,
-    private http: Http) {}
+  constructor(private http: Http) {}
 
   fetchRegistrations(): Promise<Registration[]> {
     return this.http.get(this.fetchRegistrationListUrl, defaultOptions()).toPromise()
       .then(response => response.json() as Registration[]);
+  }
+
+  fetchReportTemplates(): Promise<ReportTemplate[]> {
+    return this.http.get(this.fetchReportTemplateUrl, defaultOptions()).toPromise()
+      .then(response => response.json() as ReportTemplate[]);
   }
 
   downloadReport(contractId: number, reportTemplate: ReportTemplate): void {

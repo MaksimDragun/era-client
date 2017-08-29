@@ -1,5 +1,5 @@
 export class ReportTemplate {
   id: number;
-  title: string;
+  fileName: string;
   mimeType: string;
 }
