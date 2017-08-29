@@ -26,7 +26,7 @@ export class RegistrationsListComponent implements OnInit {
 
   downloadReport(contractId, number): void {
     this.registrationsService.downloadReport(
-      contractId, 'contract.docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+      contractId, 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
   }
 
 }

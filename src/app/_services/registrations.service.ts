@@ -8,6 +8,8 @@ import {defaultOptions, fileOptions} from '../_utils/http.utils';
 
 import * as FileSaver from 'file-saver';
 
+const fileNameRegExp = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+
 @Injectable()
 export class RegistrationsService {
 
@@ -23,9 +25,11 @@ export class RegistrationsService {
       .then(response => response.json() as Registration[]);
   }
 
-  downloadReport(contractId: number, fileName: string, mimeType: string): void {
+  downloadReport(contractId: number, mimeType: string): void {
     this.http.get(this.downloadContractUrl, fileOptions(mimeType)).toPromise()
-      .then((res: Response) => FileSaver.saveAs(res.blob(), fileName));
+      .then((res: Response) => {
+        FileSaver.saveAs(res.blob(), fileNameRegExp.exec(res.headers.get('content-disposition'))[1]);
+      });
   }
 
 }
