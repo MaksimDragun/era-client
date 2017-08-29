@@ -33,8 +33,12 @@
 	},
 	"registrations": {
 		"list": {
+			"attestate-avg": "Ср.бал",
 			"contract": "Договор",
+			"contract-type": "Тип договора",
 			"full-name": "Ф.И.О.",
+			"registration-date": "Дата регистрации",
+			"speciality": "Специальность",
 			"title": "Список зарегистрированных абитуриентов"
 		}
 	},

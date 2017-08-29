@@ -1,4 +1,5 @@
 import {Registration} from '../_models/registration';
+import {ReportTemplate} from '../_models/report-template';
 import {Injectable} from '@angular/core';
 
 import {AuthenticationService} from './authentication.service';
@@ -14,7 +15,7 @@ const fileNameRegExp = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
 export class RegistrationsService {
 
   private fetchRegistrationListUrl = 'api/registrations/fetch-list';
-  private downloadContractUrl = 'api/get-registration-contract/1000/template/1000';
+  private downloadContractUrl = `api/get-registration-contract/${0}/template/${1}`;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -25,8 +26,10 @@ export class RegistrationsService {
       .then(response => response.json() as Registration[]);
   }
 
-  downloadReport(contractId: number, mimeType: string): void {
-    this.http.get(this.downloadContractUrl, fileOptions(mimeType)).toPromise()
+  downloadReport(contractId: number, reportTemplate: ReportTemplate): void {
+    this.http.get(
+      `api/get-registration-contract/${contractId}/template/${reportTemplate.id}`,
+      fileOptions(reportTemplate.mimeType)).toPromise()
       .then((res: Response) => {
         FileSaver.saveAs(res.blob(), fileNameRegExp.exec(res.headers.get('content-disposition'))[1]);
       });

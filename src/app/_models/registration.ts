@@ -3,4 +3,8 @@ export class Registration {
   firstName: string;
   lastName: string;
   middleName: string;
+
+  speciality: string;
+  attestateAvg: number;
+  registrationDate: string;
 }
