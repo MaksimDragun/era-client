@@ -1,8 +1,7 @@
-import { AuthenticationService } from '../../_services/authentication.service';
+import {Registration} from '../../_models/registration';
+import {RegistrationsService} from '../../_services/registrations.service';
 import {Component, OnInit} from '@angular/core';
-import {Http, Headers, RequestOptions, Response, ResponseContentType} from '@angular/http';
 
-import * as FileSaver from 'file-saver';
 
 @Component({
   selector: 'app-registrations-list',
@@ -10,30 +9,24 @@ import * as FileSaver from 'file-saver';
 })
 export class RegistrationsListComponent implements OnInit {
 
+  registrationList: Registration[];
+
   constructor(
-    private authenticationService: AuthenticationService,
-    private http: Http) {}
+    private registrationsService: RegistrationsService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.fetchRegistrationList();
+  }
 
-  downloadReport(): void {
-    const options = new RequestOptions(
-      {
-        headers: new Headers({
-          'Content-Type': 'application/json',
-          'Accept': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-          'Authorization': `Bearer ${localStorage.getItem('currentUserToken')}`
-        }),
-        responseType: ResponseContentType.Blob
-      });
+  fetchRegistrationList(): void {
+    this.registrationsService.fetchRegistrations()
+      .then(registrations => this.registrationList = registrations)
+      .catch(error => console.log(error));
+  }
 
-    console.log('download');
-    this.http.get('api/get-registration-contract/1000/template/1000', options)
-      .toPromise().then((res: Response) => {
-        const blob: Blob = res.blob();
-        FileSaver.saveAs(blob, 'contract.docx');
-
-      });
+  downloadReport(contractId, number): void {
+    this.registrationsService.downloadReport(
+      contractId, 'contract.docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
   }
 
 }

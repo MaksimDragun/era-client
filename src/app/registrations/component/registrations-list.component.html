@@ -1,2 +1,19 @@
-{{'registrations.list.title' | translate}}
-<button (click)="downloadReport()">Download report</button>
+<div class="row">
+	<fieldset>
+		<legend>{{'registrations.list.title' | translate}}</legend>
+		<table class="table table-striped">
+			<tr>
+				<th>{{'registrations.list.full-name' | translate}}</th>
+				<th class="text-center">{{'registrations.list.contract' | translate}}</th>
+			</tr>
+			<tr *ngFor="let reg of registrationList">
+				<td>{{reg.lastName}} {{reg.firstName.charAt(0)}}. {{reg.middleName.charAt(0)}}.</td>
+				<td class="text-center" data-toggle="tooltip" title="{{'common.download' | translate}}">
+					<button type="button" (click)="downloadReport(reg.id)" class="btn btn-default" aria-label="Left Align">
+						<span class="glyphicon  glyphicon-save-file" aria-hidden="true"></span>
+					</button>
+				</td>
+			</tr>
+		</table>
+	</fieldset>
+</div>

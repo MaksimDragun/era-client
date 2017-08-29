@@ -33,7 +33,12 @@
 	},
 	"registrations": {
 		"list": {
+			"contract": "Договор",
+			"full-name": "Ф.И.О.",
 			"title": "Список зарегистрированных абитуриентов"
 		}
+	},
+	"common": {
+		"download": "Скачать"
 	}
 }
