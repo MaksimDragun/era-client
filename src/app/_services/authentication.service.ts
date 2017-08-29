@@ -23,6 +23,7 @@ export class AuthenticationService {
         const user = response.json();
         if (user && user.token) {
           if (user.token) {
+            localStorage.setItem('currentUserToken', user.token);
             localStorage.setItem('currentUser', JSON.stringify(user));
           }
           if (user.userDetails) {
@@ -34,6 +35,7 @@ export class AuthenticationService {
   }
 
   logout(): void {
+    localStorage.removeItem('currentUserToken');
     localStorage.removeItem('currentUser');
     this.userDetails = undefined;
   }
