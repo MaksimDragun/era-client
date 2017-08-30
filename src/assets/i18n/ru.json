@@ -42,6 +42,12 @@
 			"title": "Список зарегистрированных абитуриентов"
 		}
 	},
+	"settings" : {
+		"customer-info" : {
+			"education-institution": "Учреждение образования",
+			"title": "Общая информация"
+		}
+	},
 	"common": {
 		"download": "Скачать"
 	}

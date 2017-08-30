@@ -3,34 +3,56 @@
 		<legend>{{'registrations.list.title' | translate}}</legend>
 		
 		<div class="row">
-			<div class="form-group col-lg-3 col-md-4 col-xs-12">
-				<label>{{'registrations.list.contract-type' | translate}}</label>
-				<select [(ngModel)]="selectedReportTemplate"
-					name="selected-report-template"
-					class="form-control">
-					<option *ngFor="let tmplt of reportTemplateList" [ngValue]="tmplt">{{tmplt.fileName}}</option>
-				</select>
+			<div class="row">
+				<div class="form-group col-lg-3 col-md-4 col-xs-12">
+					<label>Name</label>
+					<input name="name" value="Name" type="text" class="form-control" />
+				</div>
+				<div class="form-group col-lg-3 col-md-4 col-xs-12">
+	                <label>Speciality</label>
+	                <select name="speciality" class="form-control">
+	                    <option value="speciality">1101101101</option>
+	                </select>
+	            </div>
+	            <div class="form-group col-lg-3 col-md-4 col-xs-12">
+	                <label>Form</label>
+	                <select name="form" class="form-control">
+	                    <option value="form">Budget</option>
+	                </select>
+	            </div>
+			</div>
+			<div class="row">
+				<div class="col-lg-10 col-md-9 col-xs-12">
+					<table class="table table-striped">
+						<tr>
+							<th>{{'registrations.list.full-name' | translate}}</th>
+							<th>{{'registrations.list.speciality' | translate}}</th>
+							<th>{{'registrations.list.attestate-avg' | translate}}</th>
+							<th>{{'registrations.list.registration-date' | translate}}</th>
+							<th class="text-center">{{'registrations.list.contract' | translate}}</th>
+						</tr>
+						<tr *ngFor="let reg of registrationList">
+							<td>{{reg.lastName}} {{reg.firstName.charAt(0)}}. {{reg.middleName.charAt(0)}}.</td>
+							<td>{{reg.speciality}}</td>
+							<td>{{reg.attestateAvg|number:'.2'}}</td>
+							<td>{{reg.registrationDate}}</td>
+							<td class="text-center" data-toggle="tooltip" title="{{'common.download' | translate}}">
+								<button type="button" (click)="downloadReport(reg.id)" class="btn btn-default" aria-label="Left Align">
+									<span class="glyphicon  glyphicon-save-file" aria-hidden="true"></span>
+								</button>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="form-group col-lg-2 col-md-3 col-xs-12">
+					<label>{{'registrations.list.contract-type' | translate}}</label>
+					<select [(ngModel)]="selectedReportTemplate"
+						name="selected-report-template"
+						class="form-control">
+						<option *ngFor="let tmplt of reportTemplateList" [ngValue]="tmplt">{{tmplt.fileName}}</option>
+					</select>
+				</div>
 			</div>
 		</div>
-		<table class="table table-striped">
-			<tr>
-				<th>{{'registrations.list.full-name' | translate}}</th>
-				<th>{{'registrations.list.speciality' | translate}}</th>
-				<th>{{'registrations.list.attestate-avg' | translate}}</th>
-				<th>{{'registrations.list.registration-date' | translate}}</th>
-				<th class="text-center">{{'registrations.list.contract' | translate}}</th>
-			</tr>
-			<tr *ngFor="let reg of registrationList">
-				<td>{{reg.lastName}} {{reg.firstName.charAt(0)}}. {{reg.middleName.charAt(0)}}.</td>
-				<td>{{reg.speciality}}</td>
-				<td>{{reg.attestateAvg|number:'.2'}}</td>
-				<td>{{reg.registrationDate}}</td>
-				<td class="text-center" data-toggle="tooltip" title="{{'common.download' | translate}}">
-					<button type="button" (click)="downloadReport(reg.id)" class="btn btn-default" aria-label="Left Align">
-						<span class="glyphicon  glyphicon-save-file" aria-hidden="true"></span>
-					</button>
-				</td>
-			</tr>
-		</table>
 	</fieldset>
 </div>
