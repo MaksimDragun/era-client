@@ -34,11 +34,13 @@ export class RegistrationsListComponent implements OnInit {
   }
 
   fetchReportTemplateList(): void {
-    this.reportTemplateList = [
-      {id: 1000, title: 'ContractReport1', mimeType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'},
-      {id: 1001, title: 'ContractReport2', mimeType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'}
-    ];
-    this.selectedReportTemplate = this.reportTemplateList && this.reportTemplateList[0];
+    this.registrationsService.fetchReportTemplates()
+      .then(reportTemplates => {
+        this.reportTemplateList = reportTemplates;
+        this.selectedReportTemplate = this.reportTemplateList && this.reportTemplateList[0];
+      })
+      .catch(error => console.log(error));
+
   }
 
 }
