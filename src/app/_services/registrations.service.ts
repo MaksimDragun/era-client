@@ -1,8 +1,9 @@
-import {Registration} from '../_models/registration';
-import {ReportTemplate} from '../_models/report-template';
 import {Injectable} from '@angular/core';
 
 import {Http, Response} from '@angular/http';
+
+import {Registration} from '../_models/registration';
+import {ReportTemplate} from '../_models/report-template';
 
 import {defaultOptions, fileOptions} from '../_utils/http.utils';
 
