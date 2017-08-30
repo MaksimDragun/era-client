@@ -39,11 +39,16 @@
 			"full-name": "Ф.И.О.",
 			"registration-date": "Дата регистрации",
 			"speciality": "Специальность",
-			"title": "Список зарегистрированных абитуриентов"
+			"title": "Список зарегистрированных абитуриентов",
+			"type": "Тип"
+		},
+		"types": {
+			"B": "Бюджет",
+			"P": "Платное"
 		}
 	},
-	"settings" : {
-		"customer-info" : {
+	"settings": {
+		"customer-info": {
 			"education-institution": "Учреждение образования",
 			"title": "Общая информация"
 		}

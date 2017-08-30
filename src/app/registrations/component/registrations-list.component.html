@@ -27,6 +27,7 @@
 						<tr>
 							<th>{{'registrations.list.full-name' | translate}}</th>
 							<th>{{'registrations.list.speciality' | translate}}</th>
+							<th>{{'registrations.list.type' | translate}}</th>
 							<th>{{'registrations.list.attestate-avg' | translate}}</th>
 							<th>{{'registrations.list.registration-date' | translate}}</th>
 							<th class="text-center">{{'registrations.list.contract' | translate}}</th>
@@ -34,6 +35,7 @@
 						<tr *ngFor="let reg of registrationList">
 							<td>{{reg.lastName}} {{reg.firstName.charAt(0)}}. {{reg.middleName.charAt(0)}}.</td>
 							<td>{{reg.speciality}}</td>
+							<td>{{'registrations.types.' + reg.registrationType | translate}}</td>
 							<td>{{reg.attestateAvg|number:'.2'}}</td>
 							<td>{{reg.registrationDate}}</td>
 							<td class="text-center" data-toggle="tooltip" title="{{'common.download' | translate}}">

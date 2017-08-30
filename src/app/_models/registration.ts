@@ -7,4 +7,6 @@ export class Registration {
   speciality: string;
   attestateAvg: number;
   registrationDate: string;
+
+  registrationType: string;
 }
