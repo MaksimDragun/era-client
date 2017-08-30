@@ -1,6 +1,8 @@
 import {Registration} from '../../_models/registration';
 import {ReportTemplate} from '../../_models/report-template';
 import {RegistrationsService} from '../../_services/registrations.service';
+import {MessageType, Message} from '../../core/messages/message';
+import {MessagesService} from '../../core/messages/messages.service';
 import {Component, OnInit} from '@angular/core';
 
 
@@ -16,6 +18,7 @@ export class RegistrationsListComponent implements OnInit {
   selectedReportTemplate: ReportTemplate;
 
   constructor(
+    private messagesService: MessagesService,
     private registrationsService: RegistrationsService) {}
 
   ngOnInit(): void {
@@ -26,7 +29,7 @@ export class RegistrationsListComponent implements OnInit {
   fetchRegistrationList(): void {
     this.registrationsService.fetchRegistrations()
       .then(registrations => this.registrationList = registrations)
-      .catch(error => console.log(error));
+      .catch(error => this.messagesService.showErrorMessage(error));
   }
 
   downloadReport(contractId: number): void {
@@ -39,7 +42,7 @@ export class RegistrationsListComponent implements OnInit {
         this.reportTemplateList = reportTemplates;
         this.selectedReportTemplate = this.reportTemplateList && this.reportTemplateList[0];
       })
-      .catch(error => console.log(error));
+      .catch(error => this.messagesService.showErrorMessage(error));
 
   }
 

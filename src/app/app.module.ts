@@ -17,6 +17,8 @@ import {AuthGuard} from './_guards/index';
 import {CustomerService} from './_services/customer.service';
 import {MenuService} from './_services/menu.service';
 import {RegistrationsService} from './_services/registrations.service';
+import {CoreModule} from './core/core.module';
+import {MessagesComponent} from './core/messages/messages.component';
 import {TranslateModule, TranslateLoader, TranslateService} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
@@ -28,7 +30,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
+    CoreModule,
     HttpClientModule,
     routing,
     MainRoutings,
@@ -44,7 +46,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     HomeComponent,
     LoginComponent,
-    MainComponent
+    MainComponent,
+    MessagesComponent
   ],
   providers: [
     AuthenticationService,

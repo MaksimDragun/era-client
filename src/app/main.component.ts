@@ -35,7 +35,6 @@ export class MainComponent implements OnInit {
   }
 
   isMenuActive(url: string): boolean {
-    //    console.log(`url=${url}; currentUrl=${this.currentUrl}`);
     return this.currentUrl && this.currentUrl.startsWith(url);
   }
 
@@ -46,7 +45,6 @@ export class MainComponent implements OnInit {
         this.currentUrl = nav.urlAfterRedirects || nav.url;
         this.currentMenu = this.findMainMenuItem(this.currentUrl);
         this.currentUrl = this.currentMenu ? this.currentUrl : '/';
-        //        console.log(`currentUrl: ${this.currentUrl}; navUrl=${nav.url}`);
       }
     });
   }

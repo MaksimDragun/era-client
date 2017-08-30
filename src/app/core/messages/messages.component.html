@@ -1,0 +1,18 @@
+<div *ngIf="messagesToDisplay && messagesToDisplay.length > 0" class="row">
+    <div class="alert alert-dismissible"
+            [class.alert-danger]="isClassEnabled(msgERROR)"
+            [class.alert-warning]="isClassEnabled(msgWARNING)"
+            [class.alert-success]="isClassEnabled(msgSUCCESS)"
+            [class.alert-info]="isClassEnabled(msgINFO)"
+            role="alert">
+        <button (click)="clear(messageTypeToDisplay)"
+                type="button"
+                class="close"
+                aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <ul class="list-group">
+            <li *ngFor="let msg of messagesToDisplay" class="list-group-item">{{msg.text}}</li>
+        </ul>
+    </div>
+</div>
