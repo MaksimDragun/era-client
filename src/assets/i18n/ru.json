@@ -64,5 +64,9 @@
 	},
 	"common": {
 		"download": "Скачать"
+	},
+	"errors" : {
+		"server-error": "Произошла ошибка на сервере: '{{status}}: {{description}}'",
+		"no-permissions": "У Вас нет прав на выполнение данного действия!"
 	}
 }

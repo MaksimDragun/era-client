@@ -29,7 +29,8 @@ export class AuthGuard implements CanActivate {
     }
     const menuItem: MenuItem = this.menuService.findMenuItem(state.url);
     if (!this.authenticationService.hasPermissions(userDetails.authorities, menuItem ? menuItem.authorities : [])) {
-      this.messageService.addMessage(new Message(MessageType.ERROR, 'У Вас не прав для совешения данного действия!', false));
+      this.messageService.addMessage(
+        { msgType: MessageType.ERROR, key: 'errors.no-permissions', expired: false });
       this.router.navigate(['/']);
       return false;
     }

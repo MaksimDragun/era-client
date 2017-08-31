@@ -3,6 +3,7 @@ import {NavigationEnd, Router} from '@angular/router';
 
 import {Message, MessageType, MESSAGE_TYPES} from './message';
 import {MessagesService} from '../../core/messages/messages.service';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-messages',
@@ -20,7 +21,8 @@ export class MessagesComponent {
 
   constructor(
     private messagesService: MessagesService,
-    private router: Router) {
+    private router: Router,
+    private translate: TranslateService) {
     this.onMessageChange();
     this.onNavigationChange();
   }
@@ -59,7 +61,10 @@ export class MessagesComponent {
             category = [];
             this.messages.set(msg.msgType, category);
           }
-          if (!category.find(message => msg.text === message.text)) {
+          if (!category.find(message => msg.text === message.text || msg.key === message.key)) {
+            if (msg.key && !msg.text) {
+              this.translate.get(msg.key, msg.params).subscribe((str: string) => msg.text = str);
+            }
             category.push(msg);
           }
 

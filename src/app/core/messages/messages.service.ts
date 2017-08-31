@@ -3,7 +3,6 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {Subscriber} from 'rxjs/Subscriber';
 
-
 import {Message, MessageType} from './message';
 
 @Injectable()
@@ -36,8 +35,12 @@ export class MessagesService {
   }
 
   showErrorMessage(response: any): void {
-    this.addMessage(
-      new Message(MessageType.ERROR, `An error has occured: ${response.status} (${response.statusText})`, true));
+    this.addMessage({
+      msgType: MessageType.ERROR,
+      key: 'errors.server-error',
+      expired: true,
+      params: {'status': response.status, 'description': response.statusText}
+    });
   }
 
 }
