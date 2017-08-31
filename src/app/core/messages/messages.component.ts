@@ -59,7 +59,7 @@ export class MessagesComponent {
             category = [];
             this.messages.set(msg.msgType, category);
           }
-          if (!category.find(messgae => msg.text === messgae.text)) {
+          if (!category.find(message => msg.text === message.text)) {
             category.push(msg);
           }
 

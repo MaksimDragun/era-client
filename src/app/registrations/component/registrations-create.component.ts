@@ -1,3 +1,4 @@
+import {TitleService} from '../../core/services/title.service';
 import {Component, OnInit} from '@angular/core';
 
 @Component({
@@ -6,8 +7,10 @@ import {Component, OnInit} from '@angular/core';
 })
 export class RegistrationsCreateComponent implements OnInit {
 
-  ngOnInit(): void {
+  constructor(private titleService: TitleService) {}
 
-   }
+  ngOnInit(): void {
+    this.titleService.setTitleKey('registrations.create.title');
+  }
 
 }

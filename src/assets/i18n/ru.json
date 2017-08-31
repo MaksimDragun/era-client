@@ -14,6 +14,7 @@
 	},
 	"main": {
 		"logout": "Выйти",
+		"main-page": "Домашняя страница",
 		"welcome": "Вы вошли как {{username}}",
 		"menu": {
 			"registrations": {
@@ -32,6 +33,9 @@
 		}
 	},
 	"registrations": {
+		"create": {
+			"title": "Регистрация нового абитуриента"
+		},
 		"list": {
 			"attestate-avg": "Ср.бал",
 			"contract": "Договор",
@@ -51,6 +55,11 @@
 		"customer-info": {
 			"education-institution": "Учреждение образования",
 			"title": "Общая информация"
+		}
+	},
+	"administration" : {
+		"user-accounts": {
+			"title" : "Учетные записи"
 		}
 	},
 	"common": {

@@ -1,6 +1,9 @@
+import {Title} from '@angular/platform-browser';
+
 import {UserDetails} from './_models/user-details';
 import {AuthenticationService} from './_services/authentication.service';
 import {MenuService, MenuItem} from './_services/menu.service';
+import {TitleService} from './core/services/title.service';
 import {Component, OnInit} from '@angular/core';
 import {Router, NavigationEnd} from '@angular/router';
 
@@ -10,6 +13,8 @@ import {Router, NavigationEnd} from '@angular/router';
 })
 export class MainComponent implements OnInit {
 
+  screenTitle: string;
+
   userDetails: UserDetails;
   mainMenu: MenuItem[];
   currentMenu: MenuItem;
@@ -18,15 +23,19 @@ export class MainComponent implements OnInit {
   constructor(
     private authenticationService: AuthenticationService,
     private menuService: MenuService,
-    private router: Router) {}
+    private router: Router,
+    private title: Title,
+    private titleService: TitleService) {}
 
   ngOnInit() {
+    this.setTitleChangeListener();
     this.authenticationService.getUserDetails()
       .then((userDetails: UserDetails) => {
         this.userDetails = userDetails;
         this.mainMenu = this.menuService.getMainMenu();
       });
     this.onNavigationChange();
+    this.titleService.setTitleKey('main.main-page');
   }
 
   logout(): void {
@@ -45,6 +54,9 @@ export class MainComponent implements OnInit {
         this.currentUrl = nav.urlAfterRedirects || nav.url;
         this.currentMenu = this.findMainMenuItem(this.currentUrl);
         this.currentUrl = this.currentMenu ? this.currentUrl : '/';
+        if (this.currentUrl === '/') {
+          this.titleService.setTitleKey('main.main-page');
+        }
       }
     });
   }
@@ -55,6 +67,13 @@ export class MainComponent implements OnInit {
         return item;
       }
     }
+  }
+
+  setTitleChangeListener(): void {
+    this.titleService.source.subscribe((title: string) => {
+      this.screenTitle = title;
+      this.title.setTitle(title);
+    });
   }
 }
 

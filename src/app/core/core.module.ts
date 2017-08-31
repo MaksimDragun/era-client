@@ -9,6 +9,7 @@ import {CommonModule} from '@angular/common';
 import {HttpModule} from '@angular/http';
 
 import {MessagesService} from './messages/messages.service';
+import {TitleService} from './services/title.service';
 
 
 
@@ -18,7 +19,8 @@ import {MessagesService} from './messages/messages.service';
   ],
   exports: [],
   providers: [
-    MessagesService
+    MessagesService,
+    TitleService
   ]
 })
 export class CoreModule {}

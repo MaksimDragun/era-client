@@ -68,7 +68,13 @@ export const mainMenu: MenuItem[] = [
 @Injectable()
 export class MenuService {
 
-  constructor(private authenticationService: AuthenticationService) {}
+  constructor(private authenticationService: AuthenticationService) {
+    for (const item of mainMenu) {
+      for (const subItem of item.subMenu) {
+        subItem.authorities = subItem.authorities.concat(item.authorities);
+      }
+    }
+  }
 
   getMainMenu(): MenuItem[] {
     const userMainMenu: MenuItem[] = [];
