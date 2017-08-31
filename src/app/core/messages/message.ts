@@ -7,7 +7,7 @@ export class Message {
   text?: string;
   key?: string;
   params?: any;
-  expired?: boolean;
+  expired? = true;
 
   constructor(msgType: MessageType, text: string, expired = true) {
     this.expired = expired;

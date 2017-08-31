@@ -33,8 +33,12 @@
 		}
 	},
 	"registrations": {
+		"common": {
+			"no-active-registration-period": "На данный момент регистрация абитуриентов не проводится"
+		},
 		"create": {
-			"title": "Регистрация нового абитуриента"
+			"title": "Регистрация нового абитуриента",
+			"title-with-period": "Регистрация нового абитуриента: {{period}}"
 		},
 		"list": {
 			"attestate-avg": "Ср.бал",
@@ -44,6 +48,7 @@
 			"registration-date": "Дата регистрации",
 			"speciality": "Специальность",
 			"title": "Список зарегистрированных абитуриентов",
+			"title-with-period": "Список зарегистрированных абитуриентов: {{period}}",
 			"type": "Тип"
 		},
 		"types": {
@@ -57,15 +62,15 @@
 			"title": "Общая информация"
 		}
 	},
-	"administration" : {
+	"administration": {
 		"user-accounts": {
-			"title" : "Учетные записи"
+			"title": "Учетные записи"
 		}
 	},
 	"common": {
 		"download": "Скачать"
 	},
-	"errors" : {
+	"errors": {
 		"server-error": "Произошла ошибка на сервере: '{{status}}: {{description}}'",
 		"no-permissions": "У Вас нет прав на выполнение данного действия!"
 	}

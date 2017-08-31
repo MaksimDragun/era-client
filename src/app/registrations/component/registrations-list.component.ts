@@ -30,22 +30,21 @@ export class RegistrationsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.titleService.setTitleKey('registrations.list.title');
-    this.fetchRegistrationPeriod()
+    this.registrationsService.fetchRegistrationPeriod()
       .then((period: RegistrationPeriod) => {
         this.registrationPeriod = period;
-        this.fetchReportTemplateList();
-        this.fetchRegistrationList();
+        if (period) {
+          this.translate.get('registrations.list.title-with-period', {'period': period.title})
+            .subscribe(str => this.titleService.setTitleKey(str));
+          this.fetchReportTemplateList();
+          this.fetchRegistrationList();
+        } else {
+          this.messagesService.addMessage({key: 'registrations.common.no-active-registration-period', msgType: MessageType.INFO});
+        }
       })
-      .catch((error: any) => {
-        this.messagesService.addMessage(new Message(MessageType.INFO, 'There is no active registration period'));
-      });
+      .catch(error => this.messagesService.showErrorMessage(error));
   }
 
-  fetchRegistrationPeriod(): Promise<RegistrationPeriod> {
-    return new Promise<RegistrationPeriod>((resolve, reject) => {
-      resolve(null);
-    });
-  }
 
   fetchRegistrationList(): void {
     this.registrationsService.fetchRegistrations()
