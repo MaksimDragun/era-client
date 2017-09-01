@@ -47,7 +47,7 @@ export class RegistrationsListComponent implements OnInit {
 
 
   fetchRegistrationList(): void {
-    this.registrationsService.fetchRegistrations()
+    this.registrationsService.fetchRegistrations([{name: 'periodId', value: this.registrationPeriod.id}])
       .then(registrations => this.registrationList = registrations)
       .catch(error => this.messagesService.showErrorMessage(error));
   }

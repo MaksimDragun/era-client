@@ -26,7 +26,7 @@ export class RegistrationsCreateComponent implements OnInit {
       .then((period: RegistrationPeriod) => {
         this.registrationPeriod = period;
         if (period) {
-          this.translate.get('registrations.list.title-with-period', {'period': period.title})
+          this.translate.get('registrations.create.title-with-period', {'period': period.title})
             .subscribe(str => this.titleService.setTitleKey(str));
         } else {
           this.messagesService.addMessage({key: 'registrations.common.no-active-registration-period', msgType: MessageType.INFO});

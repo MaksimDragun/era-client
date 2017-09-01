@@ -6,7 +6,7 @@ import {Registration} from '../_models/registration';
 import {RegistrationPeriod} from '../_models/registration-period';
 import {ReportTemplate} from '../_models/report-template';
 
-import {defaultOptions, fileOptions} from '../_utils/http.utils';
+import {defaultOptions, fileOptions, searchOptions} from '../_utils/http.utils';
 
 import * as FileSaver from 'file-saver';
 
@@ -21,8 +21,8 @@ export class RegistrationsService {
 
   constructor(private http: Http) {}
 
-  fetchRegistrations(): Promise<Registration[]> {
-    return this.http.get(this.fetchRegistrationListUrl, defaultOptions()).toPromise()
+  fetchRegistrations(params: {name: string, value: any}[]): Promise<Registration[]> {
+    return this.http.get(this.fetchRegistrationListUrl, searchOptions(params)).toPromise()
       .then(response => response.json() as Registration[]);
   }
 
