@@ -22,6 +22,10 @@ export class RegistrationsListComponent implements OnInit {
 
   selectedReportTemplate: ReportTemplate;
 
+  searchByName: string;
+  searchBySpeciality: number;
+  searchByStudyType: string;
+
   constructor(
     private messagesService: MessagesService,
     private registrationsService: RegistrationsService,
@@ -36,6 +40,7 @@ export class RegistrationsListComponent implements OnInit {
         if (period) {
           this.translate.get('registrations.list.title-with-period', {'period': period.title})
             .subscribe(str => this.titleService.setTitleKey(str));
+          this.fetchValuesForFilters();
           this.fetchReportTemplateList();
           this.fetchRegistrationList();
         } else {
@@ -45,9 +50,25 @@ export class RegistrationsListComponent implements OnInit {
       .catch(error => this.messagesService.showErrorMessage(error));
   }
 
+  doSearch(): void {
+    this.fetchRegistrationList([
+      {name: 'name', value: this.searchByName && this.searchByName},
+      {name: 'speciality', value: this.searchByName && this.searchBySpeciality},
+      {name: 'stydy-type', value: this.searchByStudyType && this.searchByStudyType},
+    ]);
+  }
 
-  fetchRegistrationList(): void {
-    this.registrationsService.fetchRegistrations([{name: 'periodId', value: this.registrationPeriod.id}])
+  doReset(): void {
+    console.log('Do reset');
+  }
+
+  fetchValuesForFilters(): void {
+    console.log('fetchValuesForFilters');
+  }
+
+  fetchRegistrationList(params: {name: string, value: any}[] = []): void {
+    params.push({name: 'periodId', value: this.registrationPeriod.id});
+    this.registrationsService.fetchRegistrations(params)
       .then(registrations => this.registrationList = registrations)
       .catch(error => this.messagesService.showErrorMessage(error));
   }

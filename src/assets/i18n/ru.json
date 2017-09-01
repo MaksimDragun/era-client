@@ -44,9 +44,13 @@
 			"attestate-avg": "Ср.бал",
 			"contract": "Договор",
 			"contract-type": "Тип договора",
+			"filter": "Фильтр",
 			"full-name": "Ф.И.О.",
+			"name-filter": "Имя",
 			"registration-date": "Дата регистрации",
 			"speciality": "Специальность",
+			"speciality-filter": "Специальность",
+			"study-type-filter": "Тип обучения",
 			"title": "Список зарегистрированных абитуриентов",
 			"title-with-period": "Список зарегистрированных абитуриентов: {{period}}",
 			"type": "Тип"
@@ -68,7 +72,9 @@
 		}
 	},
 	"common": {
-		"download": "Скачать"
+		"download": "Скачать",
+		"reset": "Сброс",
+		"search": "Поиск"
 	},
 	"errors": {
 		"server-error": "Произошла ошибка на сервере: '{{status}}: {{description}}'",

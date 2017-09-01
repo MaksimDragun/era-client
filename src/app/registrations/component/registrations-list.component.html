@@ -1,26 +1,40 @@
 <div *ngIf="registrationPeriod" class="row">
 	<div class="row">
-		<div class="form-group col-lg-3 col-md-4 col-xs-12">
-			<label>Name</label>
-			<input name="name" value="Name" type="text" class="form-control" />
+		<div class="col-lg-12 col-md-12 col-xs-12">
+			<button data-target="#searchPanel" class="btn btn-primary" data-toggle="collapse">{{'registrations.list.filter' | translate}}</button>
 		</div>
-		<div class="form-group col-lg-3 col-md-4 col-xs-12">
-               <label>Speciality</label>
-               <select name="speciality" class="form-control">
-                   <option value="speciality">1101101101</option>
-               </select>
-           </div>
-           <div class="form-group col-lg-3 col-md-4 col-xs-12">
-               <label>Form</label>
-               <select name="form" class="form-control">
-                   <option value="form">Budget</option>
-               </select>
-           </div>
+		<hr/>
+		<div id="searchPanel" class="collapse col-lg-12 col-md-12 col-xs-12">
+			<div class="form-group col-lg-3 col-md-4 col-xs-12">
+				<label>{{'registrations.list.name-filter' | translate}}</label>
+				<input name="name" [(ngModel)]="searchByName" type="text" class="form-control" />
+			</div>
+			<div class="form-group col-lg-3 col-md-4 col-xs-12">
+	           	<label>{{'registrations.list.speciality-filter' | translate}}</label>
+	      		<select name="speciality" [(ngModel)]="searchBySpeciality" class="form-control">
+	            	<option value="1000">1101101101</option>
+	            	<option value="1001">2200220022</option>
+	        	</select>
+	       	</div>
+	        <div class="form-group col-lg-3 col-md-4 col-xs-12">
+	            <label>{{'registrations.list.study-type-filter' | translate}}</label>
+	            <select name="stydyType" [(ngModel)]="searchByStudyType" class="form-control">
+	                <option value="B">Budget</option>
+	                <option value="P">Paid</option>
+	            </select>
+	        </div>
+	        <div class="col-lg-12 col-md-12 col-xs-12">
+				<button (click)="doSearch()" class="btn btn-primary">{{'common.search' | translate}}</button>
+				<button (click)="doReset()" class="btn btn-primary">{{'common.reset' | translate}}</button>
+			</div>
+   		</div>
 	</div>
+	<hr/>
 	<div class="row">
 		<div class="col-lg-10 col-md-9 col-xs-12">
 			<table class="table table-striped">
 				<tr>
+					<th>#</th>
 					<th>{{'registrations.list.full-name' | translate}}</th>
 					<th>{{'registrations.list.speciality' | translate}}</th>
 					<th>{{'registrations.list.type' | translate}}</th>
@@ -28,8 +42,11 @@
 					<th>{{'registrations.list.registration-date' | translate}}</th>
 					<th class="text-center">{{'registrations.list.contract' | translate}}</th>
 				</tr>
-				<tr *ngFor="let reg of registrationList">
-					<td>{{reg.lastName}} {{reg.firstName.charAt(0)}}. {{reg.middleName.charAt(0)}}.</td>
+				<tr *ngFor="let reg of registrationList; let i = index">
+					<td>{{i + 1}}.</td>
+					<td data-toggle="tooltip" title="{{reg.lastName}} {{reg.firstName}} {{reg.middleName}}">
+						{{reg.lastName}} {{reg.firstName.charAt(0)}}. {{reg.middleName.charAt(0)}}.
+					</td>
 					<td>{{reg.speciality}}</td>
 					<td>{{'registrations.types.' + reg.registrationType | translate}}</td>
 					<td>{{reg.attestateAvg|number:'.2'}}</td>
