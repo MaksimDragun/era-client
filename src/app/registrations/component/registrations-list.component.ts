@@ -58,7 +58,7 @@ export class RegistrationsListComponent implements OnInit {
     this.fetchRegistrationList([
       {name: 'name', value: this.searchByName && this.searchByName},
       {name: 'speciality', value: this.searchBySpeciality && this.searchBySpeciality.id},
-      {name: 'stydy-type', value: this.searchByStudyType && this.searchByStudyType.value},
+      {name: 'study-type', value: this.searchByStudyType && this.searchByStudyType.value},
     ]);
   }
 
