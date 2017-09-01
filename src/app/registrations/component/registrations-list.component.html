@@ -12,16 +12,14 @@
 			<div class="form-group col-lg-3 col-md-4 col-xs-12">
 	           	<label>{{'registrations.list.speciality-filter' | translate}}</label>
 	      		<select name="speciality" [(ngModel)]="searchBySpeciality" class="form-control">
-	            	<option value="1000">1101101101</option>
-	            	<option value="1001">2200220022</option>
+	            	<option *ngFor="let spec of specialityList" [ngValue]="spec">{{spec.name}}</option>
 	        	</select>
 	       	</div>
 	        <div class="form-group col-lg-3 col-md-4 col-xs-12">
 	            <label>{{'registrations.list.study-type-filter' | translate}}</label>
-	            <select name="stydyType" [(ngModel)]="searchByStudyType" class="form-control">
-	                <option value="B">Budget</option>
-	                <option value="P">Paid</option>
-	            </select>
+	            <select [(ngModel)]="searchByStudyType" name="stydy-type" class="form-control">
+					<option *ngFor="let type of studyTypeList" [ngValue]="type">{{'registrations.types.' + type.name | translate}}</option>
+				</select>
 	        </div>
 	        <div class="col-lg-12 col-md-12 col-xs-12">
 				<button (click)="doSearch()" class="btn btn-primary">{{'common.search' | translate}}</button>

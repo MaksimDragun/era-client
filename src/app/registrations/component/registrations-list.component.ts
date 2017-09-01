@@ -1,6 +1,8 @@
 import {Registration} from '../../_models/registration';
 import {RegistrationPeriod} from '../../_models/registration-period';
 import {ReportTemplate} from '../../_models/report-template';
+import {Speciality} from '../../_models/speciality';
+import {StudyType} from '../../_models/study-type';
 import {RegistrationsService} from '../../_services/registrations.service';
 import {MessageType, Message} from '../../core/messages/message';
 import {MessagesService} from '../../core/messages/messages.service';
@@ -23,8 +25,10 @@ export class RegistrationsListComponent implements OnInit {
   selectedReportTemplate: ReportTemplate;
 
   searchByName: string;
-  searchBySpeciality: number;
-  searchByStudyType: string;
+  specialityList: Speciality[];
+  searchBySpeciality: Speciality;
+  studyTypeList: StudyType[];
+  searchByStudyType: StudyType;
 
   constructor(
     private messagesService: MessagesService,
@@ -53,17 +57,29 @@ export class RegistrationsListComponent implements OnInit {
   doSearch(): void {
     this.fetchRegistrationList([
       {name: 'name', value: this.searchByName && this.searchByName},
-      {name: 'speciality', value: this.searchByName && this.searchBySpeciality},
-      {name: 'stydy-type', value: this.searchByStudyType && this.searchByStudyType},
+      {name: 'speciality', value: this.searchBySpeciality && this.searchBySpeciality.id},
+      {name: 'stydy-type', value: this.searchByStudyType && this.searchByStudyType.value},
     ]);
   }
 
   doReset(): void {
-    console.log('Do reset');
+    this.searchByName = null;
+    this.searchBySpeciality = null;
+    this.searchByStudyType = this.studyTypeList && this.studyTypeList[0];
+    this.fetchRegistrationList();
   }
 
   fetchValuesForFilters(): void {
-    console.log('fetchValuesForFilters');
+    this.registrationsService.getStudyTypeList()
+      .then((list: StudyType[]) => {
+        this.studyTypeList = list;
+        this.searchByStudyType = list && list[0];
+      });
+    this.registrationsService.fetchSpecialities(this.registrationPeriod.id)
+      .then((specs: Speciality[]) => {
+        this.specialityList = specs;
+        this.searchBySpeciality = specs && specs[0];
+      });
   }
 
   fetchRegistrationList(params: {name: string, value: any}[] = []): void {
