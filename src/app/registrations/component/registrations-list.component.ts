@@ -84,9 +84,7 @@ export class RegistrationsListComponent implements OnInit {
 
   fetchRegistrationList(params: {name: string, value: any}[] = []): void {
     params.push({name: 'periodId', value: this.registrationPeriod.id});
-    this.registrationsService.fetchRegistrations(params)
-      .then(registrations => this.registrationList = registrations)
-      .catch(error => this.messagesService.showErrorMessage(error));
+    this.registrationsService.fetchRegistrations(params).then(list => this.registrationList = list);
   }
 
   downloadReport(contractId: number): void {

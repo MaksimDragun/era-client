@@ -1,8 +1,9 @@
 import {Title} from '@angular/platform-browser';
 
 import {UserDetails} from './_models/user-details';
-import {AuthenticationService} from './_services/authentication.service';
-import {MenuService, MenuItem} from './_services/menu.service';
+import {AuthenticationService} from './core/auth/authentication.service';
+import {MenuItem} from './core/menu/menu-item';
+import {MenuService} from './core/menu/menu.service';
 import {TitleService} from './core/services/title.service';
 import {Component, OnInit} from '@angular/core';
 import {Router, NavigationEnd} from '@angular/router';

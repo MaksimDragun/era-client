@@ -8,7 +8,9 @@ import {ReportTemplate} from '../_models/report-template';
 import {Speciality} from '../_models/speciality';
 import {StudyType} from '../_models/study-type';
 
-import {defaultOptions, fileOptions, searchOptions} from '../_utils/http.utils';
+import {defaultOptions, fileOptions, searchOptions} from '../core/http/http.utils';
+import {Result} from '../core/http/result';
+import {Api} from '../core/http/api.service';
 
 import * as FileSaver from 'file-saver';
 
@@ -24,29 +26,23 @@ export class RegistrationsService {
   private fetchReportTemplateUrl = 'api/registrations/get-report-templates';
   private fetchSpecialitiesUrl = 'api/specialities/get-list-for-registrations';
 
-  constructor(private http: Http) {}
+  constructor(private api: Api, private http: Http) {}
 
   fetchRegistrations(params: {name: string, value: any}[]): Promise<Registration[]> {
-    return this.http.get(this.fetchRegistrationListUrl, searchOptions(params)).toPromise()
-      .then(response => response.json() as Registration[]);
+    return this.api.get(this.fetchRegistrationListUrl, searchOptions(params));
   }
 
   fetchReportTemplates(): Promise<ReportTemplate[]> {
-    return this.http.get(this.fetchReportTemplateUrl, defaultOptions()).toPromise()
-      .then(response => response.json() as ReportTemplate[]);
+    return this.api.get(this.fetchReportTemplateUrl, defaultOptions());
   }
 
   fetchRegistrationPeriod(): Promise<RegistrationPeriod> {
-    return this.http.get(this.fetchActivePeriodUrl, defaultOptions()).toPromise()
-      .then(response => response.json() as RegistrationPeriod);
+    return this.api.get(this.fetchActivePeriodUrl, defaultOptions());
   }
 
   fetchSpecialities(periodId: number): Promise<Speciality[]> {
-    return this.http.get(this.fetchSpecialitiesUrl, searchOptions([{name: 'periodId', value: periodId}])).toPromise()
-      .then(response => {
-        const specs: Speciality[] = [{id: null, name: ''}];
-        return specs.concat(response.json());
-      });
+    return this.api.get(this.fetchSpecialitiesUrl, searchOptions([{name: 'periodId', value: periodId}]))
+      .then((specs: Speciality[]) => [{id: null, name: ''}].concat(specs));
   }
 
   getStudyTypeList(): Promise<StudyType[]> {

@@ -1,8 +1,3 @@
-import {UserDetails} from '../_models/user-details';
-import {AuthenticationService} from '../_services/authentication.service';
-import {MenuService, MenuItem} from '../_services/menu.service';
-import { Message, MessageType } from '../core/messages/message';
-import { MessagesService } from '../core/messages/messages.service';
 import {Injectable} from '@angular/core';
 import {
   ActivatedRouteSnapshot,
@@ -10,6 +5,14 @@ import {
   Router,
   RouterStateSnapshot, NavigationExtras
 } from '@angular/router';
+
+import {AuthenticationService} from './authentication.service';
+import {MenuService} from '../menu/menu.service';
+import {MenuItem} from '../menu/menu-item';
+import {Message, MessageType} from '../messages/message';
+import {MessagesService} from '../messages/messages.service';
+
+import {UserDetails} from '../../_models/user-details';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -30,7 +33,7 @@ export class AuthGuard implements CanActivate {
     const menuItem: MenuItem = this.menuService.findMenuItem(state.url);
     if (!this.authenticationService.hasPermissions(userDetails.authorities, menuItem ? menuItem.authorities : [])) {
       this.messageService.addMessage(
-        { msgType: MessageType.ERROR, key: 'errors.no-permissions', expired: false });
+        {msgType: MessageType.ERROR, key: 'errors.no-permissions', expired: false});
       this.router.navigate(['/']);
       return false;
     }

@@ -9,13 +9,10 @@ import {routing} from './app.routing';
 import {MainRoutings} from './main.routing';
 
 import {HomeComponent} from './home/index';
-import {LoginComponent} from './login/index';
+import {LoginComponent} from './login/login.component';
 import {MainComponent} from './main.component';
 
-import {AuthenticationService} from './_services/authentication.service';
-import {AuthGuard} from './_guards/index';
 import {CustomerService} from './_services/customer.service';
-import {MenuService} from './_services/menu.service';
 import {RegistrationsService} from './_services/registrations.service';
 import {CoreModule} from './core/core.module';
 import {MessagesComponent} from './core/messages/messages.component';
@@ -50,10 +47,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MessagesComponent
   ],
   providers: [
-    AuthenticationService,
-    AuthGuard,
     CustomerService,
-    MenuService,
     RegistrationsService
   ],
   bootstrap: [AppComponent]

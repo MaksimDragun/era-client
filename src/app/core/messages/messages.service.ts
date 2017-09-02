@@ -3,6 +3,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {Subscriber} from 'rxjs/Subscriber';
 
+import {Issue} from '../http/issue';
 import {Message, MessageType} from './message';
 
 @Injectable()
@@ -28,6 +29,16 @@ export class MessagesService {
 
   addMessages(msgs: Message[]): void {
     this.subscriber ? this.subscriber.next(msgs) : this.buffer.concat(msgs);
+  }
+
+  addIssues(issues: Issue[]): void {
+    this.addMessages(issues.map(issue => {
+      return {
+        msgType: MessageType.ERROR,
+        key: issue.errorCode,
+        params: issue.params
+      };
+    }));
   }
 
   reset(): void {

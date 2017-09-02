@@ -3,7 +3,8 @@ import {Headers, Http, RequestOptions} from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import {UserDetails} from '../_models/user-details';
+import {UserDetails} from '../../_models/user-details';
+import {Api} from '../http/api.service';
 import {resolve} from 'url';
 
 @Injectable()
@@ -14,13 +15,11 @@ export class AuthenticationService {
   private loginUrl = 'api/login';
   private headers = new Headers({'Content-Type': 'application/json'});
 
-  constructor(private http: Http) {}
+  constructor(private api: Api) {}
 
   login(username: string, password: string): any {
-    return this.http.post(this.loginUrl, JSON.stringify({username: username, password: password}), {headers: this.headers})
-      .toPromise()
-      .then(response => {
-        const user = response.json();
+    return this.api.post(this.loginUrl, JSON.stringify({username: username, password: password}), {headers: this.headers})
+      .then((user: any) => {
         if (user && user.token) {
           if (user.token) {
             localStorage.setItem('currentUserToken', user.token);
@@ -56,10 +55,6 @@ export class AuthenticationService {
         }
       }
     });
-  }
-
-  getUserDetailsImmediatly(): UserDetails {
-    return this.userDetails;
   }
 
   hasPermissions(userRoles: {authority: string}[], rolesToCheck: string[]): boolean {
