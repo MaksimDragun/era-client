@@ -5,6 +5,8 @@ import {NgModule} from '@angular/core';
 import {TranslateModule} from '@ngx-translate/core';
 
 import {AdministrationRoutingModule} from './administration-routing.module';
+import {RolesViewDialogComponent} from './component/roles-view-dialog.component';
+import {UserAccountCreateComponent} from './component/user-account-create.component';
 
 import {UserAccountsComponent} from './component/user-accounts.component';
 
@@ -17,10 +19,11 @@ import {UserAccountsComponent} from './component/user-accounts.component';
     TranslateModule.forChild()
   ],
   declarations: [
-    UserAccountsComponent
+    UserAccountsComponent,
+    RolesViewDialogComponent,
+    UserAccountCreateComponent
   ],
   exports: [
-    UserAccountsComponent
   ],
   providers: [
 

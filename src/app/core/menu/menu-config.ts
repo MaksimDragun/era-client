@@ -5,14 +5,14 @@ export const mainMenu: MenuItem[] = [
     action: '/registrations',
     title: 'main.menu.registrations.main',
     authorities: [
-      'ROLE_REGISTRATIONSVIEW'
+      'ROLE_REGISTRATIONS_VIEW'
     ],
     subMenu: [
       {
         action: '/registrations/list',
         title: 'main.menu.registrations.list',
         authorities: [
-          'ROLE_REGISTRATIONSVIEW'
+          'ROLE_REGISTRATIONS_VIEW'
         ],
         subMenu: []
       },
@@ -20,7 +20,7 @@ export const mainMenu: MenuItem[] = [
         action: '/registrations/create',
         title: 'main.menu.registrations.create',
         authorities: [
-          'ROLE_REGISTRATIONSCREATE'
+          'ROLE_REGISTRATIONS_CREATE'
         ],
         subMenu: []
       }
@@ -43,7 +43,7 @@ export const mainMenu: MenuItem[] = [
     action: '/administration',
     title: 'main.menu.administration.main',
     authorities: [
-      'ROLE_ADMINVIEW'
+      'ROLE_ADMIN_VIEW'
     ],
     subMenu: [
       {

@@ -71,18 +71,38 @@
 		"user-accounts": {
 			"email": "Эл.почта",
 			"name": "Имя",
-			"phone": "Телефон",
-			"roles": "Роли",
+			"roles": "Права",
+			"roles-dialog-title": "Права",
 			"title": "Учетные записи",
 			"username": "Логин"
+			,
+			"create": {
+				"title": "Создание новой учетной записи"
+			}
 		}
 	},
 	"common": {
 		"actions": "Действия",
+		"add-new": "Добавить",
+		"back": "Назад",
+		"close": "Закрыть",
 		"download": "Скачать",
 		"reset": "Сброс",
 		"search": "Поиск",
 		"view": "Посмотреть"
+	},
+	"roles": {
+		"module": {
+			"ADMIN": "Администрирование",
+			"REGISTRATIONS": "Регистрация"
+		},
+		"action": {
+			"ROLE_ADMIN_VIEW": "Просмотр",
+			"ROLE_REGISTRATIONS_VIEW": "Просмотр",
+			"ROLE_REGISTRATIONS_CREATE": "Регистрирование",
+			"ROLE_REGISTRATIONS_DELETE": "Удаление",
+			"ROLE_REGISTRATIONS_UPDATE": "Редактирование"
+		}
 	},
 	"errors": {
 		"server-error": "Произошла ошибка на сервере: '{{status}}: {{description}}'",

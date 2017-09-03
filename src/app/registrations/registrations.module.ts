@@ -20,8 +20,6 @@ import {TranslateModule, TranslateService} from '@ngx-translate/core';
     RegistrationsListComponent
   ],
   exports: [
-    RegistrationsCreateComponent,
-    RegistrationsListComponent
   ],
   providers: [
 

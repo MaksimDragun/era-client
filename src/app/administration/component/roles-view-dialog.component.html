@@ -1,0 +1,23 @@
+<div class="modal fade" id="rolesDialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="exampleModalLabel">{{'administration.user-accounts.roles-dialog-title' | translate}}</h4>
+			</div>
+			<div *ngIf="initialized" class="modal-body">
+				<ul *ngFor="let module of roles.keys()" class="list-group">
+				  <li class="list-group-item disabled">{{'roles.module.'.concat(module) | translate}}</li>
+				  <li *ngFor="let action of roles.get(module)" class="list-group-item">
+				  	{{'roles.action.'.concat(action) | translate }}
+				  </li>
+				</ul>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">{{'common.close' | translate}}</button>
+			</div>
+		</div>
+	</div>
+</div>
