@@ -18,4 +18,4 @@ import {UserAccountsComponent} from './component/user-accounts.component';
   ])],
   exports: [RouterModule]
 })
-export class RegistrationsRoutingModule {}
+export class AdministrationRoutingModule {}

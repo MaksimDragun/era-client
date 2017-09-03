@@ -2,15 +2,19 @@ import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {NgModule} from '@angular/core';
 
-import {RegistrationsRoutingModule} from './administration-routing.module';
+import {TranslateModule} from '@ngx-translate/core';
+
+import {AdministrationRoutingModule} from './administration-routing.module';
 
 import {UserAccountsComponent} from './component/user-accounts.component';
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    RegistrationsRoutingModule
+    AdministrationRoutingModule,
+    TranslateModule.forChild()
   ],
   declarations: [
     UserAccountsComponent

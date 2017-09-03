@@ -1,0 +1,25 @@
+<div class="row">
+	<div class="col-lg-12 col-md-12 col-xs-12">
+		<table class="table table-striped">
+			<tr>
+				<th>#</th>
+				<th>{{'administration.user-accounts.username' | translate}}</th>
+				<th>{{'administration.user-accounts.name' | translate}}</th>
+				<th>{{'administration.user-accounts.email' | translate}}</th>
+				<th>{{'administration.user-accounts.phone' | translate}}</th>
+				<th>{{'administration.user-accounts.roles' | translate}}</th>
+				<th>{{'common.actions' | translate}}</th>
+				
+			</tr>
+			<tr  *ngFor="let account of userAccountList; let i = index">
+				<td>{{i + 1}}.</td>
+				<td>{{account.username}}</td>
+				<td>{{account.lastName}} {{account.firstName}}</td>
+				<td>{{account.email}}</td>
+				<td>{{account.phone}}</td>
+				<td>{{'common.view' | translate}}</td>
+				<td></td>
+			</tr>
+		</table>
+	</div>
+</div>

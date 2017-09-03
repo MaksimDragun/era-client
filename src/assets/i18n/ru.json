@@ -69,13 +69,20 @@
 	},
 	"administration": {
 		"user-accounts": {
-			"title": "Учетные записи"
+			"email": "Эл.почта",
+			"name": "Имя",
+			"phone": "Телефон",
+			"roles": "Роли",
+			"title": "Учетные записи",
+			"username": "Логин"
 		}
 	},
 	"common": {
+		"actions": "Действия",
 		"download": "Скачать",
 		"reset": "Сброс",
-		"search": "Поиск"
+		"search": "Поиск",
+		"view": "Посмотреть"
 	},
 	"errors": {
 		"server-error": "Произошла ошибка на сервере: '{{status}}: {{description}}'",

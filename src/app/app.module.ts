@@ -14,13 +14,14 @@ import {MainComponent} from './main.component';
 
 import {CustomerService} from './_services/customer.service';
 import {RegistrationsService} from './_services/registrations.service';
+import {UserAccountService} from './_services/user-account.service';
 import {CoreModule} from './core/core.module';
 import {MessagesComponent} from './core/messages/messages.component';
 import {TranslateModule, TranslateLoader, TranslateService} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
+  return new TranslateHttpLoader(http) ;
 }
 
 @NgModule({
@@ -48,7 +49,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   providers: [
     CustomerService,
-    RegistrationsService
+    RegistrationsService,
+    UserAccountService
   ],
   bootstrap: [AppComponent]
 })

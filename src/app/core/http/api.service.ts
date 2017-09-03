@@ -11,14 +11,14 @@ export class Api {
 
   get<T>(url: string, options?: RequestOptionsArgs): Promise<T> {
     return this.http.get(url, options).toPromise()
-      .then(this.successResponse)
-      .catch(this.errorResponse);
+      .then(response => this.successResponse(response))
+      .catch(error => this.errorResponse(error));
   }
 
   post<T>(url: string, body: any, options: RequestOptionsArgs): Promise<T> {
     return this.http.post(url, body, options).toPromise()
-      .then(this.successResponse)
-      .catch(this.errorResponse);
+      .then(response => this.successResponse(response))
+      .catch(error => this.errorResponse(error));
   }
 
   private errorResponse<T>(error: any): T {
