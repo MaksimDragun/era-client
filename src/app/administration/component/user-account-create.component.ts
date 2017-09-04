@@ -31,6 +31,7 @@ export class UserAccountCreateComponent implements OnInit {
   }
 
   createUserAccount(): void {
+    this.messageService.reset();
     this.userAccountService.createUserAccount(this.userAccount)
       .then(userAccount => {
         this.messageService.addMessage(
