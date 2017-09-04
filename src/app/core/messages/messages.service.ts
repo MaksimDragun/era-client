@@ -36,7 +36,8 @@ export class MessagesService {
       return {
         msgType: MessageType.ERROR,
         key: issue.errorCode,
-        params: issue.params
+        params: issue.params,
+        expired: true
       };
     }));
   }
@@ -48,9 +49,8 @@ export class MessagesService {
   showErrorMessage(response: any): void {
     this.addMessage({
       msgType: MessageType.ERROR,
-      key: 'errors.server-error',
-      expired: true,
-      params: {'status': response.status, 'description': response.statusText}
+      key: 'errors.server-error.' + response.status,
+      expired: true
     });
   }
 

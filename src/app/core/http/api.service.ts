@@ -11,29 +11,41 @@ export class Api {
 
   get<T>(url: string, options?: RequestOptionsArgs): Promise<T> {
     return this.http.get(url, options).toPromise()
-      .then(response => this.successResponse(response))
-      .catch(error => this.errorResponse(error));
+      .then(response => {
+      const result: Result<T> = response.json() as Result<T>;
+      if (result) {
+        if (result.issues && result.issues.length !== 0) {
+          this.messageService.addIssues(result.issues);
+        }
+        return result.value;
+      }
+      return null;
+      })
+      .catch(error => {
+        this.messageService.showErrorMessage(error);
+        return null;
+      });
   }
 
   post<T>(url: string, body: any, options: RequestOptionsArgs): Promise<T> {
-    return this.http.post(url, body, options).toPromise()
-      .then(response => this.successResponse(response))
-      .catch(error => this.errorResponse(error));
+    return new Promise<T>((resolve, reject) => {
+      this.http.post(url, body, options).toPromise()
+        .then(response => {
+          const result: Result<T> = response.json() as Result<T>;
+          if (result) {
+            if (result.issues && result.issues.length !== 0) {
+              this.messageService.addIssues(result.issues);
+              reject(result.issues);
+            }
+            return resolve(result.value);
+          }
+          return reject(null);
+        })
+        .catch(error => {
+          this.messageService.showErrorMessage(error);
+          reject(error);
+        });
+    });
   }
 
-  private errorResponse<T>(error: any): T {
-    this.messageService.showErrorMessage(error);
-    return null;
-  }
-
-  private successResponse<T>(response: Response): T {
-    const result: Result<T> = response.json() as Result<T>;
-    if (result) {
-      if (!result.issues || result.issues.length === 0) {
-        return result.value;
-      }
-      this.messageService.addIssues(result.issues);
-    }
-    return null;
-  }
 }

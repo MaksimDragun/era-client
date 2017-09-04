@@ -74,10 +74,16 @@
 			"roles": "Права",
 			"roles-dialog-title": "Права",
 			"title": "Учетные записи",
-			"username": "Логин"
-			,
+			"username": "Логин",
 			"create": {
-				"title": "Создание новой учетной записи"
+				"email": "Эл.почта",
+				"first-name": "Имя",
+				"last-name": "Фамилия",
+				"password": "Пароль",
+				"repeated-password": "Пароль повторно",
+				"success-msg": "Учетная запись '{{username}}' успешно создана!",
+				"title": "Создание новой учетной записи",
+				"username": "Логин"
 			}
 		}
 	},
@@ -86,6 +92,7 @@
 		"add-new": "Добавить",
 		"back": "Назад",
 		"close": "Закрыть",
+		"create": "Создать",
 		"download": "Скачать",
 		"reset": "Сброс",
 		"search": "Поиск",
@@ -94,18 +101,28 @@
 	"roles": {
 		"module": {
 			"ADMIN": "Администрирование",
-			"REGISTRATIONS": "Регистрация"
+			"REGISTRATIONS": "Регистрация",
+			"USERACCOUNTS": "Учетный записи"
 		},
 		"action": {
 			"ROLE_ADMIN_VIEW": "Просмотр",
 			"ROLE_REGISTRATIONS_VIEW": "Просмотр",
 			"ROLE_REGISTRATIONS_CREATE": "Регистрирование",
 			"ROLE_REGISTRATIONS_DELETE": "Удаление",
-			"ROLE_REGISTRATIONS_UPDATE": "Редактирование"
+			"ROLE_REGISTRATIONS_UPDATE": "Редактирование",
+			
+			"ROLE_USERACCOUNTS_VIEW": "Просмотр",
+			"ROLE_USERACCOUNTS_CREATE": "Создание",
+			"ROLE_USERACCOUNTS_UPDATE": "Редактирование",
+			"ROLE_USERACCOUNTS_DELETE": "Удаление"
 		}
 	},
 	"errors": {
-		"server-error": "Произошла ошибка на сервере: '{{status}}: {{description}}'",
+		"server-error": {
+			"403": "У Вас нет прав на выполнение данного действия!",
+			"404": "Запрошенный ресурс не существует!",
+			"503": "Сервер недоступен!"
+		},
 		"no-permissions": "У Вас нет прав на выполнение данного действия!"
 	}
 }
