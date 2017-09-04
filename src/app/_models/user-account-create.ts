@@ -7,5 +7,6 @@ export class UserAccountCreate {
   email: string;
   password: string;
   repeatedPassword: string;
+  birthdate: string;
   roles: string[];
 }

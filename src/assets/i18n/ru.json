@@ -76,6 +76,7 @@
 			"title": "Учетные записи",
 			"username": "Логин",
 			"create": {
+				"birthdate": "Дата рождения",
 				"email": "Эл.почта",
 				"first-name": "Имя",
 				"last-name": "Фамилия",
@@ -133,7 +134,9 @@
 			"password-is-empty": "Пароль не заполнен",
 			"passwords-dont-match": "Пароли не совпадают",
 			"password-is-small": "Пароль должен быть не менее 8 символов",
-			"password-is-large": "Пароль не должен быть длинее 20 символов"
+			"password-is-large": "Пароль не должен быть длинее 20 символов",
+			"birthdate-invalid": "Неверный формат у даты рождения"
+		
 		}
 	},
 	"errors": {

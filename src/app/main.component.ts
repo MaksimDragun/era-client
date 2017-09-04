@@ -8,6 +8,8 @@ import {TitleService} from './core/services/title.service';
 import {Component, OnInit} from '@angular/core';
 import {Router, NavigationEnd} from '@angular/router';
 
+declare let $: any;
+
 @Component({
   moduleId: module.id,
   templateUrl: 'main.component.html'
@@ -29,6 +31,7 @@ export class MainComponent implements OnInit {
     private titleService: TitleService) {}
 
   ngOnInit() {
+    $('.datepicker').datepicker({language: 'ru'});
     this.setTitleChangeListener();
     this.authenticationService.getUserDetails()
       .then((userDetails: UserDetails) => {

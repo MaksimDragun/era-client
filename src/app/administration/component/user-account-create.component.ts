@@ -38,11 +38,15 @@ export class UserAccountCreateComponent implements OnInit {
           {
             msgType: MessageType.SUCCESS,
             key: 'administration.user-accounts.create.success-msg',
-            params: {'username' : userAccount.username},
+            params: {'username': userAccount.username},
             expired: false
           });
         this.router.navigate(['/administration/user-accounts']);
       });
+  }
+
+  dateChanged(event: any) {
+    console.log(event);
   }
 
 }
