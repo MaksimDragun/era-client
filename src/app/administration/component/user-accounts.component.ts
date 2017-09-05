@@ -33,5 +33,7 @@ export class UserAccountsComponent implements OnInit {
     this.router.navigate(['/administration/user-accounts/create']);
   }
 
-
+  delete(userAccount: UserAccount): void {
+    console.log(userAccount.id);
+  }
 }
