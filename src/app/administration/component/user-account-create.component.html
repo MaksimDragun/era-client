@@ -58,11 +58,8 @@
 					<div class="form-group" [ngClass]="{'has-error': f.submitted && !birthdate.valid}">
 						<label>{{'administration.user-accounts.create.birthdate' | translate}}</label>
 						<div class="input-group">
-							<span class="input-group-addon" id="sizing-addon2">
-								<span class="glyphicon  glyphicon-calendar" aria-hidden="true"></span>
-							</span>
-							<input [(ngModel)]="userAccount.birthdate" name="birthdate" #birthdate="ngModel" (change)="dateChanged($event)"
-								value="{{userAccount.birthdate}}" type="text" class="form-control datepicker" />
+						  	<datetime [(ngModel)]="userAccount.birthdate" name="birthdate" #birthdate="ngModel"
+						  		[timepicker]="false" [datepicker]="{autoclose: 'true', language: 'ru', placeholder: ' '}" required ></datetime>
 						</div>
 					</div>
 				</div>
