@@ -1,5 +1,5 @@
-import {UserAccount} from '../../_models/user-account';
 import {Component, Input, OnChanges, OnInit, SimpleChange, SimpleChanges} from '@angular/core';
+import {UserAccount} from '../models';
 
 @Component({
   selector: 'app-roles-view-dialog',

@@ -1,12 +1,8 @@
-import {Registration} from '../../_models/registration';
-import {RegistrationPeriod} from '../../_models/registration-period';
-import {ReportTemplate} from '../../_models/report-template';
-import {Speciality} from '../../_models/speciality';
-import {StudyType} from '../../_models/study-type';
-import {RegistrationsService} from '../../_services/registrations.service';
 import {MessageType, Message} from '../../core/messages/message';
 import {MessagesService} from '../../core/messages/messages.service';
 import {TitleService} from '../../core/services/title.service';
+import {Registration, ReportTemplate, RegistrationPeriod, Speciality, StudyType} from '../models';
+import {RegistrationsService} from '../services/registrations.service';
 import {Component, OnInit} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 

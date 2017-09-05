@@ -1,9 +1,8 @@
-import {AuthGuard} from './core/auth/auth.guard';
+import {AuthGuard} from '../auth/auth.guard';
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 
-import {HomeComponent} from './home/index';
-import {LoginComponent} from './login/login.component';
+import {LoginComponent} from '../login/login.component';
 import {MainComponent} from './main.component';
 
 export const mainRoutes: Routes = [

@@ -2,15 +2,10 @@ import {Injectable} from '@angular/core';
 
 import {Http, Response} from '@angular/http';
 
-import {Registration} from '../_models/registration';
-import {RegistrationPeriod} from '../_models/registration-period';
-import {ReportTemplate} from '../_models/report-template';
-import {Speciality} from '../_models/speciality';
-import {StudyType} from '../_models/study-type';
-
-import {defaultOptions, fileOptions, searchOptions} from '../core/http/http.utils';
-import {Result} from '../core/http/result';
-import {Api} from '../core/http/api.service';
+import {defaultOptions, fileOptions, searchOptions} from '../../core/http/http.utils';
+import {Result} from '../../core/http/result';
+import {Api} from '../../core/http/api.service';
+import {Registration, ReportTemplate, RegistrationPeriod, Speciality, StudyType} from '../models';
 
 import * as FileSaver from 'file-saver';
 

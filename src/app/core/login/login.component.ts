@@ -1,9 +1,9 @@
 ﻿import {Component, OnInit} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 
-import {AuthenticationService} from '../core/auth/authentication.service';
+import {AuthenticationService} from '../auth/authentication.service';
 
-import {UserDetails} from '../_models/user-details';
+import {UserDetails} from '../auth/user-details';
 
 export class LoginData {
   username: string;

@@ -1,8 +1,6 @@
-import {CommonModule} from '@angular/common';
+import {SharedModule} from '../shared/shared.module';
 import {FormsModule} from '@angular/forms';
 import {NgModule} from '@angular/core';
-
-import {NKDatetimeModule} from 'ng2-datetime/ng2-datetime';
 
 import {TranslateModule} from '@ngx-translate/core';
 
@@ -11,27 +9,22 @@ import {RolesViewDialogComponent} from './component/roles-view-dialog.component'
 import {UserAccountCreateComponent} from './component/user-account-create.component';
 
 import {UserAccountsComponent} from './component/user-accounts.component';
-
-declare const $: any;
-declare const JQuery: any;
+import {UserAccountService} from './services/user-account.service';
 
 @NgModule({
   imports: [
-    CommonModule,
     FormsModule,
-    NKDatetimeModule,
-    AdministrationRoutingModule,
-    TranslateModule.forChild()
+    SharedModule,
+    AdministrationRoutingModule
   ],
   declarations: [
     UserAccountsComponent,
     RolesViewDialogComponent,
     UserAccountCreateComponent
   ],
-  exports: [
-  ],
+  exports: [],
   providers: [
-
+    UserAccountService
   ]
 })
 export class AdministrationModule {}

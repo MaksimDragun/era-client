@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Http, RequestOptionsArgs, Response} from '@angular/http';
 
+import 'rxjs/add/operator/toPromise';
+
 import {MessagesService} from '../messages/messages.service';
 import {Result} from './result';
 

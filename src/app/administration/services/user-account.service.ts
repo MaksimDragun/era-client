@@ -1,10 +1,7 @@
 import {Injectable} from '@angular/core';
-
-import {Api} from '../core/http/api.service';
-import {defaultOptions} from '../core/http/http.utils';
-
-import {UserAccount} from '../_models/user-account';
-import {UserAccountCreate} from '../_models/user-account-create';
+import {Api} from '../../core/http/api.service';
+import {defaultOptions} from '../../core/http/http.utils';
+import {UserAccount, UserAccountCreate} from '../models';
 
 @Injectable()
 export class UserAccountService {

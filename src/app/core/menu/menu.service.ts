@@ -5,7 +5,7 @@ import {MenuItem} from './menu-item';
 
 import {AuthenticationService} from '../auth/authentication.service';
 
-import {UserDetails} from '../../_models/user-details';
+import {UserDetails} from '../auth/user-details';
 
 @Injectable()
 export class MenuService {

@@ -1,11 +1,11 @@
-import {UserAccountCreate} from '../../_models/user-account-create';
-import {UserAccountService} from '../../_services/user-account.service';
 import {AuthenticationService} from '../../core/auth/authentication.service';
 import {Message, MessageType} from '../../core/messages/message';
 import {MessagesService} from '../../core/messages/messages.service';
-import {TitleService} from '../../core/services/title.service';
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {TitleService} from '../../core/services/title.service';
+import {UserAccountCreate} from '../models';
+import {UserAccountService} from '../services/user-account.service';
 
 @Component({
   moduleId: module.id,

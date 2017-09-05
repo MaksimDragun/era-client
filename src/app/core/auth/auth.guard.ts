@@ -12,7 +12,7 @@ import {MenuItem} from '../menu/menu-item';
 import {Message, MessageType} from '../messages/message';
 import {MessagesService} from '../messages/messages.service';
 
-import {UserDetails} from '../../_models/user-details';
+import {UserDetails} from './user-details';
 
 @Injectable()
 export class AuthGuard implements CanActivate {

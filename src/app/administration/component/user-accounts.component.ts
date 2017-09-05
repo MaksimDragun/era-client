@@ -1,10 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-
-import {TitleService} from '../../core/services/title.service';
-
-import {UserAccount} from '../../_models/user-account';
-import {UserAccountService} from '../../_services/user-account.service';
 import {Router} from '@angular/router';
+import {TitleService} from '../../core/services/title.service';
+import {UserAccount} from '../models';
+import {UserAccountService} from '../services/user-account.service';
 
 @Component({
   moduleId: module.id,

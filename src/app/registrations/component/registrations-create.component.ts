@@ -1,8 +1,8 @@
-import {RegistrationPeriod} from '../../_models/registration-period';
-import {RegistrationsService} from '../../_services/registrations.service';
 import {MessageType} from '../../core/messages/message';
 import {MessagesService} from '../../core/messages/messages.service';
 import {TitleService} from '../../core/services/title.service';
+import {RegistrationPeriod} from '../models';
+import {RegistrationsService} from '../services/registrations.service';
 import {Component, OnInit} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 

@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
-
-import {CustomerDetails} from '../_models/customer-details';
-import {Api} from '../core/http/api.service';
-import {defaultOptions} from '../core/http/http.utils';
+import {Api} from '../../core/http/api.service';
+import {defaultOptions} from '../../core/http/http.utils';
+import {CustomerDetails} from '../models';
 
 @Injectable()
 export class CustomerService {

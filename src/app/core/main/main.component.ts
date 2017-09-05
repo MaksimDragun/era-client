@@ -1,14 +1,12 @@
 import {Title} from '@angular/platform-browser';
 
-import {UserDetails} from './_models/user-details';
-import {AuthenticationService} from './core/auth/authentication.service';
-import {MenuItem} from './core/menu/menu-item';
-import {MenuService} from './core/menu/menu.service';
-import {TitleService} from './core/services/title.service';
+import {UserDetails} from '../auth/user-details';
+import {AuthenticationService} from '../auth/authentication.service';
+import {MenuItem} from '../menu/menu-item';
+import {MenuService} from '../menu/menu.service';
+import {TitleService} from '../services/title.service';
 import {Component, OnInit} from '@angular/core';
 import {Router, NavigationEnd} from '@angular/router';
-
-declare let $: any;
 
 @Component({
   moduleId: module.id,
@@ -31,7 +29,6 @@ export class MainComponent implements OnInit {
     private titleService: TitleService) {}
 
   ngOnInit() {
-    $('.datepicker').datepicker({language: 'ru'});
     this.setTitleChangeListener();
     this.authenticationService.getUserDetails()
       .then((userDetails: UserDetails) => {

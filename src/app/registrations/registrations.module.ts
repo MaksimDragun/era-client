@@ -1,4 +1,4 @@
-import {CommonModule} from '@angular/common';
+import {SharedModule} from '../shared/shared.module';
 import {FormsModule} from '@angular/forms';
 import {NgModule} from '@angular/core';
 
@@ -6,14 +6,13 @@ import {RegistrationsRoutingModule} from './registrations-routing.module';
 
 import {RegistrationsCreateComponent} from './component/registrations-create.component';
 import {RegistrationsListComponent} from './component/registrations-list.component';
-import {TranslateModule, TranslateService} from '@ngx-translate/core';
+import {RegistrationsService} from './services/registrations.service';
 
 @NgModule({
   imports: [
-    CommonModule,
     FormsModule,
-    RegistrationsRoutingModule,
-    TranslateModule.forChild()
+    SharedModule,
+    RegistrationsRoutingModule
   ],
   declarations: [
     RegistrationsCreateComponent,
@@ -22,7 +21,7 @@ import {TranslateModule, TranslateService} from '@ngx-translate/core';
   exports: [
   ],
   providers: [
-
+    RegistrationsService
   ]
 })
 export class RegistrationsModule {}
