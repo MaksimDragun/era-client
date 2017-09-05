@@ -28,7 +28,6 @@ export class MenuService {
             userItem.action = item.action;
             userItem.title = item.title;
             userItem.subMenu = [];
-            userMainMenu.push(userItem);
             for (const subItem of item.subMenu) {
               if (this.authenticationService.hasPermissions(userDetails.authorities, subItem.authorities)) {
                 const userSubItem: MenuItem = new MenuItem();
@@ -36,6 +35,9 @@ export class MenuService {
                 userSubItem.title = subItem.title;
                 userItem.subMenu.push(userSubItem);
               }
+            }
+            if (userItem.subMenu) {
+              userMainMenu.push(userItem);
             }
           }
         }

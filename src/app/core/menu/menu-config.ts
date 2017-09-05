@@ -42,9 +42,7 @@ export const mainMenu: MenuItem[] = [
   {
     action: '/administration',
     title: 'main.menu.administration.main',
-    authorities: [
-      'ROLE_ADMIN_VIEW'
-    ],
+    authorities: [],
     subMenu: [
       {
         action: '/administration/user-accounts',

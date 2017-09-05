@@ -82,6 +82,7 @@
 				"last-name": "Фамилия",
 				"password": "Пароль",
 				"repeated-password": "Пароль повторно",
+				"roles": "Права доступа",
 				"success-msg": "Учетная запись '{{username}}' успешно создана!",
 				"title": "Создание новой учетной записи",
 				"username": "Логин"
@@ -103,7 +104,7 @@
 		"module": {
 			"ADMIN": "Администрирование",
 			"REGISTRATIONS": "Регистрация",
-			"USERACCOUNTS": "Учетный записи"
+			"USERACCOUNTS": "Учетные записи"
 		},
 		"action": {
 			"ROLE_ADMIN_VIEW": "Просмотр",

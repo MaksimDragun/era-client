@@ -8,5 +8,5 @@ export class UserAccountCreate {
   password: string;
   repeatedPassword: string;
   birthdate: Date;
-  roles: string[];
+  roles: {role: string, enabled}[] = [];
 }
