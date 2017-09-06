@@ -7,7 +7,7 @@
 				</button>
 				<h4 class="modal-title" id="exampleModalLabel">{{'administration.user-accounts.roles-dialog-title' | translate}}</h4>
 			</div>
-			<div *ngIf="initialized" class="modal-body">
+			<div class="modal-body pre-scrollable">
 				<ul *ngFor="let module of roles.keys()" class="list-group">
 				  <li class="list-group-item disabled">{{'roles.module.'.concat(module) | translate}}</li>
 				  <li *ngFor="let action of roles.get(module)" class="list-group-item">

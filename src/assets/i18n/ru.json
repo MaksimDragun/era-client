@@ -69,6 +69,7 @@
 	},
 	"administration": {
 		"user-accounts": {
+			"confirmation-delete": "Вы действительно хотите удалить учетную запись '{{username}}'?",
 			"email": "Эл.почта",
 			"name": "Имя",
 			"roles": "Права",
@@ -83,9 +84,12 @@
 				"password": "Пароль",
 				"repeated-password": "Пароль повторно",
 				"roles": "Права доступа",
-				"success-msg": "Учетная запись '{{username}}' успешно создана!",
 				"title": "Создание новой учетной записи",
 				"username": "Логин"
+			},
+			"messages": {
+				"success-created": "Учетная запись '{{username}}' успешно создана!",
+				"success-deleted": "Учетная запись '{{username}}' успешно удалена!"
 			}
 		}
 	},
@@ -93,7 +97,10 @@
 		"actions": "Действия",
 		"add-new": "Добавить",
 		"back": "Назад",
+		"cancel": "Отмена",
 		"close": "Закрыть",
+		"confirm": "Подтвердить",
+		"confirmation-header": "Подтвердите действие",
 		"create": "Создать",
 		"delete": "Удалить",
 		"download": "Скачать",
@@ -114,7 +121,6 @@
 			"ROLE_REGISTRATIONS_CREATE": "Регистрирование",
 			"ROLE_REGISTRATIONS_DELETE": "Удаление",
 			"ROLE_REGISTRATIONS_UPDATE": "Редактирование",
-			
 			"ROLE_USERACCOUNTS_VIEW": "Просмотр",
 			"ROLE_USERACCOUNTS_CREATE": "Создание",
 			"ROLE_USERACCOUNTS_UPDATE": "Редактирование",
@@ -138,8 +144,10 @@
 			"passwords-dont-match": "Пароли не совпадают",
 			"password-is-small": "Пароль должен быть не менее 8 символов",
 			"password-is-large": "Пароль не должен быть длинее 20 символов",
-			"birthdate-is-empty": "Даты рождения отсутствует"
-		
+			"birthdate-is-empty": "Даты рождения отсутствует",
+			"account-doesnt-exist": "Учетная запись не существует",
+			"account-doesnt-belong-to-customer": "Учетная запись не принадлежит Вам",
+			"account-is-initiator": "Вы не можете удалить свою учетную запись"
 		}
 	},
 	"errors": {

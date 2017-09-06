@@ -11,10 +11,7 @@ export class RolesViewDialogComponent implements OnChanges {
 
   roles: Map<string, string[]> = new Map();
 
-  initialized: boolean;
-
   ngOnChanges(changes: SimpleChanges): void {
-    this.initialized = false;
     const change: SimpleChange = changes['selectedUserAccount'];
     if (change && change.currentValue) {
       this.roles.clear();
@@ -30,7 +27,6 @@ export class RolesViewDialogComponent implements OnChanges {
         }
       });
     }
-    this.initialized = true;
   }
 
 }

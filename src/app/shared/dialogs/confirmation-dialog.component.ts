@@ -27,7 +27,6 @@ export class ConfirmationDialogComponent implements OnInit {
     this._messageParams = messageParams;
     this.translate.get(this.messageKey, this._messageParams).subscribe(result => {
       this.message = result;
-      console.log('Result ' + result);
     });
   }
 
