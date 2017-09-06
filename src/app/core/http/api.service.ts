@@ -14,14 +14,32 @@ export class Api {
   get<T>(url: string, options?: RequestOptionsArgs): Promise<T> {
     return this.http.get(url, options).toPromise()
       .then(response => {
-      const result: Result<T> = response.json() as Result<T>;
-      if (result) {
-        if (result.issues && result.issues.length !== 0) {
-          this.messageService.addIssues(result.issues);
+        const result: Result<T> = response.json() as Result<T>;
+        if (result) {
+          if (result.issues && result.issues.length !== 0) {
+            this.messageService.addIssues(result.issues);
+          }
+          return result.value;
         }
-        return result.value;
-      }
-      return null;
+        return null;
+      })
+      .catch(error => {
+        this.messageService.showErrorMessage(error);
+        return null;
+      });
+  }
+
+  delete<T>(url: string, options?: RequestOptionsArgs): Promise<T> {
+    return this.http.delete(url, options).toPromise()
+      .then(response => {
+        const result: Result<T> = response.json() as Result<T>;
+        if (result) {
+          if (result.issues && result.issues.length !== 0) {
+            this.messageService.addIssues(result.issues);
+          }
+          return result.value;
+        }
+        return null;
       })
       .catch(error => {
         this.messageService.showErrorMessage(error);

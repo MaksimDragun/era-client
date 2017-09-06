@@ -1,3 +1,4 @@
+import { ConfirmationDialogComponent } from './dialogs/confirmation-dialog.component';
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {NKDatetimeModule} from 'ng2-datetime/ng2-datetime';
@@ -14,10 +15,12 @@ declare const JQuery: any;
     TranslateModule.forChild()
   ],
   declarations: [
+    ConfirmationDialogComponent,
     HasRolesDirective
   ],
   exports: [
     CommonModule,
+    ConfirmationDialogComponent,
     HasRolesDirective,
     NKDatetimeModule,
     TranslateModule

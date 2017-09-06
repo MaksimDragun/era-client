@@ -8,6 +8,7 @@ export class UserAccountService {
 
   private fetchUserAccountListUrl = 'api/user-account/get-list';
   private createUserAccountUrl = 'api/user-account/create';
+  private deleteUserAccountUrl = 'api/user-account/delete';
 
   constructor(private api: Api) {}
 
@@ -17,5 +18,9 @@ export class UserAccountService {
 
   createUserAccount(userAccount: UserAccountCreate): Promise<UserAccountCreate> {
     return this.api.post(this.createUserAccountUrl, userAccount, defaultOptions());
+  }
+
+  deleteUserAccount(userAccount: UserAccount): Promise<UserAccount> {
+    return this.api.delete(`${this.deleteUserAccountUrl}/${userAccount.id}`, defaultOptions());
   }
 }

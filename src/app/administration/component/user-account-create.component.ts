@@ -60,7 +60,7 @@ export class UserAccountCreateComponent implements OnInit {
         this.messageService.addMessage(
           {
             msgType: MessageType.SUCCESS,
-            key: 'administration.user-accounts.create.success-msg',
+            key: 'administration.user-accounts.messages.success-created',
             params: {'username': userAccount.username},
             expired: false
           });

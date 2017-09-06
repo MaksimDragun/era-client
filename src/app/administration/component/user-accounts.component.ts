@@ -1,3 +1,5 @@
+import {MessageType} from '../../core/messages/message';
+import {MessagesService} from '../../core/messages/messages.service';
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {TitleService} from '../../core/services/title.service';
@@ -15,12 +17,17 @@ export class UserAccountsComponent implements OnInit {
   selectedUserAccount: UserAccount;
 
   constructor(
+    private messageService: MessagesService,
     private router: Router,
     private titleService: TitleService,
     private userAccountService: UserAccountService) {}
 
   ngOnInit(): void {
     this.titleService.setTitleKey('administration.user-accounts.title');
+    this.fetchList();
+  }
+
+  fetchList(): void {
     this.userAccountService.fetchList()
       .then(list => this.userAccountList = list);
   }
@@ -33,7 +40,18 @@ export class UserAccountsComponent implements OnInit {
     this.router.navigate(['/administration/user-accounts/create']);
   }
 
-  delete(userAccount: UserAccount): void {
-    console.log(userAccount.id);
+  deleteUserAccount(): void {
+    this.userAccountService.deleteUserAccount(this.selectedUserAccount)
+      .then(account => {
+        this.messageService.addMessage(
+        {
+          msgType: MessageType.SUCCESS,
+          key: 'administration.user-accounts.messages.success-deleted',
+          params: {username: account.username},
+          expired: true
+        });
+        this.fetchList();
+      });
   }
+
 }
