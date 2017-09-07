@@ -1,6 +1,6 @@
 <form *ngIf="registration" (ngSubmit)="f.form.valid && createRegistrationAccount()" #f="ngForm">
 	<div class="row">
-		<div class="col-lg-6 col-md-6 col-xs-12">
+		<div class="col-lg-7 col-md-8 col-xs-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">{{'registrations.crud.enrollee-info' | translate}}</div>
 	  			<div class="panel-body">
@@ -25,39 +25,81 @@
 							<datetime required [(ngModel)]="registration.enrollee.birthdate" name="eBirthdate" #eBirthdate="ngModel"
 						  		[timepicker]="false" [datepicker]="{autoclose: 'true', language: 'ru', placeholder: ' '}" ></datetime>
 						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">{{'registrations.crud.address-info' | translate}}</div>
+	  						<div class="panel-body">
+	  							<div class="form-group">
+									<label>{{'registrations.crud.country' | translate}}</label>
+									<select required *ngIf="countryList" [(ngModel)]="registration.enrollee.address.country" name="aCountry" #aCountry="ngModel" class="form-control">
+										<option *ngFor="let countryCode of countryList" [ngValue]="countryCode">{{'country.' + countryCode | translate}}</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label>{{'registrations.crud.city' | translate}}</label>
+									<input required [(ngModel)]="registration.enrollee.address.city" name="aCity" #aCity="ngModel"
+										value={{registration.enrollee.address.city}} type="text" class="form-control"/>
+								</div>
+								<div class="form-group">
+									<label>{{'registrations.crud.address' | translate}}</label>
+									<input required [(ngModel)]="registration.enrollee.address.address" name="eLastName" #eMiddleName="ngModel"
+										value={{registration.enrollee.middleName}} type="text" class="form-control"/>
+								</div>
+	  						</div>
+  						</div>
 					</div>
 					<div class="col-md-6">
-						<div class="form-group">
-				            <label>{{'registrations.crud.document-type' | translate}}</label>
-				            <select required *ngIf="documentTypeList" [(ngModel)]="registration.enrollee.document.type" name="dType" #dType="ngModel" class="form-control">
-								<option *ngFor="let type of documentTypeList" [ngValue]="type">{{'registrations.document.type.' + type | translate}}</option>
-							</select>
-				        </div>
-						<div class="form-group">
-							<label>{{'registrations.crud.id' | translate}}</label>
-							<input required [(ngModel)]="registration.enrollee.document.id" name="dId" #dId="ngModel"
-								value={{registration.enrollee.document.id}} type="text" class="form-control"/>
-						</div>
-						<div class="form-group">
-							<label>{{'registrations.crud.document-id' | translate}}</label>
-							<input required [(ngModel)]="registration.enrollee.document.documentId" name="dDocumentId" #dDocumentId="ngModel"
-								value={{registration.enrollee.document.documentId}} type="text" class="form-control"/>
-						</div>
-						<div class="form-group">
-							<label>{{'registrations.crud.document-issue-date' | translate}}</label>
-							<datetime required [(ngModel)]="registration.enrollee.document.issueDate" name="dIssueDate" #dIssueDate="ngModel"
-						  		[timepicker]="false" [datepicker]="{autoclose: 'true', language: 'ru', placeholder: ' '}" ></datetime>
-						</div>
-						<div class="form-group">
-							<label>{{'registrations.crud.document-issued-by' | translate}}</label>
-							<input required [(ngModel)]="registration.enrollee.document.issuedBy" name="dIssuedBy" #dIssuedBy="ngModel"
-								value={{registration.enrollee.document.issuedBy}} type="text" class="form-control"/>
+						<div class="panel panel-default">
+							<div class="panel-heading">{{'registrations.crud.document-info' | translate}}</div>
+	  						<div class="panel-body">
+								<div class="form-group">
+						            <label>{{'registrations.crud.document-type' | translate}}</label>
+						            <select required *ngIf="documentTypeList" [(ngModel)]="registration.enrollee.document.type" name="dType" #dType="ngModel" class="form-control">
+										<option *ngFor="let type of documentTypeList" [ngValue]="type">{{'registrations.document.type.' + type | translate}}</option>
+									</select>
+						        </div>
+								<div class="form-group">
+									<label>{{'registrations.crud.id' | translate}}</label>
+									<input required [(ngModel)]="registration.enrollee.document.id" name="dId" #dId="ngModel"
+										value={{registration.enrollee.document.id}} type="text" class="form-control"/>
+								</div>
+								<div class="form-group">
+									<label>{{'registrations.crud.document-id' | translate}}</label>
+									<input required [(ngModel)]="registration.enrollee.document.documentId" name="dDocumentId" #dDocumentId="ngModel"
+										value={{registration.enrollee.document.documentId}} type="text" class="form-control"/>
+								</div>
+								<div class="form-group">
+									<label>{{'registrations.crud.document-issue-date' | translate}}</label>
+									<datetime required [(ngModel)]="registration.enrollee.document.issueDate" name="dIssueDate" #dIssueDate="ngModel"
+								  		[timepicker]="false" [datepicker]="{autoclose: 'true', language: 'ru', placeholder: ' '}" ></datetime>
+								</div>
+								<div class="form-group">
+									<label>{{'registrations.crud.document-issued-by' | translate}}</label>
+									<input required [(ngModel)]="registration.enrollee.document.issuedBy" name="dIssuedBy" #dIssuedBy="ngModel"
+										value={{registration.enrollee.document.issuedBy}} type="text" class="form-control"/>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="form-group col-md-12">
+		<div class="col-lg-5 col-md-4 col-xs-12"> 
+			<div class="panel panel-default">
+				<div class="panel-heading">{{'registrations.crud.registration-info' | translate}}</div>
+	  			<div class="panel-body">
+	  				<div class="form-group">
+						<label>{{'registrations.crud.document-issued-by' | translate}}</label>
+						<div>
+							<label *ngFor="let type of studyTypeList" class="radio-inline">
+								<input type="radio" value={{type.value}} name="studyType" [(ngModel)]="registration.registrationType">
+								{{'registrations.types.' + type.name | translate}}
+							</label>
+						</div>
+					</div>
+	  			</div>
+  			</div>
+		</div>
+		<div class="form-group col-lg-12 col-md-12 col-xs-12">
         	<button type="submit" class="btn btn-primary">{{'registrations.crud.register' | translate}}</button>
       	</div>
 	</div>

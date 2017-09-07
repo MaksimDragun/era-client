@@ -37,8 +37,13 @@
 			"no-active-registration-period": "На данный момент регистрация абитуриентов не проводится"
 		},
 		"crud": {
+			"address": "Улица, дом, корпус, квартира",
+			"address-info": "Адрес",
 			"birthdate": "Дата рождения",
+			"city": "Нас.пункт",
+			"country": "Страна",
 			"document-id": "Номер документа",
+			"document-info": "Паспортные данные",
 			"document-issue-date": "Дата выдачи",
 			"document-issued-by": "Кем выдан",
 			"document-type": "Тип документа",
@@ -48,6 +53,7 @@
 			"last-name": "Фамилия",
 			"middle-name": "Отчество",
 			"register": "Зарегистрировать",
+			"registration-info": "Сведения о поступлении",
 			"title-create": "Регистрация нового абитуриента",
 			"title-create-with-period": "Регистрация нового абитуриента: {{period}}"
 		},
@@ -127,6 +133,9 @@
 		"search": "Поиск",
 		"save": "Сохранить",
 		"view": "Посмотреть"
+	},
+	"country": {
+		"BY": "Беларусь"
 	},
 	"roles": {
 		"module": {

@@ -1,4 +1,5 @@
-import { DocumentCRUD } from './document-crud';
+import {AddressCRUD} from './address-crud';
+import {DocumentCRUD} from './document-crud';
 
 export class EnrolleeCRUD {
   firstName: string;
@@ -7,4 +8,5 @@ export class EnrolleeCRUD {
   birthdate: Date;
 
   document: DocumentCRUD = new DocumentCRUD();
+  address: AddressCRUD = new AddressCRUD();
 }
