@@ -1,5 +1,6 @@
 import {AuthGuard} from '../core/auth/auth.guard';
 import {UserAccountCreateComponent} from './component/user-account-create.component';
+import {UserAccountUpdateComponent} from './component/user-account-update.component';
 import {UserAccountsComponent} from './component/user-accounts.component';
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
@@ -14,6 +15,11 @@ import {RouterModule} from '@angular/router';
     {
       path: 'user-accounts/create',
       component: UserAccountCreateComponent,
+      canActivate: [AuthGuard]
+    },
+    {
+      path: 'user-accounts/update/:id',
+      component: UserAccountUpdateComponent,
       canActivate: [AuthGuard]
     },
     {

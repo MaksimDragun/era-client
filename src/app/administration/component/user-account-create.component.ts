@@ -4,7 +4,7 @@ import {MessagesService} from '../../core/messages/messages.service';
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {TitleService} from '../../core/services/title.service';
-import {UserAccountEdit} from '../models';
+import {UserAccountCRUD} from '../models';
 import {UserAccountService} from '../services/user-account.service';
 
 @Component({
@@ -14,7 +14,7 @@ import {UserAccountService} from '../services/user-account.service';
 })
 export class UserAccountCreateComponent implements OnInit {
 
-  userAccount: UserAccountEdit;
+  userAccount: UserAccountCRUD;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -26,8 +26,8 @@ export class UserAccountCreateComponent implements OnInit {
   roles: Map<string, {role: string, enabled: boolean}[]> = new Map();
 
   ngOnInit(): void {
-    this.titleService.setTitleKey('administration.user-accounts.create.title');
-    this.userAccount = new UserAccountEdit();
+    this.titleService.setTitleKey('administration.user-accounts.crud.title-create');
+    this.userAccount = new UserAccountCRUD();
     this.populateRoles();
   }
 

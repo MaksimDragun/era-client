@@ -6,57 +6,57 @@
 		</button>
 	</div>
 	<hr/>
-	<form (ngSubmit)="f.form.valid && submitUserAccount()" #f="ngForm">
+	<form *ngIf="userAccount" (ngSubmit)="f.form.valid && updateUserAccount()" #f="ngForm">
 		<div class="row">
 			<div class="col-lg-6 col-md-6 col-xs-6">
 				<div class="col-md-8">
-					<div class="form-group" [ngClass]="{'has-error': f.submitted && !username.valid}">
-						<label>{{'administration.user-accounts.create.username' | translate}}</label>
-						<input [(ngModel)]="userAccount.username" name="username" #username="ngModel" required
+					<div class="form-group">
+						<label>{{'administration.user-accounts.crud.username' | translate}}</label>
+						<input disabled [(ngModel)]="userAccount.username" name="username" #username="ngModel"
 							value={{userAccount.username}} type="text" class="form-control"/>
 					</div>
 				</div>
 				<div class="col-md-8">
+					<div class="form-group">
+						<label>{{'administration.user-accounts.crud.email' | translate}}</label>
+						<div class="input-group">
+							<span class="input-group-addon" id="sizing-addon2">@</span>
+							<input disabled [(ngModel)]="userAccount.email" name="email" #email="ngModel"
+								value="{{userAccount.email}}" type="text" class="form-control" />
+						</div>
+					</div>
+				</div>
+				<div class="col-md-8">
 					<div class="form-group" [ngClass]="{'has-error': f.submitted && !firstName.valid}">
-						<label>{{'administration.user-accounts.create.first-name' | translate}}</label>
+						<label>{{'administration.user-accounts.crud.first-name' | translate}}</label>
 						<input [(ngModel)]="userAccount.firstName" name="firstName" #firstName="ngModel" required
 							value="{{userAccount.firstName}}" type="text" class="form-control" />
 					</div>
 				</div> 
 				<div class="col-md-8">
 					<div class="form-group" [ngClass]="{'has-error': f.submitted && !lastName.valid}">
-						<label>{{'administration.user-accounts.create.last-name' | translate}}</label>
+						<label>{{'administration.user-accounts.crud.last-name' | translate}}</label>
 						<input [(ngModel)]="userAccount.lastName" name="lastName" #lastName="ngModel" required
 							 value="{{userAccount.lastName}}" type="text" class="form-control" />
 					</div>
 				</div>
 				<div class="col-md-8">
-					<div class="form-group" [ngClass]="{'has-error': f.submitted && !email.valid}">
-						<label>{{'administration.user-accounts.create.email' | translate}}</label>
-						<div class="input-group">
-							<span class="input-group-addon" id="sizing-addon2">@</span>
-							<input [(ngModel)]="userAccount.email" name="email" #email="ngModel" required
-								value="{{userAccount.email}}" type="text" class="form-control" />
-						</div>
-					</div>
-				</div>
-				<div class="col-md-8">
 					<div class="form-group" [ngClass]="{'has-error': f.submitted && !password.valid}">
-						<label>{{'administration.user-accounts.create.password' | translate}}</label>
+						<label>{{'administration.user-accounts.crud.password' | translate}}</label>
 						<input [(ngModel)]="userAccount.password" name="password" #password="ngModel" required
 							value="{{userAccount.password}}" type="password" class="form-control" />
 					</div>
 				</div>
 				<div class="col-md-8">
 					<div class="form-group" [ngClass]="{'has-error': f.submitted && !repeatedPassword.valid}">
-						<label>{{'administration.user-accounts.create.repeated-password' | translate}}</label>
+						<label>{{'administration.user-accounts.crud.repeated-password' | translate}}</label>
 						<input [(ngModel)]="userAccount.repeatedPassword" name="repeatedPassword" #repeatedPassword="ngModel" required
 							value="{{userAccount.repeatedPassword}}" type="password" class="form-control" />
 					</div>
 				</div>
 				<div class="col-md-8">
 					<div class="form-group" [ngClass]="{'has-error': f.submitted && !birthdate.valid}">
-						<label>{{'administration.user-accounts.create.birthdate' | translate}}</label>
+						<label>{{'administration.user-accounts.crud.birthdate' | translate}}</label>
 						<div class="input-group">
 						  	<datetime [(ngModel)]="userAccount.birthdate" name="birthdate" #birthdate="ngModel"
 						  		[timepicker]="false" [datepicker]="{autoclose: 'true', language: 'ru', placeholder: ' '}" required ></datetime>
@@ -67,14 +67,14 @@
 			<div class="col-lg-6 col-md-6 col-xs-6">
 				<div class="col-md-8">
 					<div class="form-group">
-						<label>{{'administration.user-accounts.create.roles' | translate}}</label>
+						<label>{{'administration.user-accounts.crud.roles' | translate}}</label>
 						<div class="pre-scrollable">
 							<div *ngFor="let module of roles.keys()" class="list-group">
 								<div class="list-group-item disabled">{{'roles.module.'.concat(module) | translate}}</div>
 								<div *ngFor="let roleHolder of roles.get(module)" class="list-group-item">
 							      	<div class="checkbox">
 							  			<label>
-							  				<input type="checkbox" name="{{roleHolder.role}}" value="{{roleHolder.enabled}}" [(ngModel)]="roleHolder.enabled">
+							  				<input type="checkbox" name="{{roleHolder.role}}" value="{{roleHolder.enabled}}" [(ngModel)]="roleHolder.enabled" [disabled]="roleHolder.editable">
 							  				{{'roles.action.'.concat(roleHolder.role) | translate }}
 							  			</label>
 									</div>
@@ -87,7 +87,7 @@
 		</div>
 		<hr/>
 		<div class="form-group col-md-12">
-        	<button type="submit" class="btn btn-primary">{{'common.create' | translate}}</button>
+        	<button type="submit" class="btn btn-primary">{{'common.save' | translate}}</button>
       	</div>
 	</form>
 </div>

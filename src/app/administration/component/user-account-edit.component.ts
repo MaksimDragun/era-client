@@ -6,11 +6,11 @@ import {MessagesService} from '../../core/messages/messages.service';
 import {Router} from '@angular/router';
 import {UserAccountService} from '../services/user-account.service';
 import {TitleService} from '../../core/services/title.service';
-import {UserAccountEdit} from '../models';
+import {UserAccountCRUD} from '../models';
 
 export abstract class UserAccountEditComponent implements OnInit {
 
-  userAccount: UserAccountEdit;
+  userAccount: UserAccountCRUD;
 
   roles: Map<string, {role: string, enabled: boolean}[]> = new Map();
 
@@ -50,7 +50,7 @@ export abstract class UserAccountEditComponent implements OnInit {
       });
   }
 
-  protected abstract submit(): Promise<UserAccountEdit>;
+  protected abstract submit(): Promise<UserAccountCRUD>;
 
   submitUserAccount(): void {
     this.messageService.reset();
@@ -66,7 +66,7 @@ export abstract class UserAccountEditComponent implements OnInit {
     });
   }
 
-  protected abstract getUserAccountModel(): UserAccountEdit;
+  protected abstract getUserAccountModel(): UserAccountCRUD;
 
   protected abstract getTitleKey(): string;
 

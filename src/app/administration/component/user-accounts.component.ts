@@ -40,12 +40,12 @@ export class UserAccountsComponent implements OnInit {
     this.router.navigate(['/administration/user-accounts/create']);
   }
 
-  navigateToUpdate(): void {
-    this.router.navigate([`/administration/user-accounts/update/${this.selectedUserAccount.id}`]);
+  navigateToUpdate(userAccount: UserAccount): void {
+    this.router.navigate([`/administration/user-accounts/update/${userAccount.id}`]);
   }
 
   deleteUserAccount(): void {
-    this.userAccountService.deleteUserAccount(this.selectedUserAccount)
+    this.userAccountService.deleteUserAccount(this.selectedUserAccount.id)
       .then(account => {
         this.messageService.addMessage(
           {
