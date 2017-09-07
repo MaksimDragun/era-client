@@ -1,7 +1,7 @@
 import {MessageType} from '../../core/messages/message';
 import {MessagesService} from '../../core/messages/messages.service';
 import {TitleService} from '../../core/services/title.service';
-import {RegistrationCRUD, RegistrationPeriod, StudyType} from '../models';
+import {RegistrationCRUD, RegistrationPeriod, StudyType, STUDY_TYPES, Speciality, Subject} from '../models';
 import {RegistrationsService} from '../services/registrations.service';
 import {Component, OnInit} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
@@ -16,6 +16,9 @@ export class RegistrationsCreateComponent implements OnInit {
   documentTypeList = ['P'];
   countryList = ['BY'];
   studyTypeList: StudyType[];
+  eInstitutionList: any[];
+  specialityList: Speciality[];
+  subjectList: Subject[];
 
   registration: RegistrationCRUD = new RegistrationCRUD();
 
@@ -38,6 +41,9 @@ export class RegistrationsCreateComponent implements OnInit {
         }
 
         this.fetchStudyTypeList();
+        this.fetchEducationalInstitutionList();
+        this.fetchSpecialityList();
+        this.fetchSubjectList();
 
         this.registration.enrollee.document.type = this.documentTypeList[0];
         this.registration.enrollee.address.country = this.countryList[0];
@@ -46,11 +52,28 @@ export class RegistrationsCreateComponent implements OnInit {
   }
 
   fetchStudyTypeList(): void {
-    this.registrationsService.getStudyTypeList()
-      .then((list: StudyType[]) => {
-        this.studyTypeList = list;
-        this.registration.registrationType = list && list[0];
-      });
+    this.studyTypeList = STUDY_TYPES;
+  }
+
+  fetchEducationalInstitutionList(): any {
+    this.eInstitutionList = [{name: 'MRK', id: 1000, code: '11101101'}];
+    this.registration.educationInstitutionId = this.eInstitutionList && this.eInstitutionList[0].id;
+  }
+
+  fetchSpecialityList(): void {
+    this.registrationsService.fetchSpecialities(this.registrationPeriod.id)
+      .then(list => this.specialityList = list);
+  }
+
+  fetchSubjectList(): void {
+    this.subjectList = [
+      {id: 1000, title: 'Math'},
+      {id: 1001, title: 'Foreign language'},
+      {id: 1002, title: 'Belarussian'},
+      {id: 1003, title: 'Russian'},
+      {id: 1004, title: 'Literture'},
+      {id: 1005, title: 'Physics'},
+      {id: 1006, title: 'Chemistry'}];
   }
 
   createRegistrationAccount(): void {

@@ -88,17 +88,73 @@
 				<div class="panel-heading">{{'registrations.crud.registration-info' | translate}}</div>
 	  			<div class="panel-body">
 	  				<div class="form-group">
-						<label>{{'registrations.crud.document-issued-by' | translate}}</label>
-						<div>
-							<label *ngFor="let type of studyTypeList" class="radio-inline">
-								<input type="radio" value={{type.value}} name="studyType" [(ngModel)]="registration.registrationType">
-								{{'registrations.types.' + type.name | translate}}
+						<label>{{'registrations.crud.study-type' | translate}}</label>
+						<div *ngIf="studyTypeList">
+							<label class="radio-inline">
+								<input type="radio" value={{studyTypeList[0].value}} name="studyType" [(ngModel)]="registration.registrationType">
+								{{'registrations.types.' + studyTypeList[0].name | translate}}
+							</label>
+							<label class="radio-inline">
+								<input type="radio" value={{studyTypeList[1].value}} name="studyType" [(ngModel)]="registration.registrationType">
+								{{'registrations.types.' + studyTypeList[1].name | translate}}
 							</label>
 						</div>
+					</div>
+					<div class="form-group">
+						<label>{{'registrations.crud.educational-institution' | translate}}</label>
+						<select required *ngIf="eInstitutionList" [disabled]="eInstitutionList.length === 1"
+							[(ngModel)]="registration.educationInstitutionId" name="educationalInstitution"
+							#educationalInstitution="ngModel" class="form-control">
+							<option *ngFor="let institution of eInstitutionList" [ngValue]="institution.id">
+								{{institution.name}}
+							</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label>{{'registrations.crud.speciality' | translate}}</label>
+						<select required *ngIf=specialityList [(ngModel)]="registration.specialityId" name="speciality"
+							#speciality="ngModel" class="form-control">
+							<option *ngFor="let spec of specialityList" [ngValue]="spec">{{spec.name}}</option>
+						</select>
 					</div>
 	  			</div>
   			</div>
 		</div>
+		<div class="col-lg-5 col-md-4 col-xs-12"> 
+			<div class="panel panel-default">
+				<div class="panel-heading">{{'registrations.crud.certificate' | translate}}</div>
+	  			<div class="panel-body">
+	  				<div class="col-md-8">
+						<div class="form-group">
+							<label>{{'registrations.crud.certificate-institution' | translate}}</label>
+							<input required [(ngModel)]="registration.certificate.institution" name="cInstitution" #cInstitution="ngModel"
+								value={{registration.certificate.institution}} type="text" class="form-control"/>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<label>{{'registrations.crud.certificate-year' | translate}}</label>
+							<input required [(ngModel)]="registration.certificate.year" name="cYear" #cYear="ngModel"
+								value={{registration.certificate.year}} type="text" class="form-control"/>
+						</div>
+					</div>
+					<div class="col-md-12 pre-scrollable">
+						<div class="list-group">
+							<div *ngFor="let subject of subjectList" class="list-group-item">
+								<div class="row">
+									<div class="col-lg-10 col-md-10 col-xs-10">
+										<h4>{{subject.title}}</h4>
+									</div>
+									<div class="col-lg-2 col-md-2 col-xs-2">
+										<input [name]="'subject.' + subject.id" type="text" class="form-control"/>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+  				</div>
+  			</div>
+  		</div>
 		<div class="form-group col-lg-12 col-md-12 col-xs-12">
         	<button type="submit" class="btn btn-primary">{{'registrations.crud.register' | translate}}</button>
       	</div>

@@ -40,6 +40,9 @@
 			"address": "Улица, дом, корпус, квартира",
 			"address-info": "Адрес",
 			"birthdate": "Дата рождения",
+			"certificate": "Аттестат",
+			"certificate-institution": "Образование",
+			"certificate-year": "Год выпуска",
 			"city": "Нас.пункт",
 			"country": "Страна",
 			"document-id": "Номер документа",
@@ -47,6 +50,7 @@
 			"document-issue-date": "Дата выдачи",
 			"document-issued-by": "Кем выдан",
 			"document-type": "Тип документа",
+			"educational-institution": "Учреждение образования",
 			"enrollee-info": "Сведения об абитуриенте",
 			"first-name": "Имя",
 			"id": "Личный номер",
@@ -54,6 +58,8 @@
 			"middle-name": "Отчество",
 			"register": "Зарегистрировать",
 			"registration-info": "Сведения о поступлении",
+			"speciality": "Специальность",
+			"study-type": "Форма обучения",
 			"title-create": "Регистрация нового абитуриента",
 			"title-create-with-period": "Регистрация нового абитуриента: {{period}}"
 		},
@@ -74,7 +80,7 @@
 		},
 		"document": {
 			"type": {
-				"P" : "Пасспорт"
+				"P" : "Паспорт"
 			}
 		},
 		"types": {
