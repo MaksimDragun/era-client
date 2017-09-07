@@ -36,9 +36,20 @@
 		"common": {
 			"no-active-registration-period": "На данный момент регистрация абитуриентов не проводится"
 		},
-		"create": {
-			"title": "Регистрация нового абитуриента",
-			"title-with-period": "Регистрация нового абитуриента: {{period}}"
+		"crud": {
+			"birthdate": "Дата рождения",
+			"document-id": "Номер документа",
+			"document-issue-date": "Дата выдачи",
+			"document-issued-by": "Кем выдан",
+			"document-type": "Тип документа",
+			"enrollee-info": "Сведения об абитуриенте",
+			"first-name": "Имя",
+			"id": "Личный номер",
+			"last-name": "Фамилия",
+			"middle-name": "Отчество",
+			"register": "Зарегистрировать",
+			"title-create": "Регистрация нового абитуриента",
+			"title-create-with-period": "Регистрация нового абитуриента: {{period}}"
 		},
 		"list": {
 			"attestate-avg": "Ср.бал",
@@ -54,6 +65,11 @@
 			"title": "Список зарегистрированных абитуриентов",
 			"title-with-period": "Список зарегистрированных абитуриентов: {{period}}",
 			"type": "Тип"
+		},
+		"document": {
+			"type": {
+				"P" : "Пасспорт"
+			}
 		},
 		"types": {
 			"A": "Все",

@@ -1,0 +1,64 @@
+<form *ngIf="registration" (ngSubmit)="f.form.valid && createRegistrationAccount()" #f="ngForm">
+	<div class="row">
+		<div class="col-lg-6 col-md-6 col-xs-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">{{'registrations.crud.enrollee-info' | translate}}</div>
+	  			<div class="panel-body">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>{{'registrations.crud.first-name' | translate}}</label>
+							<input required [(ngModel)]="registration.enrollee.firstName" name="eFirstName" #eFirstName="ngModel"
+								value={{registration.enrollee.firstName}} type="text" class="form-control"/>
+						</div>
+						<div class="form-group">
+							<label>{{'registrations.crud.last-name' | translate}}</label>
+							<input required [(ngModel)]="registration.enrollee.lastName" name="eLastName" #eLastName="ngModel"
+								value={{registration.enrollee.lastName}} type="text" class="form-control"/>
+						</div>
+						<div class="form-group">
+							<label>{{'registrations.crud.middle-name' | translate}}</label>
+							<input required [(ngModel)]="registration.enrollee.middleName" name="eLastName" #eMiddleName="ngModel"
+								value={{registration.enrollee.middleName}} type="text" class="form-control"/>
+						</div>
+						<div class="form-group">
+							<label>{{'registrations.crud.birthdate' | translate}}</label>
+							<datetime required [(ngModel)]="registration.enrollee.birthdate" name="eBirthdate" #eBirthdate="ngModel"
+						  		[timepicker]="false" [datepicker]="{autoclose: 'true', language: 'ru', placeholder: ' '}" ></datetime>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+				            <label>{{'registrations.crud.document-type' | translate}}</label>
+				            <select required *ngIf="documentTypeList" [(ngModel)]="registration.enrollee.document.type" name="dType" #dType="ngModel" class="form-control">
+								<option *ngFor="let type of documentTypeList" [ngValue]="type">{{'registrations.document.type.' + type | translate}}</option>
+							</select>
+				        </div>
+						<div class="form-group">
+							<label>{{'registrations.crud.id' | translate}}</label>
+							<input required [(ngModel)]="registration.enrollee.document.id" name="dId" #dId="ngModel"
+								value={{registration.enrollee.document.id}} type="text" class="form-control"/>
+						</div>
+						<div class="form-group">
+							<label>{{'registrations.crud.document-id' | translate}}</label>
+							<input required [(ngModel)]="registration.enrollee.document.documentId" name="dDocumentId" #dDocumentId="ngModel"
+								value={{registration.enrollee.document.documentId}} type="text" class="form-control"/>
+						</div>
+						<div class="form-group">
+							<label>{{'registrations.crud.document-issue-date' | translate}}</label>
+							<datetime required [(ngModel)]="registration.enrollee.document.issueDate" name="dIssueDate" #dIssueDate="ngModel"
+						  		[timepicker]="false" [datepicker]="{autoclose: 'true', language: 'ru', placeholder: ' '}" ></datetime>
+						</div>
+						<div class="form-group">
+							<label>{{'registrations.crud.document-issued-by' | translate}}</label>
+							<input required [(ngModel)]="registration.enrollee.document.issuedBy" name="dIssuedBy" #dIssuedBy="ngModel"
+								value={{registration.enrollee.document.issuedBy}} type="text" class="form-control"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-group col-md-12">
+        	<button type="submit" class="btn btn-primary">{{'registrations.crud.register' | translate}}</button>
+      	</div>
+	</div>
+</form>
