@@ -2,7 +2,7 @@ import {Component, Input, OnInit, EventEmitter, Output, SimpleChanges, SimpleCha
 import {TranslateService} from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-confirmation-popup',
+  selector: 'app-confirmation-dialog',
   templateUrl: './confirmation-dialog.component.html',
   styles: ['.modal-dialog { width: 400px; }']
 })

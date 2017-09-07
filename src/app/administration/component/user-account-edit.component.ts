@@ -1,20 +1,18 @@
+import {OnInit} from '@angular/core';
+
 import {AuthenticationService} from '../../core/auth/authentication.service';
 import {Message, MessageType} from '../../core/messages/message';
 import {MessagesService} from '../../core/messages/messages.service';
-import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {UserAccountService} from '../services/user-account.service';
 import {TitleService} from '../../core/services/title.service';
 import {UserAccountEdit} from '../models';
-import {UserAccountService} from '../services/user-account.service';
 
-@Component({
-  moduleId: module.id,
-  selector: 'app-user-account-editor',
-  templateUrl: './user-account-create.component.html'
-})
-export class UserAccountCreateComponent implements OnInit {
+export abstract class UserAccountEditComponent implements OnInit {
 
   userAccount: UserAccountEdit;
+
+  roles: Map<string, {role: string, enabled: boolean}[]> = new Map();
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -23,12 +21,15 @@ export class UserAccountCreateComponent implements OnInit {
     private titleService: TitleService,
     private userAccountService: UserAccountService) {}
 
-  roles: Map<string, {role: string, enabled: boolean}[]> = new Map();
 
   ngOnInit(): void {
-    this.titleService.setTitleKey('administration.user-accounts.create.title');
-    this.userAccount = new UserAccountEdit();
+    this.titleService.setTitleKey(this.getTitleKey());
+    this.userAccount = this.getUserAccountModel();
     this.populateRoles();
+  }
+
+  protected getUserAccountService(): UserAccountService {
+    return this.userAccountService;
   }
 
   populateRoles(): void {
@@ -49,23 +50,30 @@ export class UserAccountCreateComponent implements OnInit {
       });
   }
 
-  navigateBackToList(): void {
-    this.router.navigate(['/administration/user-accounts']);
+  protected abstract submit(): Promise<UserAccountEdit>;
+
+  submitUserAccount(): void {
+    this.messageService.reset();
+    this.submit().then(userAccount => {
+      this.messageService.addMessage(
+        {
+          msgType: MessageType.SUCCESS,
+          key: this.getSuccessMessageKey(),
+          params: {'username': userAccount.username},
+          expired: false
+        });
+      this.router.navigate(['/administration/user-accounts']);
+    });
   }
 
-  createUserAccount(): void {
-    this.messageService.reset();
-    this.userAccountService.createUserAccount(this.userAccount)
-      .then(userAccount => {
-        this.messageService.addMessage(
-          {
-            msgType: MessageType.SUCCESS,
-            key: 'administration.user-accounts.messages.success-created',
-            params: {'username': userAccount.username},
-            expired: false
-          });
-        this.router.navigate(['/administration/user-accounts']);
-      });
+  protected abstract getUserAccountModel(): UserAccountEdit;
+
+  protected abstract getTitleKey(): string;
+
+  protected abstract getSuccessMessageKey(): string;
+
+  navigateBackToList(): void {
+    this.router.navigate(['/administration/user-accounts']);
   }
 
 }

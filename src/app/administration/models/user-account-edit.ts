@@ -1,4 +1,4 @@
-export class UserAccountCreate {
+export class UserAccountEdit {
   id: number;
   customerId: number;
   username: string;

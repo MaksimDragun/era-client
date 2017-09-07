@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Api} from '../../core/http/api.service';
 import {defaultOptions} from '../../core/http/http.utils';
-import {UserAccount, UserAccountCreate} from '../models';
+import {UserAccount, UserAccountEdit} from '../models';
 
 @Injectable()
 export class UserAccountService {
@@ -16,7 +16,7 @@ export class UserAccountService {
     return this.api.get(this.fetchUserAccountListUrl, defaultOptions());
   }
 
-  createUserAccount(userAccount: UserAccountCreate): Promise<UserAccountCreate> {
+  createUserAccount(userAccount: UserAccountEdit): Promise<UserAccountEdit> {
     return this.api.post(this.createUserAccountUrl, userAccount, defaultOptions());
   }
 

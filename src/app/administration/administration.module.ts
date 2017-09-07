@@ -7,8 +7,9 @@ import {TranslateModule} from '@ngx-translate/core';
 import {AdministrationRoutingModule} from './administration-routing.module';
 import {RolesViewDialogComponent} from './component/roles-view-dialog.component';
 import {UserAccountCreateComponent} from './component/user-account-create.component';
-
+import {UserAccountUpdateComponent} from './component/user-account-update.component';
 import {UserAccountsComponent} from './component/user-accounts.component';
+
 import {UserAccountService} from './services/user-account.service';
 
 @NgModule({
@@ -20,7 +21,8 @@ import {UserAccountService} from './services/user-account.service';
   declarations: [
     UserAccountsComponent,
     RolesViewDialogComponent,
-    UserAccountCreateComponent
+    UserAccountCreateComponent,
+    UserAccountUpdateComponent
   ],
   exports: [],
   providers: [
