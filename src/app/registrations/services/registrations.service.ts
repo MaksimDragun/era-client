@@ -5,7 +5,7 @@ import {Http, Response} from '@angular/http';
 import {defaultOptions, fileOptions, searchOptions} from '../../core/http/http.utils';
 import {Result} from '../../core/http/result';
 import {Api} from '../../core/http/api.service';
-import {Registration, ReportTemplate, RegistrationPeriod, Specialty, StudyType} from '../models';
+import {Registration, ReportTemplate, RegistrationPeriod, Specialty, StudyType, RegistrationCRUD} from '../models';
 
 import * as FileSaver from 'file-saver';
 
@@ -16,6 +16,7 @@ const STUDY_TYPES = [{name: 'A', value: null}, {name: 'B', value: 'B'}, {name: '
 @Injectable()
 export class RegistrationsService {
 
+  static createRegistrationUrl = 'api/registrations/create';
   private fetchActivePeriodUrl = 'api/registrations/get-active-period';
   private fetchRegistrationListUrl = 'api/registrations/get-list';
   private fetchReportTemplateUrl = 'api/registrations/get-report-templates';
@@ -42,6 +43,10 @@ export class RegistrationsService {
 
   getStudyTypeList(): Promise<StudyType[]> {
     return new Promise<StudyType[]>((resolve, reject) => resolve(STUDY_TYPES));
+  }
+
+  createRegistration(registration: RegistrationCRUD): Promise<RegistrationCRUD> {
+    return this.api.post(RegistrationsService.createRegistrationUrl, registration, defaultOptions());
   }
 
   downloadReport(contractId: number, reportTemplate: ReportTemplate): void {

@@ -24,6 +24,8 @@ export class RegistrationsCreateComponent implements OnInit {
   specialtyList: Specialty[];
   subjectList: Subject[];
 
+  loading = false;
+
   registration: RegistrationCRUD = new RegistrationCRUD();
 
   constructor(
@@ -65,7 +67,7 @@ export class RegistrationsCreateComponent implements OnInit {
     this.educationInstitutionService.fetchEducationInstitutionForRegistrationList()
       .then(list => {
         this.eInstitutionList = list;
-         this.registration.educationInstitutionId = this.eInstitutionList && this.eInstitutionList[0].id;
+        this.registration.educationInstitutionId = this.eInstitutionList && this.eInstitutionList[0].id;
       });
   }
 
@@ -81,6 +83,9 @@ export class RegistrationsCreateComponent implements OnInit {
   }
 
   createRegistrationAccount(): void {
-    console.log(this.registration);
+    this.loading = true;
+    this.registrationsService.createRegistration(this.registration)
+      .then(result => this.loading = false)
+      .catch(error => this.loading = false);
   }
 }

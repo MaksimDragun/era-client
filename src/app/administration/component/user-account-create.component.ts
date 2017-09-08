@@ -14,6 +14,8 @@ import {UserAccountService} from '../services/user-account.service';
 })
 export class UserAccountCreateComponent implements OnInit {
 
+  loading = false;
+
   userAccount: UserAccountCRUD;
 
   constructor(
@@ -54,9 +56,11 @@ export class UserAccountCreateComponent implements OnInit {
   }
 
   createUserAccount(): void {
+    this.loading = true;
     this.messageService.reset();
     this.userAccountService.createUserAccount(this.userAccount)
       .then(userAccount => {
+        this.loading = false;
         this.messageService.addMessage(
           {
             msgType: MessageType.SUCCESS,
@@ -65,7 +69,9 @@ export class UserAccountCreateComponent implements OnInit {
             expired: false
           });
         this.router.navigate(['/administration/user-accounts']);
-      });
+        this.loading = false;
+      })
+      .catch(error => this.loading = false);
   }
 
 }

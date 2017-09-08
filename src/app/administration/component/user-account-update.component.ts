@@ -14,6 +14,7 @@ import {UserAccountService} from '../services/user-account.service';
 })
 export class UserAccountUpdateComponent implements OnInit {
 
+  loading = false;
   userAccount: UserAccountCRUD;
 
   constructor(
@@ -51,9 +52,9 @@ export class UserAccountUpdateComponent implements OnInit {
           let actions: RoleHolder[] = this.roles.get(parts[1]);
           const foundRole = this.userAccount.roles.find(r => r.role === authority.authority);
           const roleHolder = {
-              role: authority.authority,
-              enabled: foundRole ? foundRole.enabled : false
-            };
+            role: authority.authority,
+            enabled: foundRole ? foundRole.enabled : false
+          };
           tempRoles.push(roleHolder);
           if (actions) {
             actions.push(roleHolder);
@@ -71,6 +72,7 @@ export class UserAccountUpdateComponent implements OnInit {
   }
 
   updateUserAccount(): void {
+    this.loading = true;
     this.messageService.reset();
     this.userAccountService.updateUserAccount(this.userAccount)
       .then(userAccount => {
@@ -82,7 +84,9 @@ export class UserAccountUpdateComponent implements OnInit {
             expired: false
           });
         this.router.navigate(['/administration/user-accounts']);
-      });
+        this.loading = false;
+      })
+      .catch(error => this.loading = false);
   }
 
 }

@@ -87,7 +87,8 @@
 		</div>
 		<hr/>
 		<div class="form-group col-md-12">
-        	<button type="submit" class="btn btn-primary">{{'common.create' | translate}}</button>
+        	<button type="submit" [disabled]="loading" class="btn btn-primary">{{'common.create' | translate}}</button>
+			<app-loading *ngIf="loading" [loading]="loading"></app-loading>
       	</div>
 	</form>
 </div>
