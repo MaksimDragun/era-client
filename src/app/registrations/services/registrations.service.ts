@@ -5,7 +5,7 @@ import {Http, Response} from '@angular/http';
 import {defaultOptions, fileOptions, searchOptions} from '../../core/http/http.utils';
 import {Result} from '../../core/http/result';
 import {Api} from '../../core/http/api.service';
-import {Registration, ReportTemplate, RegistrationPeriod, Speciality, StudyType} from '../models';
+import {Registration, ReportTemplate, RegistrationPeriod, Specialty, StudyType} from '../models';
 
 import * as FileSaver from 'file-saver';
 
@@ -19,7 +19,7 @@ export class RegistrationsService {
   private fetchActivePeriodUrl = 'api/registrations/get-active-period';
   private fetchRegistrationListUrl = 'api/registrations/get-list';
   private fetchReportTemplateUrl = 'api/registrations/get-report-templates';
-  private fetchSpecialitiesUrl = 'api/specialities/get-list-for-registrations';
+  private fetchSpecialtiesUrl = 'api/specialties/get-list-for-registrations';
 
   constructor(private api: Api, private http: Http) {}
 
@@ -35,9 +35,9 @@ export class RegistrationsService {
     return this.api.get(this.fetchActivePeriodUrl, defaultOptions());
   }
 
-  fetchSpecialities(periodId: number): Promise<Speciality[]> {
-    return this.api.get(this.fetchSpecialitiesUrl, searchOptions([{name: 'periodId', value: periodId}]))
-      .then((specs: Speciality[]) => [{id: null, name: ''}].concat(specs));
+  fetchSpecialties(periodId: number): Promise<Specialty[]> {
+    return this.api.get(this.fetchSpecialtiesUrl, searchOptions([{name: 'periodId', value: periodId}]))
+      .then((specs: Specialty[]) => [{id: null, name: ''}].concat(specs));
   }
 
   getStudyTypeList(): Promise<StudyType[]> {

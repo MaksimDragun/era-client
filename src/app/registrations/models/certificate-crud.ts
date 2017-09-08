@@ -1,4 +1,4 @@
-import { Subject } from './subject';
+import { Subject } from '../../core/certificates/subject';
 export class CertificateCRUD {
   id: number;
   year: number;

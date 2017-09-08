@@ -11,5 +11,5 @@ export class RegistrationCRUD {
   periodId: number;
   registeredBy: number;
   educationInstitutionId: number;
-  specialityId: number;
+  specialtyId: number;
 }

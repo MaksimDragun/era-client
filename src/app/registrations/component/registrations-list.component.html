@@ -10,9 +10,9 @@
 				<input name="name" [(ngModel)]="searchByName" type="text" class="form-control" />
 			</div>
 			<div class="form-group col-lg-3 col-md-4 col-xs-12">
-	           	<label>{{'registrations.list.speciality-filter' | translate}}</label>
-	      		<select *ngIf="specialityList" name="speciality" [(ngModel)]="searchBySpeciality" class="form-control">
-	            	<option *ngFor="let spec of specialityList" [ngValue]="spec">{{spec.name}}</option>
+	           	<label>{{'registrations.list.specialty-filter' | translate}}</label>
+	      		<select *ngIf="specialtyList" name="specialty" [(ngModel)]="searchBySpecialty" class="form-control">
+	            	<option *ngFor="let spec of specialtyList" [ngValue]="spec">{{spec.name}}</option>
 	        	</select>
 	       	</div>
 	        <div class="form-group col-lg-3 col-md-4 col-xs-12">
@@ -34,7 +34,7 @@
 				<tr>
 					<th>#</th>
 					<th>{{'registrations.list.full-name' | translate}}</th>
-					<th>{{'registrations.list.speciality' | translate}}</th>
+					<th>{{'registrations.list.specialty' | translate}}</th>
 					<th>{{'registrations.list.type' | translate}}</th>
 					<th>{{'registrations.list.attestate-avg' | translate}}</th>
 					<th>{{'registrations.list.registration-date' | translate}}</th>
@@ -45,7 +45,7 @@
 					<td data-toggle="tooltip" title="{{reg.lastName}} {{reg.firstName}} {{reg.middleName}}">
 						{{reg.lastName}} {{reg.firstName.charAt(0)}}. {{reg.middleName.charAt(0)}}.
 					</td>
-					<td>{{reg.speciality}}</td>
+					<td>{{reg.specialty}}</td>
 					<td>{{'registrations.types.' + reg.registrationType | translate}}</td>
 					<td>{{reg.attestateAvg|number:'.2'}}</td>
 					<td>{{reg.registrationDate}}</td>

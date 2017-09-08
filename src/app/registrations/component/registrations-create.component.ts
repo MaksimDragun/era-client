@@ -1,9 +1,13 @@
+import {Component, OnInit} from '@angular/core';
+import {CertificationService} from '../../core/certificates/certification.service';
+import {Subject} from '../../core/certificates/subject';
+import {EducationInstitution} from '../../core/institution/education-institution';
+import {EducationInstitutionService} from '../../core/institution/education-institution.service';
 import {MessageType} from '../../core/messages/message';
 import {MessagesService} from '../../core/messages/messages.service';
 import {TitleService} from '../../core/services/title.service';
-import {RegistrationCRUD, RegistrationPeriod, StudyType, STUDY_TYPES, Speciality, Subject} from '../models';
+import {RegistrationCRUD, RegistrationPeriod, StudyType, STUDY_TYPES, Specialty} from '../models';
 import {RegistrationsService} from '../services/registrations.service';
-import {Component, OnInit} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 
 @Component({
@@ -16,13 +20,15 @@ export class RegistrationsCreateComponent implements OnInit {
   documentTypeList = ['P'];
   countryList = ['BY'];
   studyTypeList: StudyType[];
-  eInstitutionList: any[];
-  specialityList: Speciality[];
+  eInstitutionList: EducationInstitution[];
+  specialtyList: Specialty[];
   subjectList: Subject[];
 
   registration: RegistrationCRUD = new RegistrationCRUD();
 
   constructor(
+    private certificationService: CertificationService,
+    private educationInstitutionService: EducationInstitutionService,
     private messagesService: MessagesService,
     private registrationsService: RegistrationsService,
     private titleService: TitleService,
@@ -42,7 +48,7 @@ export class RegistrationsCreateComponent implements OnInit {
 
         this.fetchStudyTypeList();
         this.fetchEducationalInstitutionList();
-        this.fetchSpecialityList();
+        this.fetchSpecialtyList();
         this.fetchSubjectList();
 
         this.registration.enrollee.document.type = this.documentTypeList[0];
@@ -56,27 +62,25 @@ export class RegistrationsCreateComponent implements OnInit {
   }
 
   fetchEducationalInstitutionList(): any {
-    this.eInstitutionList = [{name: 'MRK', id: 1000, code: '11101101'}];
-    this.registration.educationInstitutionId = this.eInstitutionList && this.eInstitutionList[0].id;
+    this.educationInstitutionService.fetchEducationInstitutionForRegistrationList()
+      .then(list => {
+        this.eInstitutionList = list;
+         this.registration.educationInstitutionId = this.eInstitutionList && this.eInstitutionList[0].id;
+      });
   }
 
-  fetchSpecialityList(): void {
-    this.registrationsService.fetchSpecialities(this.registrationPeriod.id)
-      .then(list => this.specialityList = list);
+  fetchSpecialtyList(): void {
+    this.registrationsService.fetchSpecialties(this.registrationPeriod.id)
+      .then(list => this.specialtyList = list);
   }
 
   fetchSubjectList(): void {
-    this.subjectList = [
-      {id: 1000, title: 'Math'},
-      {id: 1001, title: 'Foreign language'},
-      {id: 1002, title: 'Belarussian'},
-      {id: 1003, title: 'Russian'},
-      {id: 1004, title: 'Literture'},
-      {id: 1005, title: 'Physics'},
-      {id: 1006, title: 'Chemistry'}];
+    this.certificationService.fetchSubjectList()
+      .then(list => this.registration.certificate.marks =
+        list.map(subject => ({subject: subject, mark: null})));
   }
 
   createRegistrationAccount(): void {
-    console.log('Register');
+    console.log(this.registration);
   }
 }

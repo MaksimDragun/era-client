@@ -6,6 +6,8 @@ import {HttpModule} from '@angular/http';
 import {Api} from './http/api.service';
 import {AuthGuard} from './auth/auth.guard';
 import {AuthenticationService} from './auth/authentication.service';
+import {CertificationService} from './certificates/certification.service';
+import {EducationInstitutionService} from './institution/education-institution.service';
 import {LoginComponent} from './login/login.component';
 import {MainComponent} from './main/main.component';
 import {MainRoutings} from './main/main.routing';
@@ -49,6 +51,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     Api,
     AuthenticationService,
     AuthGuard,
+    CertificationService,
+    EducationInstitutionService,
     MenuService,
     MessagesService,
     TitleService

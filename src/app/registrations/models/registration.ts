@@ -4,7 +4,7 @@ export class Registration {
   lastName: string;
   middleName: string;
 
-  speciality: string;
+  specialty: string;
   attestateAvg: number;
   registrationDate: string;
 

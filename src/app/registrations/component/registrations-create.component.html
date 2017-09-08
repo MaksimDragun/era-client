@@ -1,4 +1,4 @@
-<form *ngIf="registration" (ngSubmit)="f.form.valid && createRegistrationAccount()" #f="ngForm">
+<form *ngIf="registration" (ngSubmit)="createRegistrationAccount()" #f="ngForm">
 	<div class="row">
 		<div class="col-lg-7 col-md-8 col-xs-12">
 			<div class="panel panel-default">
@@ -111,10 +111,10 @@
 						</select>
 					</div>
 					<div class="form-group">
-						<label>{{'registrations.crud.speciality' | translate}}</label>
-						<select required *ngIf=specialityList [(ngModel)]="registration.specialityId" name="speciality"
+						<label>{{'registrations.crud.specialty' | translate}}</label>
+						<select required *ngIf=specialtyList [(ngModel)]="registration.specialtyId" name="specialty"
 							#speciality="ngModel" class="form-control">
-							<option *ngFor="let spec of specialityList" [ngValue]="spec">{{spec.name}}</option>
+							<option *ngFor="let spec of specialtyList" [ngValue]="spec.id">{{spec.name}}</option>
 						</select>
 					</div>
 	  			</div>
@@ -139,14 +139,14 @@
 						</div>
 					</div>
 					<div class="col-md-12 pre-scrollable">
-						<div class="list-group">
-							<div *ngFor="let subject of subjectList" class="list-group-item">
+						<div *ngIf="registration.certificate.marks" class="list-group">
+							<div *ngFor="let subjectMark of registration.certificate.marks" class="list-group-item">
 								<div class="row">
 									<div class="col-lg-10 col-md-10 col-xs-10">
-										<h4>{{subject.title}}</h4>
+										<h4>{{subjectMark.subject.title}}</h4>
 									</div>
 									<div class="col-lg-2 col-md-2 col-xs-2">
-										<input [name]="'subject.' + subject.id" type="text" class="form-control"/>
+										<input [name]="'subject.' + subjectMark.subject.id" [(ngModel)]="subjectMark.mark" value={{subjectMark.mark}} type="text" class="form-control"/>
 									</div>
 								</div>
 							</div>
