@@ -16,9 +16,9 @@
 	        	</select>
 	       	</div>
 	        <div class="form-group col-lg-3 col-md-4 col-xs-12">
-	            <label>{{'registrations.list.study-type-filter' | translate}}</label>
-	            <select  *ngIf="studyTypeList" [(ngModel)]="searchByStudyType" name="stydy-type" class="form-control">
-					<option *ngFor="let type of studyTypeList" [ngValue]="type">{{'registrations.types.' + type.name | translate}}</option>
+	            <label>{{'registrations.list.funds-source-filter' | translate}}</label>
+	            <select  *ngIf="fundsSourceList" [(ngModel)]="searchByFundsSource" name="funds-source" class="form-control">
+					<option *ngFor="let src of fundsSourceList" [ngValue]="src">{{'registrations.funds-source.' + src.name | translate}}</option>
 				</select>
 	        </div>
 	        <div class="col-lg-12 col-md-12 col-xs-12">
@@ -35,7 +35,7 @@
 					<th>#</th>
 					<th>{{'registrations.list.full-name' | translate}}</th>
 					<th>{{'registrations.list.specialty' | translate}}</th>
-					<th>{{'registrations.list.type' | translate}}</th>
+					<th>{{'registrations.list.funds-source' | translate}}</th>
 					<th>{{'registrations.list.attestate-avg' | translate}}</th>
 					<th>{{'registrations.list.registration-date' | translate}}</th>
 					<th class="text-center">{{'registrations.list.contract' | translate}}</th>
@@ -46,7 +46,7 @@
 						{{reg.lastName}} {{reg.firstName.charAt(0)}}. {{reg.middleName.charAt(0)}}.
 					</td>
 					<td>{{reg.specialty}}</td>
-					<td>{{'registrations.types.' + reg.registrationType | translate}}</td>
+					<td>{{'registrations.funds-source.' + reg.fundsSource | translate}}</td>
 					<td>{{reg.attestateAvg|number:'.2'}}</td>
 					<td>{{reg.registrationDate}}</td>
 					<td class="text-center" data-toggle="tooltip" title="{{'common.download' | translate}}">

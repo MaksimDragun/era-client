@@ -1,11 +1,12 @@
 import {CertificateCRUD} from './certificate-crud';
-import {EnrolleeCRUD} from './enrollee-crud';
+import {PersonCRUD} from './person-crud';
 import {RegistrationPeriod} from './registration-period';
-import {StudyType} from './study-type';
+import {FundsSource} from './funds-source';
 
 export class RegistrationCRUD {
-  registrationType: StudyType;
-  enrollee: EnrolleeCRUD = new EnrolleeCRUD();
+  fundsSource: string;
+  educationForm: string;
+  enrollee: PersonCRUD = new PersonCRUD();
   certificate: CertificateCRUD = new CertificateCRUD();
   registrationDate: Date;
   periodId: number;

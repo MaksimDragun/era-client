@@ -1,6 +1,9 @@
 export class AddressCRUD {
   country: string;
   city: string;
-  address: string;
+  street: string;
+  house: string;
+  housing: string;
+  flat: string;
   zipCode: string;
 }

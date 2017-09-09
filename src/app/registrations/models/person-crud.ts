@@ -1,7 +1,7 @@
 import {AddressCRUD} from './address-crud';
 import {DocumentCRUD} from './document-crud';
 
-export class EnrolleeCRUD {
+export class PersonCRUD {
   firstName: string;
   lastName: string;
   middleName: string;

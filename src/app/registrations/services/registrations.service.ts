@@ -5,11 +5,14 @@ import {Http, Response} from '@angular/http';
 import {defaultOptions, fileOptions, searchOptions} from '../../core/http/http.utils';
 import {Result} from '../../core/http/result';
 import {Api} from '../../core/http/api.service';
-import {Registration, ReportTemplate, RegistrationPeriod, Specialty, StudyType, RegistrationCRUD} from '../models';
+import {FundsSource} from '../models/funds-source';
+import {Registration} from '../models/registration';
+import {RegistrationCRUD} from '../models/registration-crud';
+import {RegistrationPeriod} from '../models/registration-period';
+import {ReportTemplate} from '../models/report-template';
+import {Specialty} from '../models/specialty';
 
 import * as FileSaver from 'file-saver';
-
-const fileNameRegExp = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
 
 const STUDY_TYPES = [{name: 'A', value: null}, {name: 'B', value: 'B'}, {name: 'P', value: 'P'}];
 
@@ -41,8 +44,8 @@ export class RegistrationsService {
       .then((specs: Specialty[]) => [{id: null, name: ''}].concat(specs));
   }
 
-  getStudyTypeList(): Promise<StudyType[]> {
-    return new Promise<StudyType[]>((resolve, reject) => resolve(STUDY_TYPES));
+  getStudyTypeList(): Promise<FundsSource[]> {
+    return new Promise<FundsSource[]>((resolve, reject) => resolve(STUDY_TYPES));
   }
 
   createRegistration(registration: RegistrationCRUD): Promise<RegistrationCRUD> {
@@ -54,7 +57,7 @@ export class RegistrationsService {
       `api/registrations/get-contract/${contractId}/template/${reportTemplate.id}`,
       fileOptions(reportTemplate.mimeType)).toPromise()
       .then((res: Response) => {
-        FileSaver.saveAs(res.blob(), fileNameRegExp.exec(res.headers.get('content-disposition'))[1]);
+        FileSaver.saveAs(res.blob(), reportTemplate.fileName);
       });
   }
 

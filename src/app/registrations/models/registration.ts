@@ -8,5 +8,5 @@ export class Registration {
   attestateAvg: number;
   registrationDate: string;
 
-  registrationType: string;
+  fundsSource: string;
 }

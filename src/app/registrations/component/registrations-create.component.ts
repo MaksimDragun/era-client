@@ -6,7 +6,11 @@ import {EducationInstitutionService} from '../../core/institution/education-inst
 import {MessageType} from '../../core/messages/message';
 import {MessagesService} from '../../core/messages/messages.service';
 import {TitleService} from '../../core/services/title.service';
-import {RegistrationCRUD, RegistrationPeriod, StudyType, STUDY_TYPES, Specialty} from '../models';
+import {EducationForm, EDUCATION_FORM_LIST} from '../models/education-form';
+import {FundsSource, FUNDS_SOURCE_LIST} from '../models/funds-source';
+import {RegistrationCRUD} from '../models/registration-crud';
+import {RegistrationPeriod} from '../models/registration-period';
+import {Specialty} from '../models/specialty';
 import {RegistrationsService} from '../services/registrations.service';
 import {TranslateService} from '@ngx-translate/core';
 
@@ -19,7 +23,8 @@ export class RegistrationsCreateComponent implements OnInit {
   registrationPeriod: RegistrationPeriod;
   documentTypeList = ['P'];
   countryList = ['BY'];
-  studyTypeList: StudyType[];
+  fundsSourceList: FundsSource[];
+  educationFormList: EducationForm[];
   eInstitutionList: EducationInstitution[];
   specialtyList: Specialty[];
   subjectList: Subject[];
@@ -48,7 +53,8 @@ export class RegistrationsCreateComponent implements OnInit {
           this.messagesService.addMessage({key: 'registrations.common.no-active-registration-period', msgType: MessageType.INFO});
         }
 
-        this.fetchStudyTypeList();
+        this.fetchFundsSourceList();
+        this.fetchEducationFormList();
         this.fetchEducationalInstitutionList();
         this.fetchSpecialtyList();
         this.fetchSubjectList();
@@ -59,8 +65,12 @@ export class RegistrationsCreateComponent implements OnInit {
       .catch(error => this.messagesService.showErrorMessage(error));
   }
 
-  fetchStudyTypeList(): void {
-    this.studyTypeList = STUDY_TYPES;
+  fetchFundsSourceList(): void {
+    this.fundsSourceList = FUNDS_SOURCE_LIST;
+  }
+
+  fetchEducationFormList(): void {
+    this.educationFormList = EDUCATION_FORM_LIST;
   }
 
   fetchEducationalInstitutionList(): any {

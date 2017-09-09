@@ -37,7 +37,6 @@
 			"no-active-registration-period": "На данный момент регистрация абитуриентов не проводится"
 		},
 		"crud": {
-			"address": "Улица, дом, корпус, квартира",
 			"address-info": "Адрес",
 			"birthdate": "Дата рождения",
 			"certificate": "Аттестат",
@@ -50,18 +49,24 @@
 			"document-issue-date": "Дата выдачи",
 			"document-issued-by": "Кем выдан",
 			"document-type": "Тип документа",
+			"education-form": "Форма обучения",
 			"educational-institution": "Учреждение образования",
 			"enrollee-info": "Сведения об абитуриенте",
+			"flat": "Квартира",
 			"first-name": "Имя",
+			"funds-source": "Источник средств",
+			"house": "Дом",
+			"housing": "Корпус",
 			"id": "Личный номер",
 			"last-name": "Фамилия",
 			"middle-name": "Отчество",
 			"register": "Зарегистрировать",
 			"registration-info": "Сведения о поступлении",
 			"specialty": "Специальность",
-			"study-type": "Форма обучения",
+			"street": "Улица",
 			"title-create": "Регистрация нового абитуриента",
-			"title-create-with-period": "Регистрация нового абитуриента: {{period}}"
+			"title-create-with-period": "Регистрация нового абитуриента: {{period}}",
+			"zip-code": "Индекс"
 		},
 		"list": {
 			"attestate-avg": "Ср.бал",
@@ -69,21 +74,25 @@
 			"contract-type": "Тип договора",
 			"filter": "Фильтр",
 			"full-name": "Ф.И.О.",
+			"funds-source-filter": "Источник средств",
+			"funds-source": "Источник средств",
 			"name-filter": "Имя",
 			"registration-date": "Дата регистрации",
 			"specialty": "Специальность",
 			"specialty-filter": "Специальность",
-			"study-type-filter": "Тип обучения",
 			"title": "Список зарегистрированных абитуриентов",
-			"title-with-period": "Список зарегистрированных абитуриентов: {{period}}",
-			"type": "Тип"
+			"title-with-period": "Список зарегистрированных абитуриентов: {{period}}"
 		},
 		"document": {
 			"type": {
-				"P" : "Паспорт"
+				"P": "Паспорт"
 			}
 		},
-		"types": {
+		"education-form": {
+			"F": "Дневная",
+			"E": "Заочная"
+		},
+		"funds-source": {
 			"A": "Все",
 			"B": "Бюджет",
 			"P": "Платное"

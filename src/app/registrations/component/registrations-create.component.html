@@ -40,9 +40,35 @@
 										value={{registration.enrollee.address.city}} type="text" class="form-control"/>
 								</div>
 								<div class="form-group">
-									<label>{{'registrations.crud.address' | translate}}</label>
-									<input required [(ngModel)]="registration.enrollee.address.address" name="eLastName" #eMiddleName="ngModel"
-										value={{registration.enrollee.middleName}} type="text" class="form-control"/>
+									<label>{{'registrations.crud.street' | translate}}</label>
+									<input required [(ngModel)]="registration.enrollee.address.street" name="eaStreet" #eaStreet="ngModel"
+										value={{registration.enrollee.address.street}} type="text" class="form-control"/>
+								</div>
+								<div class="col-md-4 col-md-4 col-md-12">
+									<div class="form-group">
+										<label>{{'registrations.crud.house' | translate}}</label>
+										<input required [(ngModel)]="registration.enrollee.address.house" name="eaHouse" #eaHouse="ngModel"
+											value={{registration.enrollee.address.house}} type="text" class="form-control"/>
+									</div>	
+								</div>
+								<div class="col-md-4 col-md-4 col-md-12">
+									<div class="form-group">
+										<label>{{'registrations.crud.housing' | translate}}</label>
+										<input required [(ngModel)]="registration.enrollee.address.housing" name="eaHousing" #eaHousing="ngModel"
+											value={{registration.enrollee.address.housing}} type="text" class="form-control"/>
+									</div>	
+								</div>
+								<div class="col-md-4 col-md-4 col-md-12">
+									<div class="form-group">
+										<label>{{'registrations.crud.flat' | translate}}</label>
+										<input required [(ngModel)]="registration.enrollee.address.flat" name="eaFlat" #eaFlat="ngModel"
+											value={{registration.enrollee.address.flat}} type="text" class="form-control"/>
+									</div>	
+								</div>
+								<div class="form-group">
+									<label>{{'registrations.crud.zip-code' | translate}}</label>
+									<input required [(ngModel)]="registration.enrollee.address.zipCode" name="aZipCode" #aZipCode="ngModel"
+										value={{registration.enrollee.address.zipCode}} type="text" class="form-control"/>
 								</div>
 	  						</div>
   						</div>
@@ -87,19 +113,6 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">{{'registrations.crud.registration-info' | translate}}</div>
 	  			<div class="panel-body">
-	  				<div class="form-group">
-						<label>{{'registrations.crud.study-type' | translate}}</label>
-						<div *ngIf="studyTypeList">
-							<label class="radio-inline">
-								<input type="radio" value={{studyTypeList[0].value}} name="studyType" [(ngModel)]="registration.registrationType">
-								{{'registrations.types.' + studyTypeList[0].name | translate}}
-							</label>
-							<label class="radio-inline">
-								<input type="radio" value={{studyTypeList[1].value}} name="studyType" [(ngModel)]="registration.registrationType">
-								{{'registrations.types.' + studyTypeList[1].name | translate}}
-							</label>
-						</div>
-					</div>
 					<div class="form-group">
 						<label>{{'registrations.crud.educational-institution' | translate}}</label>
 						<select required *ngIf="eInstitutionList" [disabled]="eInstitutionList.length === 1"
@@ -116,6 +129,32 @@
 							#speciality="ngModel" class="form-control">
 							<option *ngFor="let spec of specialtyList" [ngValue]="spec.id">{{spec.name}}</option>
 						</select>
+					</div>
+					<div class="form-group">
+						<label>{{'registrations.crud.funds-source' | translate}}</label>
+						<div *ngIf="fundsSourceList">
+							<label class="radio-inline">
+								<input type="radio" value={{fundsSourceList[0].value}} name="fundsSource" [(ngModel)]="registration.fundsSource">
+								{{'registrations.funds-source.' + fundsSourceList[0].name | translate}}
+							</label>
+							<label class="radio-inline">
+								<input type="radio" value={{fundsSourceList[1].value}} name="fundsSource" [(ngModel)]="registration.fundsSource">
+								{{'registrations.funds-source.' + fundsSourceList[1].name | translate}}
+							</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label>{{'registrations.crud.education-form' | translate}}</label>
+						<div *ngIf="educationFormList">
+							<label class="radio-inline">
+								<input type="radio" value={{educationFormList[0].value}} name="educationForm" [(ngModel)]="registration.educationForm">
+								{{'registrations.education-form.' + educationFormList[0].name | translate}}
+							</label>
+							<label class="radio-inline">
+								<input type="radio" value={{educationFormList[1].value}} name="educationForm" [(ngModel)]="registration.educationForm">
+								{{'registrations.education-form.' + educationFormList[1].name | translate}}
+							</label>
+						</div>
 					</div>
 	  			</div>
   			</div>

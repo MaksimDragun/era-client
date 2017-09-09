@@ -1,7 +1,11 @@
 import {MessageType, Message} from '../../core/messages/message';
 import {MessagesService} from '../../core/messages/messages.service';
 import {TitleService} from '../../core/services/title.service';
-import {Registration, ReportTemplate, RegistrationPeriod, Specialty, StudyType} from '../models';
+import {FundsSource} from '../models/funds-source';
+import {Registration} from '../models/registration';
+import {RegistrationPeriod} from '../models/registration-period';
+import {ReportTemplate} from '../models/report-template';
+import {Specialty} from '../models/specialty';
 import {RegistrationsService} from '../services/registrations.service';
 import {Component, OnInit} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
@@ -23,8 +27,8 @@ export class RegistrationsListComponent implements OnInit {
   searchByName: string;
   specialtyList: Specialty[];
   searchBySpecialty: Specialty;
-  studyTypeList: StudyType[];
-  searchByStudyType: StudyType;
+  fundsSourceList: FundsSource[];
+  searchByFundsSource: FundsSource;
 
   constructor(
     private messagesService: MessagesService,
@@ -54,22 +58,22 @@ export class RegistrationsListComponent implements OnInit {
     this.fetchRegistrationList([
       {name: 'name', value: this.searchByName && this.searchByName},
       {name: 'speciality', value: this.searchBySpecialty && this.searchBySpecialty.id},
-      {name: 'study-type', value: this.searchByStudyType && this.searchByStudyType.value},
+      {name: 'funds-source', value: this.searchByFundsSource && this.searchByFundsSource.value},
     ]);
   }
 
   doReset(): void {
     this.searchByName = null;
     this.searchBySpecialty = null;
-    this.searchByStudyType = this.studyTypeList && this.studyTypeList[0];
+    this.searchByFundsSource = this.fundsSourceList && this.fundsSourceList[0];
     this.fetchRegistrationList();
   }
 
   fetchValuesForFilters(): void {
     this.registrationsService.getStudyTypeList()
-      .then((list: StudyType[]) => {
-        this.studyTypeList = list;
-        this.searchByStudyType = list && list[0];
+      .then((list: FundsSource[]) => {
+        this.fundsSourceList = list;
+        this.searchByFundsSource = list && list[0];
       });
     this.registrationsService.fetchSpecialties(this.registrationPeriod.id)
       .then((specs: Specialty[]) => {
