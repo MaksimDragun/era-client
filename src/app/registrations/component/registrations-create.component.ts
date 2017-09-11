@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CertificationService} from '../../core/certificates/certification.service';
 import {Subject} from '../../core/certificates/subject';
+import {Issue} from '../../core/http/issue';
 import {EducationInstitution} from '../../core/institution/education-institution';
 import {EducationInstitutionService} from '../../core/institution/education-institution.service';
 import {MessageType} from '../../core/messages/message';
@@ -32,6 +33,7 @@ export class RegistrationsCreateComponent implements OnInit {
   loading = false;
 
   registration: RegistrationCRUD = new RegistrationCRUD();
+  errors: Set<string> = new Set();
 
   constructor(
     private certificationService: CertificationService,
@@ -94,8 +96,17 @@ export class RegistrationsCreateComponent implements OnInit {
 
   createRegistrationAccount(): void {
     this.loading = true;
+    this.messagesService.reset();
     this.registrationsService.createRegistration(this.registration)
       .then(result => this.loading = false)
-      .catch(error => this.loading = false);
+      .catch(error => {
+        this.loading = false;
+        this.errors.clear();
+        const issues: Issue[] = error as Issue[];
+        issues.forEach(issue => {
+          this.errors.add(issue.fieldId);
+        });
+        console.log(this.errors.has('eFirstName'));
+      });
   }
 }

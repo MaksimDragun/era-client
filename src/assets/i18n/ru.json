@@ -171,6 +171,24 @@
 		}
 	},
 	"validation": {
+		"registration": {
+			"enrollee": {
+				"enrollee-details-is-empty": "Информация об абитуриенте отсутствует",
+				"enrollee-first-name-is-empty": "Поле «Имя» не заполнено",
+				"enrollee-first-name-is-too-long": "Поле «Имя» превышает размер в 32 символа",
+				"enrollee-last-name-is-empty": "Поле «Фамилия» не заполнено",
+				"enrollee-last-name-is-too-long": "Поле «Фамилия» превышает размер в 32 символа",
+				"enrollee-middle-name-is-too-long": "Поле «Отчество» превышает размер в 32 символа",
+				"enrollee-birthdate-is-empty": "Поле «Дата рождения» не заполнено",
+				"enrollee-birthday-is-too-young": "Поле «Дата рождения» должна быть не ранее 15 лет назад",
+				"document-details-is-empty": "Информация о документе отсутствует",
+				"document-type-is-invalid": "Неизвестный тип документа",
+				"id-is-empty": "Поле «Личный номер» не заполнено",
+				"id-has-invalid-length": "Поле «Личный номер» должно иметь размер 14 символов",
+				"document-id-is-empty": "Поле «Номер документа» не заполнено",
+				"document-id-has-invalid-length": "Поле «Номер документа» должно иметь размер 14 символов"
+			}
+		},
 		"user-account": {
 			"username-is-empty": "Имя пользователя не заполнен",
 			"username-is-small": "Имя пользователя не должно быть меньше 3 символов",

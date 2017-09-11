@@ -5,17 +5,17 @@
 				<div class="panel-heading">{{'registrations.crud.enrollee-info' | translate}}</div>
 	  			<div class="panel-body">
 					<div class="col-md-6">
-						<div class="form-group">
+						<div class="form-group" [ngClass]="{ 'has-error': errors.has('eFirstName')}">
 							<label>{{'registrations.crud.first-name' | translate}}</label>
 							<input required [(ngModel)]="registration.enrollee.firstName" name="eFirstName" #eFirstName="ngModel"
 								value={{registration.enrollee.firstName}} type="text" class="form-control"/>
 						</div>
-						<div class="form-group">
+						<div class="form-group" [ngClass]="{ 'has-error': errors.has('eLastName')}">
 							<label>{{'registrations.crud.last-name' | translate}}</label>
 							<input required [(ngModel)]="registration.enrollee.lastName" name="eLastName" #eLastName="ngModel"
 								value={{registration.enrollee.lastName}} type="text" class="form-control"/>
 						</div>
-						<div class="form-group">
+						<div class="form-group" [ngClass]="{ 'has-error': errors.has('eMiddleName')}">
 							<label>{{'registrations.crud.middle-name' | translate}}</label>
 							<input required [(ngModel)]="registration.enrollee.middleName" name="eLastName" #eMiddleName="ngModel"
 								value={{registration.enrollee.middleName}} type="text" class="form-control"/>
