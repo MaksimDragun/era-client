@@ -39,33 +39,33 @@
 									<input required [(ngModel)]="registration.enrollee.address.city" name="aCity" #aCity="ngModel"
 										value={{registration.enrollee.address.city}} type="text" class="form-control"/>
 								</div>
-								<div class="form-group">
+								<div class="form-group" [appFieldHasError]="'aStreet'">
 									<label>{{'registrations.crud.street' | translate}}</label>
 									<input required [(ngModel)]="registration.enrollee.address.street" name="eaStreet" #eaStreet="ngModel"
 										value={{registration.enrollee.address.street}} type="text" class="form-control"/>
 								</div>
 								<div class="col-md-4 col-md-4 col-md-12">
-									<div class="form-group">
+									<div class="form-group" [appFieldHasError]="'aHouse'">
 										<label>{{'registrations.crud.house' | translate}}</label>
 										<input required [(ngModel)]="registration.enrollee.address.house" name="eaHouse" #eaHouse="ngModel"
 											value={{registration.enrollee.address.house}} type="text" class="form-control"/>
 									</div>	
 								</div>
 								<div class="col-md-4 col-md-4 col-md-12">
-									<div class="form-group">
+									<div class="form-group" [appFieldHasError]="'aHousing'">
 										<label>{{'registrations.crud.housing' | translate}}</label>
 										<input required [(ngModel)]="registration.enrollee.address.housing" name="eaHousing" #eaHousing="ngModel"
 											value={{registration.enrollee.address.housing}} type="text" class="form-control"/>
 									</div>	
 								</div>
 								<div class="col-md-4 col-md-4 col-md-12">
-									<div class="form-group">
+									<div class="form-group" [appFieldHasError]="'aFlat'">
 										<label>{{'registrations.crud.flat' | translate}}</label>
 										<input required [(ngModel)]="registration.enrollee.address.flat" name="eaFlat" #eaFlat="ngModel"
 											value={{registration.enrollee.address.flat}} type="text" class="form-control"/>
 									</div>	
 								</div>
-								<div class="form-group">
+								<div class="form-group" [appFieldHasError]="'aZipCode'">
 									<label>{{'registrations.crud.zip-code' | translate}}</label>
 									<input required [(ngModel)]="registration.enrollee.address.zipCode" name="aZipCode" #aZipCode="ngModel"
 										value={{registration.enrollee.address.zipCode}} type="text" class="form-control"/>

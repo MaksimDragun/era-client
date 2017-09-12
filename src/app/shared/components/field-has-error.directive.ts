@@ -15,7 +15,6 @@ export class FieldHasErrorDirective {
     private renderer: Renderer) {
     this.fieldMessagesService.subscribe((issues: Map<string, Message[]>) => {
       this.renderer.setElementClass(elementRef.nativeElement, 'has-error', issues && issues.has(this.appFieldHasError));
-      console.log(this.elementRef);
     });
   }
 }
