@@ -186,7 +186,16 @@
 				"id-is-empty": "Поле «Личный номер» не заполнено",
 				"id-has-invalid-length": "Поле «Личный номер» должно иметь размер 14 символов",
 				"document-id-is-empty": "Поле «Номер документа» не заполнено",
-				"document-id-has-invalid-length": "Поле «Номер документа» должно иметь размер 14 символов"
+				"document-id-has-invalid-length": "Поле «Номер документа» должно иметь размер 14 символов",
+				"document-issue-date-is-empty": "Поле «Дата Выдачи» не заполнено",
+				"document-issue-date-is-in-future": "Поле «Дата выдачи» не может быть будущей датой",
+				"document-issued-by-is-empty": "Поле «Кем выдан» не заполнено",
+				"document-issued-by-is-too-long": "Поле «Кем выдан» превышает размер в 64 символа",
+				"address-details-is-empty": "Адресная информация отсутствует",
+				"address-country-is-empty": "Поле «Страна» не выбрано",
+				"address-country-is-invalid": "Неизвестная страна",
+				"address-city-is-empty": "Поле «Нас.пункт» не заполнено",
+				"address-city-is-too-long": "Поле «Нас.пункт» превышает размер в 32 символа"
 			}
 		},
 		"user-account": {

@@ -1,4 +1,4 @@
-import { SharedModule } from '../shared/shared.module';
+import {SharedModule} from '../shared/shared.module';
 import {NgModule} from '@angular/core';
 
 import {CommonModule} from '@angular/common';
@@ -13,6 +13,7 @@ import {LoginComponent} from './login/login.component';
 import {MainComponent} from './main/main.component';
 import {MainRoutings} from './main/main.routing';
 import {MenuService} from './menu/menu.service';
+import {FieldMessagesService} from './messages/field-messages.service';
 import {MessagesComponent} from './messages/messages.component';
 import {MessagesService} from './messages/messages.service';
 import {TitleService} from './services/title.service';
@@ -55,6 +56,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AuthGuard,
     CertificationService,
     EducationInstitutionService,
+    FieldMessagesService,
     MenuService,
     MessagesService,
     TitleService

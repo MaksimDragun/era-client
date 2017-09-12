@@ -1,4 +1,5 @@
 import {LoadingImageComponent} from './components/loading-image.component';
+import {FieldHasErrorDirective} from './components/field-has-error.directive';
 import {ConfirmationDialogComponent} from './dialogs/confirmation-dialog.component';
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
@@ -17,12 +18,14 @@ declare const JQuery: any;
   ],
   declarations: [
     ConfirmationDialogComponent,
+    FieldHasErrorDirective,
     HasRolesDirective,
     LoadingImageComponent
   ],
   exports: [
     CommonModule,
     ConfirmationDialogComponent,
+    FieldHasErrorDirective,
     HasRolesDirective,
     LoadingImageComponent,
     NKDatetimeModule,

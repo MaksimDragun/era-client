@@ -5,22 +5,22 @@
 				<div class="panel-heading">{{'registrations.crud.enrollee-info' | translate}}</div>
 	  			<div class="panel-body">
 					<div class="col-md-6">
-						<div class="form-group" [ngClass]="{ 'has-error': errors.has('eFirstName')}">
+						<div class="form-group" [appFieldHasError]="'eFirstName'">
 							<label>{{'registrations.crud.first-name' | translate}}</label>
 							<input required [(ngModel)]="registration.enrollee.firstName" name="eFirstName" #eFirstName="ngModel"
 								value={{registration.enrollee.firstName}} type="text" class="form-control"/>
 						</div>
-						<div class="form-group" [ngClass]="{ 'has-error': errors.has('eLastName')}">
+						<div class="form-group" [appFieldHasError]="'eLastName'">
 							<label>{{'registrations.crud.last-name' | translate}}</label>
 							<input required [(ngModel)]="registration.enrollee.lastName" name="eLastName" #eLastName="ngModel"
 								value={{registration.enrollee.lastName}} type="text" class="form-control"/>
 						</div>
-						<div class="form-group" [ngClass]="{ 'has-error': errors.has('eMiddleName')}">
+						<div class="form-group" [appFieldHasError]="'eMiddleName'">
 							<label>{{'registrations.crud.middle-name' | translate}}</label>
 							<input required [(ngModel)]="registration.enrollee.middleName" name="eLastName" #eMiddleName="ngModel"
 								value={{registration.enrollee.middleName}} type="text" class="form-control"/>
 						</div>
-						<div class="form-group">
+						<div class="form-group" [appFieldHasError]="'eBirthdate'">
 							<label>{{'registrations.crud.birthdate' | translate}}</label>
 							<datetime required [(ngModel)]="registration.enrollee.birthdate" name="eBirthdate" #eBirthdate="ngModel"
 						  		[timepicker]="false" [datepicker]="{autoclose: 'true', language: 'ru', placeholder: ' '}" ></datetime>
@@ -28,13 +28,13 @@
 						<div class="panel panel-default">
 							<div class="panel-heading">{{'registrations.crud.address-info' | translate}}</div>
 	  						<div class="panel-body">
-	  							<div class="form-group">
+	  							<div class="form-group" [appFieldHasError]="'aCountry'">
 									<label>{{'registrations.crud.country' | translate}}</label>
 									<select required *ngIf="countryList" [(ngModel)]="registration.enrollee.address.country" name="aCountry" #aCountry="ngModel" class="form-control">
 										<option *ngFor="let countryCode of countryList" [ngValue]="countryCode">{{'country.' + countryCode | translate}}</option>
 									</select>
 								</div>
-								<div class="form-group">
+								<div class="form-group" [appFieldHasError]="'aCity'">
 									<label>{{'registrations.crud.city' | translate}}</label>
 									<input required [(ngModel)]="registration.enrollee.address.city" name="aCity" #aCity="ngModel"
 										value={{registration.enrollee.address.city}} type="text" class="form-control"/>
@@ -77,28 +77,28 @@
 						<div class="panel panel-default">
 							<div class="panel-heading">{{'registrations.crud.document-info' | translate}}</div>
 	  						<div class="panel-body">
-								<div class="form-group">
+								<div class="form-group" [appFieldHasError]="'dType'">
 						            <label>{{'registrations.crud.document-type' | translate}}</label>
 						            <select required *ngIf="documentTypeList" [(ngModel)]="registration.enrollee.document.type" name="dType" #dType="ngModel" class="form-control">
 										<option *ngFor="let type of documentTypeList" [ngValue]="type">{{'registrations.document.type.' + type | translate}}</option>
 									</select>
 						        </div>
-								<div class="form-group">
+								<div class="form-group" [appFieldHasError]="'dId'">
 									<label>{{'registrations.crud.id' | translate}}</label>
 									<input required [(ngModel)]="registration.enrollee.document.id" name="dId" #dId="ngModel"
 										value={{registration.enrollee.document.id}} type="text" class="form-control"/>
 								</div>
-								<div class="form-group">
+								<div class="form-group" [appFieldHasError]="'dDocumentId'">
 									<label>{{'registrations.crud.document-id' | translate}}</label>
 									<input required [(ngModel)]="registration.enrollee.document.documentId" name="dDocumentId" #dDocumentId="ngModel"
 										value={{registration.enrollee.document.documentId}} type="text" class="form-control"/>
 								</div>
-								<div class="form-group">
+								<div class="form-group" [appFieldHasError]="'dIssueDate'">
 									<label>{{'registrations.crud.document-issue-date' | translate}}</label>
 									<datetime required [(ngModel)]="registration.enrollee.document.issueDate" name="dIssueDate" #dIssueDate="ngModel"
 								  		[timepicker]="false" [datepicker]="{autoclose: 'true', language: 'ru', placeholder: ' '}" ></datetime>
 								</div>
-								<div class="form-group">
+								<div class="form-group" [appFieldHasError]="'dIssuedBy'">
 									<label>{{'registrations.crud.document-issued-by' | translate}}</label>
 									<input required [(ngModel)]="registration.enrollee.document.issuedBy" name="dIssuedBy" #dIssuedBy="ngModel"
 										value={{registration.enrollee.document.issuedBy}} type="text" class="form-control"/>
