@@ -14,6 +14,9 @@ export class FieldHasErrorDirective {
     private fieldMessagesService: FieldMessagesService,
     private renderer: Renderer) {
     this.fieldMessagesService.subscribe((issues: Map<string, Message[]>) => {
+      if ('educationInstitution' === this.appFieldHasError) {
+        console.log(issues);
+      }
       this.renderer.setElementClass(elementRef.nativeElement, 'has-error', issues && issues.has(this.appFieldHasError));
     });
   }
