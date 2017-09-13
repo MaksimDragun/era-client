@@ -105,6 +105,21 @@
 								</div>
 							</div>
 						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">{{'registrations.crud.contact-details' | translate}}</div>
+							<div class="panel-body">
+								<div class="form-group" [appFieldHasError]="'ePhone'">
+									<label>{{'registrations.crud.phone' | translate}}</label>
+									<input required [(ngModel)]="registration.enrollee.contactDetails.phone" name="ePhone" #ePhone="ngModel"
+										value={{registration.enrollee.contactDetails.phone}} type="text" class="form-control"/>
+								</div>
+								<div class="form-group" [appFieldHasError]="'eEmail'">
+									<label>{{'registrations.crud.email' | translate}}</label>
+									<input required [(ngModel)]="registration.enrollee.contactDetails.email" name="eEmail" #eEmail="ngModel"
+										value={{registration.enrollee.contactDetails.email}} type="text" class="form-control"/>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

@@ -97,6 +97,7 @@ export class RegistrationsCreateComponent implements OnInit {
   createRegistrationAccount(): void {
     this.loading = true;
     this.messagesService.reset();
+    this.registration.periodId = this.registrationPeriod.id;
     this.registrationsService.createRegistration(this.registration)
       .then(result => this.loading = false)
       .catch(error => {

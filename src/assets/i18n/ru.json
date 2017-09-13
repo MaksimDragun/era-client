@@ -43,6 +43,7 @@
 			"certificate-institution": "Образование",
 			"certificate-year": "Год выпуска",
 			"city": "Нас.пункт",
+			"contact-details": "Контактная информация",
 			"country": "Страна",
 			"document-id": "Номер документа",
 			"document-info": "Паспортные данные",
@@ -52,6 +53,7 @@
 			"education-form": "Форма обучения",
 			"educational-institution": "Учреждение образования",
 			"enrollee-info": "Сведения об абитуриенте",
+			"email": "E-mail",
 			"flat": "Квартира",
 			"first-name": "Имя",
 			"funds-source": "Бюджет/Платное",
@@ -60,6 +62,7 @@
 			"id": "Личный номер",
 			"last-name": "Фамилия",
 			"middle-name": "Отчество",
+			"phone": "Телефон",
 			"register": "Зарегистрировать",
 			"registration-info": "Сведения о поступлении",
 			"specialty": "Специальность",
@@ -187,6 +190,9 @@
 				"middle-name-is-too-long": "Поле «Отчество» превышает размер в {{0}} символа",
 				"birthdate-is-empty": "Поле «Дата рождения» не заполнено",
 				"birthday-is-too-young": "Поле «Дата рождения» должна быть не ранее {{0}} лет назад",
+				"contact-details": {
+					"phone-is-empty": "Поле «Телефон» не заполнено"
+				},
 				"document": {
 					"details-is-empty": "Информация о документе отсутствует",
 					"type-is-invalid": "Неизвестный тип документа",
