@@ -109,10 +109,10 @@
 		"periods": {
 			"separate-id": "Раздельная нумерация",
 			"list": {
-				"date-from": "Окончание",
-				"date-to": "Начало",
+				"end-date": "Окончание",
 				"period-title": "Название",
 				"specialties": "Специальности",
+				"start-date": "Начало",
 				"status": "Статус",
 				"title": "Периоды регистраций"
 			},
