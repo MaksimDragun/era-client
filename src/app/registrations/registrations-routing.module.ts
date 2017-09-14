@@ -2,6 +2,7 @@ import { AuthGuard } from '../core/auth/auth.guard';
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 
+import {RegistrationPeriodListComponent} from './component/registration-period-list.component';
 import {RegistrationsCreateComponent} from './component/registrations-create.component';
 import {RegistrationsListComponent} from './component/registrations-list.component';
 
@@ -15,6 +16,11 @@ import {RegistrationsListComponent} from './component/registrations-list.compone
     {
       path: 'create',
       component: RegistrationsCreateComponent,
+      canActivate: [AuthGuard]
+    },
+    {
+      path: 'periods',
+      component: RegistrationPeriodListComponent,
       canActivate: [AuthGuard]
     },
     {

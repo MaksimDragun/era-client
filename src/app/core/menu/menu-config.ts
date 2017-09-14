@@ -23,6 +23,12 @@ export const mainMenu: MenuItem[] = [
           'ROLE_REGISTRATIONS_CREATE'
         ],
         subMenu: []
+      },
+      {
+        action: '/registrations/periods',
+        title: 'main.menu.registrations.periods',
+        authorities: [],
+        subMenu: []
       }
     ]
   },

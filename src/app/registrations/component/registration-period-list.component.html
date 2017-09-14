@@ -1,0 +1,80 @@
+<table class="table table-striped">
+	<tr>
+		<th>#</th>
+		<th>{{'registrations.periods.list.period-title' | translate}}</th>
+		<th>{{'registrations.periods.list.date-from' | translate}}</th>
+		<th>{{'registrations.periods.list.date-to' | translate}}</th>
+		<th>{{'registrations.periods.list.status' | translate}}</th>
+		<th>{{'registrations.periods.list.specialties' | translate}}</th>
+	</tr>
+	<tr *ngFor="let period of registrationPeriodList; let i = index">
+		<td>{{i + 1}}.</td>
+		<td>{{period.title}}</td>
+		<td>{{period.dateFrom}}</td>
+		<td>{{period.dateTo}}</td>
+		<td>{{'registrations.periods.status.' + period.status | translate}}</td>
+		<td>
+			<div class="row">
+				<div class="list-group">
+					<div *ngFor="let s of period.specialties" class="list-group-item">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+					    		<h3 class="panel-title">{{s.specialty}}</h3>
+					    	</div>
+					    	<div class="panel-body">
+								<div class="col-lg-4 col-md-4 col-xs-12">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<div>{{'registrations.education-form.title' | translate}}</div>
+										</div>
+										<div class="panel-body">
+											<div class="checkbox">
+												<label><input type="checkbox" [(ngModel)]="s.separateByEducationForm" disabled>{{'registrations.periods.separate-id' | translate}}</label>
+											</div>
+											<hr/>
+											<div class="checkbox" *ngFor="let form of s.educationForms">
+												<label><input type="checkbox" [checked]="true" disabled>{{'registrations.education-form.'.concat(form) | translate}}</label>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-4 col-md-4 col-xs-12">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<div>{{'registrations.education-base.title' | translate}}</div>
+										</div>
+										<div class="panel-body">
+											<div class="checkbox">
+												<label><input type="checkbox" [(ngModel)]="s.separateByEducationBase" disabled>{{'registrations.periods.separate-id' | translate}}</label>
+											</div>
+											<hr/>
+											<div class="checkbox" *ngFor="let base of s.educationBases">
+												<label><input type="checkbox" [checked]="true" disabled>{{'registrations.education-base.'.concat(base) | translate}}</label>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-4 col-md-4 col-xs-12">
+									<div class="panel panel-default">
+										<div class="panel-heading">		
+											<div>{{'registrations.funds-source.title' | translate}}</div>
+										</div>
+										<div class="panel-body">
+											<div class="checkbox">
+												<label><input type="checkbox" [(ngModel)]="s.separateByFundsSource" disabled>{{'registrations.periods.separate-id' | translate}}</label>
+											</div>
+											<hr/>
+											<div class="checkbox" *ngFor="let src of s.fundsSources">
+												<label><input type="checkbox" [checked]="true" disabled>{{'registrations.funds-source.'.concat(src) | translate}}</label>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</td>
+	</tr>
+</table>

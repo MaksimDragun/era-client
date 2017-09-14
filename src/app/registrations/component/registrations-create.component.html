@@ -146,7 +146,7 @@
 						</select>
 					</div>
 					<div class="form-group" [appFieldHasError]="'fundsSource'">
-						<label>{{'registrations.crud.funds-source' | translate}}</label>
+						<label>{{'registrations.funds-source.title' | translate}}</label>
 						<div *ngIf="fundsSourceList">
 							<label class="radio-inline">
 								<input type="radio" value={{fundsSourceList[0].value}} name="fundsSource" [(ngModel)]="registration.fundsSource">
@@ -159,7 +159,7 @@
 						</div>
 					</div>
 					<div class="form-group" [appFieldHasError]="'educationForm'">
-						<label>{{'registrations.crud.education-form' | translate}}</label>
+						<label>{{'registrations.education-form.title' | translate}}</label>
 						<div *ngIf="educationFormList">
 							<label class="radio-inline">
 								<input type="radio" value={{educationFormList[0].value}} name="educationForm" [(ngModel)]="registration.educationForm">

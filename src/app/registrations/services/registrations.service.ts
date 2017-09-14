@@ -20,7 +20,8 @@ const STUDY_TYPES = [{name: 'A', value: null}, {name: 'B', value: 'B'}, {name: '
 export class RegistrationsService {
 
   static createRegistrationUrl = 'api/registrations/create';
-  private fetchActivePeriodUrl = 'api/registrations/get-active-period';
+  static fetchActivePeriodUrl = 'api/registrations/get-active-period';
+  static fetchPeriodListUrl = 'api/registrations/get-periods';
   private fetchRegistrationListUrl = 'api/registrations/get-list';
   private fetchReportTemplateUrl = 'api/registrations/get-report-templates';
   private fetchSpecialtiesUrl = 'api/specialties/get-list-for-registrations';
@@ -33,10 +34,6 @@ export class RegistrationsService {
 
   fetchReportTemplates(): Promise<ReportTemplate[]> {
     return this.api.get(this.fetchReportTemplateUrl, defaultOptions());
-  }
-
-  fetchRegistrationPeriod(): Promise<RegistrationPeriod> {
-    return this.api.get(this.fetchActivePeriodUrl, defaultOptions());
   }
 
   fetchSpecialties(periodId: number): Promise<Specialty[]> {
@@ -59,6 +56,14 @@ export class RegistrationsService {
       .then((res: Response) => {
         FileSaver.saveAs(res.blob(), reportTemplate.fileName);
       });
+  }
+
+  fetchRegistrationPeriod(): Promise<RegistrationPeriod> {
+    return this.api.get(RegistrationsService.fetchActivePeriodUrl, defaultOptions());
+  }
+
+  fetchRegistrationPeriodList(): Promise<RegistrationPeriod[]> {
+    return this.api.get(RegistrationsService.fetchPeriodListUrl, defaultOptions());
   }
 
 }

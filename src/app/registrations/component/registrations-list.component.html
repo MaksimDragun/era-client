@@ -16,7 +16,7 @@
 	        	</select>
 	       	</div>
 	        <div class="form-group col-lg-3 col-md-4 col-xs-12">
-	            <label>{{'registrations.list.funds-source-filter' | translate}}</label>
+	            <label>{{'registrations.funds-source.title' | translate}}</label>
 	            <select  *ngIf="fundsSourceList" [(ngModel)]="searchByFundsSource" name="funds-source" class="form-control">
 					<option *ngFor="let src of fundsSourceList" [ngValue]="src">{{'registrations.funds-source.' + src.name | translate}}</option>
 				</select>
@@ -35,7 +35,7 @@
 					<th>#</th>
 					<th>{{'registrations.list.full-name' | translate}}</th>
 					<th>{{'registrations.list.specialty' | translate}}</th>
-					<th>{{'registrations.list.funds-source' | translate}}</th>
+					<th>{{'registrations.funds-source.title' | translate}}</th>
 					<th>{{'registrations.list.attestate-avg' | translate}}</th>
 					<th>{{'registrations.list.registration-date' | translate}}</th>
 					<th class="text-center">{{'registrations.list.contract' | translate}}</th>

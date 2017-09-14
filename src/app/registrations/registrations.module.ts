@@ -4,6 +4,7 @@ import {NgModule} from '@angular/core';
 
 import {RegistrationsRoutingModule} from './registrations-routing.module';
 
+import {RegistrationPeriodListComponent} from './component/registration-period-list.component';
 import {RegistrationsCreateComponent} from './component/registrations-create.component';
 import {RegistrationsListComponent} from './component/registrations-list.component';
 import {RegistrationsService} from './services/registrations.service';
@@ -15,6 +16,7 @@ import {RegistrationsService} from './services/registrations.service';
     RegistrationsRoutingModule
   ],
   declarations: [
+    RegistrationPeriodListComponent,
     RegistrationsCreateComponent,
     RegistrationsListComponent
   ],

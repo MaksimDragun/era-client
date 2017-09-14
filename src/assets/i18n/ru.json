@@ -20,7 +20,8 @@
 			"registrations": {
 				"main": "Регистрирование",
 				"list": "Список регистраций",
-				"create": "Новая регистрация"
+				"create": "Новая регистрация",
+				"periods": "Периоды регистрации"
 			},
 			"settings": {
 				"main": "Настройки",
@@ -50,13 +51,11 @@
 			"document-issue-date": "Дата выдачи",
 			"document-issued-by": "Кем выдан",
 			"document-type": "Тип документа",
-			"education-form": "Форма обучения",
 			"educational-institution": "Учреждение образования",
 			"enrollee-info": "Сведения об абитуриенте",
 			"email": "E-mail",
 			"flat": "Квартира",
 			"first-name": "Имя",
-			"funds-source": "Бюджет/Платное",
 			"house": "Дом",
 			"housing": "Корпус",
 			"id": "Личный номер",
@@ -92,13 +91,36 @@
 			}
 		},
 		"education-form": {
+			"title": "Форма обучения",
 			"F": "Дневная",
 			"E": "Заочная"
 		},
+		"education-base": {
+			"title": "База",
+			"09": "После 9 кл.",
+			"11": "После 11 кл."
+		},
 		"funds-source": {
+			"title": "Бюджет/Платное",
 			"A": "Все",
 			"B": "Бюджет",
 			"P": "Платное"
+		},
+		"periods": {
+			"separate-id": "Раздельная нумерация",
+			"list": {
+				"date-from": "Окончание",
+				"date-to": "Начало",
+				"period-title": "Название",
+				"specialties": "Специальности",
+				"status": "Статус",
+				"title": "Периоды регистраций"
+			},
+			"status": {
+				"O": "Открытый",
+				"C": "Закрытый",
+				"N": "Новый"
+			}
 		}
 	},
 	"settings": {
