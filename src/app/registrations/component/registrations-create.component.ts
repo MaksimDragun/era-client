@@ -9,6 +9,7 @@ import {MessagesService} from '../../core/messages/messages.service';
 import {TitleService} from '../../core/services/title.service';
 import {EducationForm, EDUCATION_FORM_LIST} from '../models/education-form';
 import {FundsSource, FUNDS_SOURCE_LIST} from '../models/funds-source';
+import {RegisteredSpecialty} from '../models/registered-specialty';
 import {RegistrationCRUD} from '../models/registration-crud';
 import {RegistrationPeriod} from '../models/registration-period';
 import {Specialty} from '../models/specialty';
@@ -22,18 +23,20 @@ import {TranslateService} from '@ngx-translate/core';
 export class RegistrationsCreateComponent implements OnInit {
 
   registrationPeriod: RegistrationPeriod;
+  specialtyList: RegisteredSpecialty[];
+  selectedSpecialty: RegisteredSpecialty;
+
+
   documentTypeList = ['P'];
   countryList = ['BY'];
   fundsSourceList: FundsSource[];
   educationFormList: EducationForm[];
   eInstitutionList: EducationInstitution[];
-  specialtyList: Specialty[];
   subjectList: Subject[];
 
   loading = false;
 
   registration: RegistrationCRUD = new RegistrationCRUD();
-  errors: Set<string> = new Set();
 
   constructor(
     private certificationService: CertificationService,
@@ -51,28 +54,19 @@ export class RegistrationsCreateComponent implements OnInit {
         if (period) {
           this.translate.get('registrations.crud.title-create-with-period', {'period': period.title})
             .subscribe(str => this.titleService.setTitleKey(str));
+          this.specialtyList = period.specialties;
         } else {
           this.messagesService.addMessage({key: 'registrations.common.no-active-registration-period', msgType: MessageType.INFO});
         }
 
-        this.fetchFundsSourceList();
-        this.fetchEducationFormList();
         this.fetchEducationalInstitutionList();
-        this.fetchSpecialtyList();
         this.fetchSubjectList();
 
         this.registration.enrollee.document.type = this.documentTypeList[0];
         this.registration.enrollee.address.country = this.countryList[0];
+        this.registration.enrollee.document.citizenship = this.countryList[0];
       })
       .catch(error => this.messagesService.showErrorMessage(error));
-  }
-
-  fetchFundsSourceList(): void {
-    this.fundsSourceList = FUNDS_SOURCE_LIST;
-  }
-
-  fetchEducationFormList(): void {
-    this.educationFormList = EDUCATION_FORM_LIST;
   }
 
   fetchEducationalInstitutionList(): any {
@@ -81,11 +75,6 @@ export class RegistrationsCreateComponent implements OnInit {
         this.eInstitutionList = list;
         this.registration.educationInstitutionId = this.eInstitutionList && this.eInstitutionList[0].id;
       });
-  }
-
-  fetchSpecialtyList(): void {
-    this.registrationsService.fetchSpecialties(this.registrationPeriod.id)
-      .then(list => this.specialtyList = list);
   }
 
   fetchSubjectList(): void {
@@ -98,16 +87,13 @@ export class RegistrationsCreateComponent implements OnInit {
     this.loading = true;
     this.messagesService.reset();
     this.registration.periodId = this.registrationPeriod.id;
+    this.registration.specialtyId = this.selectedSpecialty && this.selectedSpecialty.id;
     this.registrationsService.createRegistration(this.registration)
       .then(result => this.loading = false)
-      .catch(error => {
-        this.loading = false;
-        this.errors.clear();
-        const issues: Issue[] = error as Issue[];
-        issues.forEach(issue => {
-          this.errors.add(issue.fieldId);
-        });
-        console.log(this.errors.has('eFirstName'));
-      });
+      .catch(error => this.loading = false);
+  }
+
+  onSpecialtyChanged() {
+    console.log(this.selectedSpecialty);
   }
 }

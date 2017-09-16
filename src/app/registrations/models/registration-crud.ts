@@ -6,6 +6,7 @@ import {FundsSource} from './funds-source';
 export class RegistrationCRUD {
   fundsSource: string;
   educationForm: string;
+  educationBase: string;
   enrollee: PersonCRUD = new PersonCRUD();
   certificate: CertificateCRUD = new CertificateCRUD();
   registrationDate: Date;

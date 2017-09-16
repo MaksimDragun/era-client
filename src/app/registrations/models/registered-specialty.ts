@@ -1,5 +1,5 @@
 export class RegisteredSpecialty {
-
+  id: number;
   specialty: string;
   separateByEducationBase: boolean;
   educationBases: string[];

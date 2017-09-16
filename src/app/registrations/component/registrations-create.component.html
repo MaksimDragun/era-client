@@ -103,6 +103,11 @@
 									<input required [(ngModel)]="registration.enrollee.document.issuedBy" name="dIssuedBy" #dIssuedBy="ngModel"
 										value={{registration.enrollee.document.issuedBy}} type="text" class="form-control"/>
 								</div>
+								<div class="form-group" [appFieldHasError]="'dCitizenship'">
+									<label>{{'registrations.crud.document-citizenship' | translate}}</label>
+									<input required [(ngModel)]="registration.enrollee.document.citizenship" name="dCitizenship" #dCitizenship="ngModel"
+										value={{registration.enrollee.document.citizenship}} type="text" class="form-control"/>
+								</div>
 							</div>
 						</div>
 						<div class="panel panel-default">
@@ -140,35 +145,38 @@
 					</div>
 					<div class="form-group" [appFieldHasError]="'specialty'">
 						<label>{{'registrations.crud.specialty' | translate}}</label>
-						<select required *ngIf=specialtyList [(ngModel)]="registration.specialtyId" name="specialty"
+						<select required *ngIf=specialtyList [(ngModel)]="selectedSpecialty" name="specialty"
 							#speciality="ngModel" class="form-control">
-							<option *ngFor="let spec of specialtyList" [ngValue]="spec.id">{{spec.name}}</option>
+							<option *ngFor="let spec of specialtyList" [ngValue]="spec">{{spec.specialty}}</option>
 						</select>
 					</div>
-					<div class="form-group" [appFieldHasError]="'fundsSource'">
-						<label>{{'registrations.funds-source.title' | translate}}</label>
-						<div *ngIf="fundsSourceList">
-							<label class="radio-inline">
-								<input type="radio" value={{fundsSourceList[0].value}} name="fundsSource" [(ngModel)]="registration.fundsSource">
-								{{'registrations.funds-source.' + fundsSourceList[0].name | translate}}
-							</label>
-							<label class="radio-inline">
-								<input type="radio" value={{fundsSourceList[1].value}} name="fundsSource" [(ngModel)]="registration.fundsSource">
-								{{'registrations.funds-source.' + fundsSourceList[1].name | translate}}
-							</label>
+					<div *ngIf="selectedSpecialty">
+						<div class="form-group" [appFieldHasError]="'fundsSource'">
+							<label>{{'registrations.funds-source.title' | translate}}</label>
+							<div>
+								<label *ngFor="let source of selectedSpecialty.fundsSources" class="radio-inline">
+									<input type="radio" value={{source}} name="fundsSource" [(ngModel)]="registration.fundsSource">
+									{{'registrations.funds-source.' + source | translate}}
+								</label>
+							</div>
 						</div>
-					</div>
-					<div class="form-group" [appFieldHasError]="'educationForm'">
-						<label>{{'registrations.education-form.title' | translate}}</label>
-						<div *ngIf="educationFormList">
-							<label class="radio-inline">
-								<input type="radio" value={{educationFormList[0].value}} name="educationForm" [(ngModel)]="registration.educationForm">
-								{{'registrations.education-form.' + educationFormList[0].name | translate}}
-							</label>
-							<label class="radio-inline">
-								<input type="radio" value={{educationFormList[1].value}} name="educationForm" [(ngModel)]="registration.educationForm">
-								{{'registrations.education-form.' + educationFormList[1].name | translate}}
-							</label>
+						<div class="form-group" [appFieldHasError]="'educationForm'">
+							<label>{{'registrations.education-form.title' | translate}}</label>
+							<div>
+								<label *ngFor="let form of selectedSpecialty.educationForms" class="radio-inline">
+									<input type="radio" value={{form}} name="educationForm" [(ngModel)]="registration.educationForm">
+									{{'registrations.education-form.' + form | translate}}
+								</label>
+							</div>
+						</div>
+						<div class="form-group" [appFieldHasError]="'educationBase'">
+							<label>{{'registrations.education-base.title' | translate}}</label>
+							<div>
+								<label *ngFor="let base of selectedSpecialty.educationBases" class="radio-inline">
+									<input type="radio" value={{base}} name="educationBase" [(ngModel)]="registration.educationBase">
+									{{'registrations.education-base.' + base | translate}}
+								</label>
+							</div>
 						</div>
 					</div>
 	  			</div>
