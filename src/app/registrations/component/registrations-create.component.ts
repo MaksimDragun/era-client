@@ -93,7 +93,10 @@ export class RegistrationsCreateComponent implements OnInit {
       .catch(error => this.loading = false);
   }
 
-  onSpecialtyChanged() {
-    console.log(this.selectedSpecialty);
+  onSpecialtyChanged(): void {
+    this.registration.educationBase = null;
+    this.registration.educationForm = null;
+    this.registration.fundsSource = null;
   }
+
 }

@@ -105,8 +105,9 @@
 								</div>
 								<div class="form-group" [appFieldHasError]="'dCitizenship'">
 									<label>{{'registrations.crud.document-citizenship' | translate}}</label>
-									<input required [(ngModel)]="registration.enrollee.document.citizenship" name="dCitizenship" #dCitizenship="ngModel"
-										value={{registration.enrollee.document.citizenship}} type="text" class="form-control"/>
+									<select required *ngIf="countryList" [(ngModel)]="registration.enrollee.document.citizenship" name="dCitizenship" #dCitizenship="ngModel" class="form-control">
+										<option *ngFor="let countryCode of countryList" [ngValue]="countryCode">{{'country.' + countryCode | translate}}</option>
+									</select>
 								</div>
 							</div>
 						</div>
@@ -145,7 +146,7 @@
 					</div>
 					<div class="form-group" [appFieldHasError]="'specialty'">
 						<label>{{'registrations.crud.specialty' | translate}}</label>
-						<select required *ngIf=specialtyList [(ngModel)]="selectedSpecialty" name="specialty"
+						<select (change)="onSpecialtyChanged()" required *ngIf=specialtyList [(ngModel)]="selectedSpecialty" name="specialty"
 							#speciality="ngModel" class="form-control">
 							<option *ngFor="let spec of specialtyList" [ngValue]="spec">{{spec.specialty}}</option>
 						</select>
@@ -153,11 +154,16 @@
 					<div *ngIf="selectedSpecialty">
 						<div class="form-group" [appFieldHasError]="'fundsSource'">
 							<label>{{'registrations.funds-source.title' | translate}}</label>
-							<div>
+							<div class="row">
+								<div class="col-lg-4 col-md-6 col-xs-6">
 								<label *ngFor="let source of selectedSpecialty.fundsSources" class="radio-inline">
 									<input type="radio" value={{source}} name="fundsSource" [(ngModel)]="registration.fundsSource">
 									{{'registrations.funds-source.' + source | translate}}
 								</label>
+								</div>
+								<div *ngIf="registration.fundsSource === 'P'" class="col-lg-8 col-md-6 col-xs-6">
+									<button type="button" class="btn btn-primary">{{'registrations.crud.add-payer' | translate}}</button>						
+								</div>
 							</div>
 						</div>
 						<div class="form-group" [appFieldHasError]="'educationForm'">
