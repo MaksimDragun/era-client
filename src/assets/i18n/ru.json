@@ -220,7 +220,9 @@
 			"education-form-is-not-available": "Выбранная опция в поле «Форма обучения» недоступна для выбранной специальности",
 			"education-base-is-empty": "Не сделан выбор для поля «База»",
 			"education-base-is-not-available": "Выбранная опция в поле «База» недоступна для выбранной специальности",
-			"no-active-registration-period": "На данный момент регистрация не проводится",
+			"no-registration-period": "Не указана информация о периоде регистрации",
+			"registration-period-is-wrong": "Вам недоступна регистрация для данного учебного заведения",
+			"egistration-period-is-not-opened": "Для данного учебного заведения регистрация не проводится",
 			"enrollee": {
 				"details-is-empty": "Информация об абитуриенте отсутствует",
 				"first-name-is-empty": "Поле «Имя» не заполнено",

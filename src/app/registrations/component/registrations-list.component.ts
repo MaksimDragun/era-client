@@ -20,7 +20,7 @@ export class RegistrationsListComponent implements OnInit {
   registrationList: Registration[];
   reportTemplateList: ReportTemplate[];
 
-  registrationPeriod: RegistrationPeriod;
+  registrationPeriods: RegistrationPeriod[];
 
   selectedReportTemplate: ReportTemplate;
 
@@ -38,11 +38,11 @@ export class RegistrationsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.titleService.setTitleKey('registrations.list.title');
-    this.registrationsService.fetchRegistrationPeriod()
-      .then((period: RegistrationPeriod) => {
-        this.registrationPeriod = period;
-        if (period) {
-          this.translate.get('registrations.list.title-with-period', {'period': period.title})
+    this.registrationsService.fetchActiveRegistrationPeriods()
+      .then((periods: RegistrationPeriod[]) => {
+        this.registrationPeriods = periods;
+        if (periods && periods[0]) {
+          this.translate.get('registrations.list.title-with-period', {'period': periods[0].title})
             .subscribe(str => this.titleService.setTitleKey(str));
           this.fetchValuesForFilters();
           this.fetchReportTemplateList();
@@ -83,7 +83,7 @@ export class RegistrationsListComponent implements OnInit {
   }
 
   fetchRegistrationList(params: {name: string, value: any}[] = []): void {
-    params.push({name: 'periodId', value: this.registrationPeriod.id});
+    params.push({name: 'periodId', value: this.registrationPeriods[0].id});
     this.registrationsService.fetchRegistrations(params).then(list => this.registrationList = list);
   }
 

@@ -21,7 +21,7 @@ const STUDY_TYPES = [{name: 'A', value: null}, {name: 'B', value: 'B'}, {name: '
 export class RegistrationsService {
 
   static createRegistrationUrl = 'api/registrations/create';
-  static fetchActivePeriodUrl = 'api/registrations/get-active-period';
+  static fetchActivePeriodUrl = 'api/registrations/get-active-periods';
   static fetchPeriodListUrl = 'api/registrations/get-periods';
   static fetchBenefitListUrl = 'api/registrations/get-benefits';
   private fetchRegistrationListUrl = 'api/registrations/get-list';
@@ -60,7 +60,7 @@ export class RegistrationsService {
       });
   }
 
-  fetchRegistrationPeriod(): Promise<RegistrationPeriod> {
+  fetchActiveRegistrationPeriods(): Promise<RegistrationPeriod[]> {
     return this.api.get(RegistrationsService.fetchActivePeriodUrl, defaultOptions());
   }
 

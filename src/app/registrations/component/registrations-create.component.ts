@@ -22,7 +22,7 @@ import {IMultiSelectOption, IMultiSelectSettings, IMultiSelectTexts} from 'angul
 })
 export class RegistrationsCreateComponent implements OnInit {
 
-  registrationPeriod: RegistrationPeriod;
+  registrationPeriods: RegistrationPeriod[];
   specialtyList: RegisteredSpecialty[];
   prerogativeList: IMultiSelectOption[];
   outOfCompetitionList: IMultiSelectOption[];
@@ -52,13 +52,13 @@ export class RegistrationsCreateComponent implements OnInit {
     this.initMultiselect();
 
     this.titleService.setTitleKey('registrations.crud.title-create');
-    this.registrationsService.fetchRegistrationPeriod()
-      .then((period: RegistrationPeriod) => {
-        this.registrationPeriod = period;
-        if (period) {
-          this.translate.get('registrations.crud.title-create-with-period', {'period': period.title})
+    this.registrationsService.fetchActiveRegistrationPeriods()
+      .then((periods: RegistrationPeriod[]) => {
+        this.registrationPeriods = periods;
+        if (periods && periods[0]) {
+          this.translate.get('registrations.crud.title-create-with-period', {'period': periods[0].title})
             .subscribe(str => this.titleService.setTitleKey(str));
-          this.specialtyList = period.specialties;
+          this.specialtyList = periods[0].specialties;
         } else {
           this.messagesService.addMessage({key: 'registrations.common.no-active-registration-period', msgType: MessageType.INFO});
         }
@@ -113,7 +113,7 @@ export class RegistrationsCreateComponent implements OnInit {
   createRegistrationAccount(): void {
     this.loading = true;
     this.messagesService.reset();
-    this.registration.periodId = this.registrationPeriod.id;
+    this.registration.periodId = this.registrationPeriods[0].id;
     this.registration.specialtyId = this.selectedSpecialty && this.selectedSpecialty.id;
     this.registrationsService.createRegistration(this.registration)
       .then(result => this.loading = false)
