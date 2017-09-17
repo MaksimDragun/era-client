@@ -185,6 +185,26 @@
 							</div>
 						</div>
 					</div>
+					<div class="row">
+						<div class="col-lg-6 col-md-6 col-xs-6">
+							<div class="form-group" [appFieldHasError]="'prerogatives'">
+								<label>{{'registrations.crud.prerogatives' | translate}}</label>
+								<div>
+									<ss-multiselect-dropdown name="prerogatives" [options]="prerogativeList" 
+										[texts]="msTexts" [settings]="msSettings" [(ngModel)]="registration.prerogatives"></ss-multiselect-dropdown>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-xs-6">
+							<div class="form-group" [appFieldHasError]="'outOfCompetitions'">
+								<label>{{'registrations.crud.out-of-competitions' | translate}}</label>
+								<div>
+									<ss-multiselect-dropdown name="outOfCompetitions" [options]="outOfCompetitionList" 
+										[texts]="msTexts" [settings]="msSettings" [(ngModel)]="registration.outOfCompetitions"></ss-multiselect-dropdown>
+								</div>
+							</div>
+						</div>
+					</div>
 	  			</div>
   			</div>
 		</div>

@@ -5,6 +5,7 @@ import {Http, Response} from '@angular/http';
 import {defaultOptions, fileOptions, searchOptions} from '../../core/http/http.utils';
 import {Result} from '../../core/http/result';
 import {Api} from '../../core/http/api.service';
+import {Benefit} from '../models/Benefit';
 import {FundsSource} from '../models/funds-source';
 import {Registration} from '../models/registration';
 import {RegistrationCRUD} from '../models/registration-crud';
@@ -22,6 +23,7 @@ export class RegistrationsService {
   static createRegistrationUrl = 'api/registrations/create';
   static fetchActivePeriodUrl = 'api/registrations/get-active-period';
   static fetchPeriodListUrl = 'api/registrations/get-periods';
+  static fetchBenefitListUrl = 'api/registrations/get-benefits';
   private fetchRegistrationListUrl = 'api/registrations/get-list';
   private fetchReportTemplateUrl = 'api/registrations/get-report-templates';
   private fetchSpecialtiesUrl = 'api/specialties/get-list-for-registrations';
@@ -41,8 +43,8 @@ export class RegistrationsService {
       .then((specs: Specialty[]) => [{id: null, name: ''}].concat(specs));
   }
 
-  getStudyTypeList(): Promise<FundsSource[]> {
-    return new Promise<FundsSource[]>((resolve, reject) => resolve(STUDY_TYPES));
+  fetchBenefits(): Promise<{prerogatives: Benefit[], outOfCompetitions: Benefit[]}> {
+    return this.api.get(RegistrationsService.fetchBenefitListUrl, defaultOptions());
   }
 
   createRegistration(registration: RegistrationCRUD): Promise<RegistrationCRUD> {

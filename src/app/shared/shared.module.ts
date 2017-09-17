@@ -6,6 +6,7 @@ import {CommonModule} from '@angular/common';
 import {NKDatetimeModule} from 'ng2-datetime/ng2-datetime';
 import {HasRolesDirective} from './security/has-roles.directive';
 import {TranslateModule} from '@ngx-translate/core';
+import {MultiselectDropdownModule} from 'angular-2-dropdown-multiselect';
 
 declare const $: any;
 declare const JQuery: any;
@@ -13,6 +14,7 @@ declare const JQuery: any;
 @NgModule({
   imports: [
     CommonModule,
+    MultiselectDropdownModule,
     NKDatetimeModule,
     TranslateModule.forChild()
   ],
@@ -28,6 +30,7 @@ declare const JQuery: any;
     FieldHasErrorDirective,
     HasRolesDirective,
     LoadingImageComponent,
+    MultiselectDropdownModule,
     NKDatetimeModule,
     TranslateModule
   ],

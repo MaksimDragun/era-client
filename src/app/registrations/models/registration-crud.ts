@@ -14,4 +14,6 @@ export class RegistrationCRUD {
   registeredBy: number;
   educationInstitutionId: number;
   specialtyId: number;
+  prerogatives: number[];
+  outOfCompetitions: number[];
 }

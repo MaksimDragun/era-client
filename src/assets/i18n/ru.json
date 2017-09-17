@@ -63,7 +63,9 @@
 			"id": "Личный номер",
 			"last-name": "Фамилия",
 			"middle-name": "Отчество",
+			"out-of-competitions": "Вне конкурса",
 			"phone": "Телефон",
+			"prerogatives": "Преимущественное право",
 			"register": "Зарегистрировать",
 			"registration-info": "Сведения о поступлении",
 			"specialty": "Специальность",
@@ -172,9 +174,18 @@
 		"download": "Скачать",
 		"edit": "Редактировать",
 		"reset": "Сброс",
-		"search": "Поиск",
 		"save": "Сохранить",
-		"view": "Посмотреть"
+		"search": "Поиск",
+		"view": "Посмотреть",
+		"multiselect": {
+			"all-selected": "Выбраны все значения",
+			"item-selected": "выбран",
+			"items-selected": "выбранных",
+			"nothing-to-select": "Нет значений",
+			"select": "Сделайте выбор",
+			"select-all": "Выбрать все",
+			"unselect-all": "Отменить выбор"
+		}
 	},
 	"country": {
 		"BY": "Беларусь"

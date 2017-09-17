@@ -70,16 +70,16 @@ export class RegistrationsListComponent implements OnInit {
   }
 
   fetchValuesForFilters(): void {
-    this.registrationsService.getStudyTypeList()
-      .then((list: FundsSource[]) => {
-        this.fundsSourceList = list;
-        this.searchByFundsSource = list && list[0];
-      });
-    this.registrationsService.fetchSpecialties(this.registrationPeriod.id)
-      .then((specs: Specialty[]) => {
-        this.specialtyList = specs;
-        this.searchBySpecialty = specs && specs[0];
-      });
+//    this.registrationsService.getStudyTypeList()
+//      .then((list: FundsSource[]) => {
+//        this.fundsSourceList = list;
+//        this.searchByFundsSource = list && list[0];
+//      });
+//    this.registrationsService.fetchSpecialties(this.registrationPeriod.id)
+//      .then((specs: Specialty[]) => {
+//        this.specialtyList = specs;
+//        this.searchBySpecialty = specs && specs[0];
+//      });
   }
 
   fetchRegistrationList(params: {name: string, value: any}[] = []): void {
