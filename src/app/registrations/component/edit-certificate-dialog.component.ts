@@ -15,7 +15,7 @@ export class EditCertificateDialogComponent implements OnInit, OnChanges {
 
   subjectList: Subject[];
 
-  subjectMarkMask = [ /[1-9]/,  /[1-9]/];
+  subjectMarkMask = [ /[0-9]/,  /[0-9]/];
 
   @Output() onSave: EventEmitter<CertificateCRUD> = new EventEmitter();
 
