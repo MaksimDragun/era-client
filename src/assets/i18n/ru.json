@@ -42,8 +42,6 @@
 			"address-info": "Адрес",
 			"birthdate": "Дата рождения",
 			"certificate": "Аттестат",
-			"certificate-institution": "Образование",
-			"certificate-year": "Год выпуска",
 			"city": "Нас.пункт",
 			"contact-details": "Контактная информация",
 			"country": "Страна",
@@ -56,6 +54,7 @@
 			"educational-institution": "Учреждение образования",
 			"enrollee-info": "Сведения об абитуриенте",
 			"email": "E-mail",
+			"exams": "ЦТ",
 			"flat": "Квартира",
 			"first-name": "Имя",
 			"house": "Дом",
@@ -88,6 +87,11 @@
 			"specialty-filter": "Специальность",
 			"title": "Список зарегистрированных абитуриентов",
 			"title-with-period": "Список зарегистрированных абитуриентов: {{period}}"
+		},
+		"certificate": {
+			"add-certificate-title": "Редактирование аттестата",
+			"institution": "Образование",
+			"year": "Год выпуска"
 		},
 		"document": {
 			"type": {

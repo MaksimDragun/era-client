@@ -177,11 +177,21 @@
 						</div>
 						<div class="form-group" [appFieldHasError]="'educationBase'">
 							<label>{{'registrations.education-base.title' | translate}}</label>
-							<div>
-								<label *ngFor="let base of selectedSpecialty.educationBases" class="radio-inline">
-									<input type="radio" value={{base}} name="educationBase" [(ngModel)]="registration.educationBase">
-									{{'registrations.education-base.' + base | translate}}
-								</label>
+							<div class="row">
+								<div class="col-lg-6 col-md-6 col-xs-6">
+									<label *ngFor="let base of selectedSpecialty.educationBases" class="radio-inline">
+										<input type="radio" value={{base}} name="educationBase" [(ngModel)]="registration.educationBase">
+										{{'registrations.education-base.' + base | translate}}
+									</label>
+								</div>
+								<div class="col-lg-3 col-md-3 col-xs-3">
+									<button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#editCertificateDialog" data-backdrop="static">
+										{{'registrations.crud.certificate' | translate}}
+									</button>						
+								</div>
+								<div *ngIf="registration.educationBase === '11'" class="col-lg-3 col-md-3 col-xs-3">
+									<button type="button" class="btn btn-primary btn-block">{{'registrations.crud.exams' | translate}}</button>						
+								</div>
 							</div>
 						</div>
 					</div>
@@ -208,44 +218,14 @@
 	  			</div>
   			</div>
 		</div>
-		<div class="col-lg-5 col-md-4 col-xs-12"> 
-			<div class="panel panel-default">
-				<div class="panel-heading">{{'registrations.crud.certificate' | translate}}</div>
-	  			<div class="panel-body">
-	  				<div class="col-md-8">
-						<div class="form-group">
-							<label>{{'registrations.crud.certificate-institution' | translate}}</label>
-							<input required [(ngModel)]="registration.certificate.institution" name="cInstitution" #cInstitution="ngModel"
-								value={{registration.certificate.institution}} type="text" class="form-control"/>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="form-group">
-							<label>{{'registrations.crud.certificate-year' | translate}}</label>
-							<input required [(ngModel)]="registration.certificate.year" name="cYear" #cYear="ngModel"
-								value={{registration.certificate.year}} type="text" class="form-control"/>
-						</div>
-					</div>
-					<div class="col-md-12 pre-scrollable">
-						<div *ngIf="registration.certificate.marks" class="list-group">
-							<div *ngFor="let subjectMark of registration.certificate.marks" class="list-group-item">
-								<div class="row">
-									<div class="col-lg-10 col-md-10 col-xs-10">
-										<h4>{{subjectMark.subject.title}}</h4>
-									</div>
-									<div class="col-lg-2 col-md-2 col-xs-2">
-										<input [name]="'subject.' + subjectMark.subject.id" [(ngModel)]="subjectMark.mark" value={{subjectMark.mark}} type="text" class="form-control"/>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-  				</div>
-  			</div>
-  		</div>
 		<div class="form-group col-lg-12 col-md-12 col-xs-12">
         	<button type="submit" [disabled]="loading" class="btn btn-primary">{{'registrations.crud.register' | translate}}</button>
 			<app-loading *ngIf="loading" [loading]="loading"></app-loading>
       	</div>
 	</div>
 </form>
+
+<app-edit-certificate-dialog 
+	[sourceCertificate]="registration.certificate"
+	(onSave)="updateCertificate($event)">
+</app-edit-certificate-dialog>

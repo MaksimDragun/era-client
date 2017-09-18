@@ -1,0 +1,50 @@
+<div class="modal fade" id="editCertificateDialog" tabindex="-1" role="dialog" aria-labelledby="editCertificateDialogLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" (click)="onCancelAction()" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="exampleModalLabel">{{'registrations.certificate.add-certificate-title' | translate}}</h4>
+			</div>
+			<div class="modal-body">
+				<div *ngIf="editableCertificate" class="row">
+					<div class="col-md-8">
+						<div class="form-group">
+							<label>{{'registrations.certificate.institution' | translate}}</label>
+							<input required [(ngModel)]="editableCertificate.institution" name="cInstitution" #cInstitution="ngModel"
+								value={{editableCertificate.institution}} type="text" class="form-control"/>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<label>{{'registrations.certificate.year' | translate}}</label>
+							<input required [(ngModel)]="editableCertificate.year" name="cYear" #cYear="ngModel"
+								value={{editableCertificate.year}} type="text" class="form-control"/>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div *ngIf="editableCertificate.marks" class="list-group">
+							<div *ngFor="let subjectMark of editableCertificate.marks" class="list-group-item">
+								<div class="row">
+									<div class="col-lg-10 col-md-10 col-xs-10">
+										<h4>{{subjectMark.subject.title}}</h4>
+									</div>
+									<div class="col-lg-2 col-md-2 col-xs-2">
+										<input [name]="'subject.' + subjectMark.subject.id" [(ngModel)]="subjectMark.mark"
+											value={{subjectMark.mark}} type="text" class="form-control"
+											[textMask]="{mask: subjectMarkMask, placeholderChar: ' '}"/>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal" (click)="onSaveAction()">{{'common.save' | translate}}</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="onCancelAction()">{{'common.cancel' | translate}}</button>
+			</div>
+		</div>
+	</div>
+</div>

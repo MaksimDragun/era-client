@@ -24,6 +24,7 @@
 		"@ngx-translate/core": "^7.2.0",
 		"@ngx-translate/http-loader": "^1.0.2",
 		"angular-2-dropdown-multiselect": "^1.5.4",
+		"angular2-text-mask": "^8.0.4",
 		"bootstrap": "^3.3.7",
 		"bootstrap-datepicker": "^1.7.1",
 		"bootstrap-timepicker": "^0.5.2",

@@ -23,7 +23,7 @@
 				<td>{{account.lastName}} {{account.firstName}}</td>
 				<td>{{account.email}}</td>
 				<td>
-					<button type="button" class="btn btn-link" data-toggle="modal" data-target="#rolesDialog">
+					<button type="button" class="btn btn-link" data-toggle="modal" data-target="#rolesDialog" data-backdrop="static">
 						{{'common.view' | translate}}
 					</button>
 				</td>
@@ -39,7 +39,7 @@
 					</button>
 					<button type="button" 
 						[appHasRoles]="['ROLE_USERACCOUNTS_DELETE']" 
-						data-toggle="modal" data-target="#userAccountDeleteDialog"
+						data-toggle="modal" data-target="#userAccountDeleteDialog" data-backdrop="static"
 						class="btn btn-danger"
 						aria-label="Left Align"
 						title="{{'common.delete' | translate}}">

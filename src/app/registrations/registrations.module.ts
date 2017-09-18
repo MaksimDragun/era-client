@@ -3,7 +3,7 @@ import {FormsModule} from '@angular/forms';
 import {NgModule} from '@angular/core';
 
 import {RegistrationsRoutingModule} from './registrations-routing.module';
-
+import {EditCertificateDialogComponent} from './component/edit-certificate-dialog.component';
 import {RegistrationPeriodListComponent} from './component/registration-period-list.component';
 import {RegistrationsCreateComponent} from './component/registrations-create.component';
 import {RegistrationsListComponent} from './component/registrations-list.component';
@@ -16,6 +16,7 @@ import {RegistrationsService} from './services/registrations.service';
     RegistrationsRoutingModule
   ],
   declarations: [
+    EditCertificateDialogComponent,
     RegistrationPeriodListComponent,
     RegistrationsCreateComponent,
     RegistrationsListComponent

@@ -7,6 +7,7 @@ import {NKDatetimeModule} from 'ng2-datetime/ng2-datetime';
 import {HasRolesDirective} from './security/has-roles.directive';
 import {TranslateModule} from '@ngx-translate/core';
 import {MultiselectDropdownModule} from 'angular-2-dropdown-multiselect';
+import {TextMaskModule} from 'angular2-text-mask';
 
 declare const $: any;
 declare const JQuery: any;
@@ -16,6 +17,7 @@ declare const JQuery: any;
     CommonModule,
     MultiselectDropdownModule,
     NKDatetimeModule,
+    TextMaskModule,
     TranslateModule.forChild()
   ],
   declarations: [
@@ -32,6 +34,7 @@ declare const JQuery: any;
     LoadingImageComponent,
     MultiselectDropdownModule,
     NKDatetimeModule,
+    TextMaskModule,
     TranslateModule
   ],
   providers: []

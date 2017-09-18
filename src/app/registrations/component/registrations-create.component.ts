@@ -8,6 +8,7 @@ import {MessageType} from '../../core/messages/message';
 import {MessagesService} from '../../core/messages/messages.service';
 import {TitleService} from '../../core/services/title.service';
 import {Benefit} from '../models/Benefit';
+import {CertificateCRUD} from '../models/certificate-crud';
 import {RegisteredSpecialty} from '../models/registered-specialty';
 import {RegistrationCRUD} from '../models/registration-crud';
 import {RegistrationPeriod} from '../models/registration-period';
@@ -31,7 +32,6 @@ export class RegistrationsCreateComponent implements OnInit {
   documentTypeList = ['P'];
   countryList = ['BY'];
   eInstitutionList: EducationInstitution[];
-  subjectList: Subject[];
 
   loading = false;
 
@@ -41,7 +41,6 @@ export class RegistrationsCreateComponent implements OnInit {
   msSettings: IMultiSelectSettings = {};
 
   constructor(
-    private certificationService: CertificationService,
     private educationInstitutionService: EducationInstitutionService,
     private messagesService: MessagesService,
     private registrationsService: RegistrationsService,
@@ -64,7 +63,6 @@ export class RegistrationsCreateComponent implements OnInit {
         }
 
         this.fetchEducationalInstitutionList();
-        this.fetchSubjectList();
         this.fetchBenefits();
 
         this.registration.enrollee.document.type = this.documentTypeList[0];
@@ -96,12 +94,6 @@ export class RegistrationsCreateComponent implements OnInit {
       });
   }
 
-  fetchSubjectList(): void {
-    this.certificationService.fetchSubjectList()
-      .then(list => this.registration.certificate.marks =
-        list.map(subject => ({subject: subject, mark: null})));
-  }
-
   fetchBenefits(): void {
     this.registrationsService.fetchBenefits()
       .then(result => {
@@ -124,6 +116,10 @@ export class RegistrationsCreateComponent implements OnInit {
     this.registration.educationBase = null;
     this.registration.educationForm = null;
     this.registration.fundsSource = null;
+  }
+
+  updateCertificate(certificate: CertificateCRUD): void {
+    this.registration.certificate = certificate;
   }
 
 }
