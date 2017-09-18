@@ -155,13 +155,13 @@
 						<div class="form-group" [appFieldHasError]="'fundsSource'">
 							<label>{{'registrations.funds-source.title' | translate}}</label>
 							<div class="row">
-								<div class="col-lg-4 col-md-6 col-xs-6">
-								<label *ngFor="let source of selectedSpecialty.fundsSources" class="radio-inline">
-									<input type="radio" value={{source}} name="fundsSource" [(ngModel)]="registration.fundsSource">
-									{{'registrations.funds-source.' + source | translate}}
-								</label>
+								<div class="col-lg-6 col-md-6 col-xs-6">
+									<label *ngFor="let source of selectedSpecialty.fundsSources" class="radio-inline">
+										<input type="radio" value={{source}} name="fundsSource" [(ngModel)]="registration.fundsSource">
+										{{'registrations.funds-source.' + source | translate}}
+									</label>
 								</div>
-								<div *ngIf="registration.fundsSource === 'P'" class="col-lg-8 col-md-6 col-xs-6">
+								<div *ngIf="registration.fundsSource === 'P'" class="col-lg-6 col-md-6 col-xs-6">
 									<button type="button" class="btn btn-primary">{{'registrations.crud.add-payer' | translate}}</button>						
 								</div>
 							</div>
