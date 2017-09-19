@@ -136,11 +136,12 @@
 	  			<div class="panel-body">
 					<div class="form-group" [appFieldHasError]="'educationInstitution'">
 						<label>{{'registrations.crud.educational-institution' | translate}}</label>
-						<select required *ngIf="eInstitutionList" [disabled]="eInstitutionList.length === 1"
-							[(ngModel)]="registration.educationInstitutionId" name="educationInstitution"
-							#educationInstitution="ngModel" class="form-control">
-							<option *ngFor="let institution of eInstitutionList" [ngValue]="institution.id">
-								{{institution.name}}
+						<select required *ngIf="registrationPeriods" [disabled]="registrationPeriods.length === 1"
+							[(ngModel)]="selectedPeriod" name="educationInstitution"
+							#educationInstitution="ngModel" class="form-control"
+							(change)="onPeriodChanged()">
+							<option *ngFor="let period of registrationPeriods" [ngValue]="period">
+								{{period.educationInstitution.name}}
 							</option>
 						</select>
 					</div>

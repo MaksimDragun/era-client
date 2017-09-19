@@ -71,7 +71,10 @@
 			"street": "Улица",
 			"title-create": "Регистрация нового абитуриента",
 			"title-create-with-period": "Регистрация нового абитуриента: {{period}}",
-			"zip-code": "Индекс"
+			"zip-code": "Индекс",
+			"messages": {
+				"success-created": "Абитуриент успешно зарегистрирован!"
+			}
 		},
 		"list": {
 			"attestate-avg": "Ср.бал",

@@ -60,7 +60,6 @@ export class UserAccountCreateComponent implements OnInit {
     this.messageService.reset();
     this.userAccountService.createUserAccount(this.userAccount)
       .then(userAccount => {
-        this.loading = false;
         this.messageService.addMessage(
           {
             msgType: MessageType.SUCCESS,
