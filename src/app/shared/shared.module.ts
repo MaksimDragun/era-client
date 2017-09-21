@@ -9,9 +9,6 @@ import {TranslateModule} from '@ngx-translate/core';
 import {MultiselectDropdownModule} from 'angular-2-dropdown-multiselect';
 import {TextMaskModule} from 'angular2-text-mask';
 
-declare const $: any;
-declare const JQuery: any;
-
 @NgModule({
   imports: [
     CommonModule,

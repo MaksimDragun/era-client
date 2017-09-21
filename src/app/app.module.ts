@@ -7,6 +7,8 @@ import {CoreModule} from './core/core.module';
 import {AppComponent} from './app.component';
 import {routing} from './app.routing';
 
+import * as $ from 'jquery';
+
 @NgModule({
   imports: [
     CoreModule,
