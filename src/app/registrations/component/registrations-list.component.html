@@ -5,25 +5,82 @@
 		</div>
 		<hr/>
 		<div id="searchPanel" class="collapse col-lg-12 col-md-12 col-xs-12">
-			<div class="form-group col-lg-3 col-md-4 col-xs-12">
-				<label>{{'registrations.list.name-filter' | translate}}</label>
-				<input name="name" [(ngModel)]="searchByName" type="text" class="form-control" />
+			<div class="row">
+				<div class="col-lg-3 col-md-3 col-xs-12">
+					<div class="form-group">
+						<label>{{'registrations.crud.educational-institution' | translate}}</label>
+						<select *ngIf="registrationPeriods" [disabled]="registrationPeriods.length === 1"
+							[(ngModel)]="selectedPeriod" name="educationInstitution"
+							#educationInstitution="ngModel" class="form-control"
+							(change)="onPeriodChanged()">
+							<option *ngFor="let period of registrationPeriods" [ngValue]="period">
+								{{period.educationInstitution.name}}
+							</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-3 col-xs-12">
+					<div class="form-group">
+						<label>{{'registrations.crud.specialty' | translate}}</label>
+						<select (change)="onSpecialtyChanged()" required *ngIf=specialtyList [(ngModel)]="selectedSpecialty" name="specialty"
+							#speciality="ngModel" class="form-control">
+							<option *ngFor="let spec of specialtyList" [ngValue]="spec">{{spec.specialty}}</option>
+						</select>
+					</div>
+				</div>
 			</div>
-			<div class="form-group col-lg-3 col-md-4 col-xs-12">
-	           	<label>{{'registrations.list.specialty-filter' | translate}}</label>
-	      		<select *ngIf="specialtyList" name="specialty" [(ngModel)]="searchBySpecialty" class="form-control">
-	            	<option *ngFor="let spec of specialtyList" [ngValue]="spec">{{spec.name}}</option>
-	        	</select>
-	       	</div>
-	        <div class="form-group col-lg-3 col-md-4 col-xs-12">
-	            <label>{{'registrations.funds-source.title' | translate}}</label>
-	            <select  *ngIf="fundsSourceList" [(ngModel)]="searchByFundsSource" name="funds-source" class="form-control">
-					<option *ngFor="let src of fundsSourceList" [ngValue]="src">{{'registrations.funds-source.' + src.name | translate}}</option>
-				</select>
-	        </div>
-	        <div class="col-lg-12 col-md-12 col-xs-12">
-				<button (click)="doSearch()" class="btn btn-primary">{{'common.search' | translate}}</button>
-				<button (click)="doReset()" class="btn btn-primary">{{'common.reset' | translate}}</button>
+			<div class="row">
+				<div *ngIf="selectedSpecialty" class="col-lg-3 col-md-3 col-xs-12">
+					<div class="form-group">
+						<label>{{'registrations.funds-source.title' | translate}}</label>
+						<div>
+							<label *ngIf="!selectedSpecialty.separateByFundsSource" class="radio-inline">
+								<input type="radio" value={{null}} name="fundsSource" [(ngModel)]="searchQuery.fundsSource">
+								{{'registrations.funds-source.A' | translate}}
+							</label>
+							<label *ngFor="let source of selectedSpecialty.fundsSources" class="radio-inline">
+								<input type="radio" value={{source}} name="fundsSource" [(ngModel)]="searchQuery.fundsSource">
+								{{'registrations.funds-source.' + source | translate}}
+							</label>
+						</div>
+					</div>
+				</div>
+				<div *ngIf="selectedSpecialty" class="col-lg-3 col-md-3 col-xs-12">
+					<div class="form-group">
+						<label>{{'registrations.education-form.title' | translate}}</label>
+						<div>
+							<label *ngIf="!selectedSpecialty.separateByEducationForm" class="radio-inline">
+								<input type="radio" value={{null}} name="educationForm" [(ngModel)]="searchQuery.educationForm">
+								{{'registrations.education-form.A' | translate}}
+							</label>
+							<label *ngFor="let form of selectedSpecialty.educationForms" class="radio-inline">
+								<input type="radio" value={{form}} name="educationForm" [(ngModel)]="searchQuery.educationForm">
+								{{'registrations.education-form.' + form | translate}}
+							</label>
+						</div>
+					</div>
+				</div>
+				<div *ngIf="selectedSpecialty" class="col-lg-3 col-md-3 col-xs-12">
+					<div class="form-group">
+						<label>{{'registrations.education-base.title' | translate}}</label>
+						<div>
+							<label *ngIf="!selectedSpecialty.separateByEducationForm" class="radio-inline">
+								<input type="radio" value={{null}} name="educationBase" [(ngModel)]="searchQuery.educationBase">
+								{{'registrations.education-base.A' | translate}}
+							</label>
+							<label *ngFor="let base of selectedSpecialty.educationBases" class="radio-inline">
+								<input type="radio" value={{base}} name="educationBase" [(ngModel)]="searchQuery.educationBase">
+								{{'registrations.education-base.' + base | translate}}
+							</label>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+		        <div class="col-lg-12 col-md-12 col-xs-12">
+					<button (click)="doSearch()" class="btn btn-primary">{{'common.search' | translate}}</button>
+					<button (click)="doReset()" class="btn btn-primary">{{'common.reset' | translate}}</button>
+				</div>
 			</div>
    		</div>
 	</div>

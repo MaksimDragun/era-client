@@ -2,10 +2,11 @@ import {MessageType, Message} from '../../core/messages/message';
 import {MessagesService} from '../../core/messages/messages.service';
 import {TitleService} from '../../core/services/title.service';
 import {FundsSource} from '../models/funds-source';
+import {RegisteredSpecialty} from '../models/registered-specialty';
 import {Registration} from '../models/registration';
 import {RegistrationPeriod} from '../models/registration-period';
 import {ReportTemplate} from '../models/report-template';
-import {Specialty} from '../models/specialty';
+import {RegistrationSearchQuery} from '../models/registration-search-query';
 import {RegistrationsService} from '../services/registrations.service';
 import {Component, OnInit} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
@@ -18,17 +19,17 @@ import {TranslateService} from '@ngx-translate/core';
 export class RegistrationsListComponent implements OnInit {
 
   registrationList: Registration[];
-  reportTemplateList: ReportTemplate[];
 
   registrationPeriods: RegistrationPeriod[];
+  selectedPeriod: RegistrationPeriod;
 
   selectedReportTemplate: ReportTemplate;
+  reportTemplateList: ReportTemplate[];
 
-  searchByName: string;
-  specialtyList: Specialty[];
-  searchBySpecialty: Specialty;
-  fundsSourceList: FundsSource[];
-  searchByFundsSource: FundsSource;
+  specialtyList: RegisteredSpecialty[];
+  selectedSpecialty: RegisteredSpecialty;
+
+  searchQuery = new RegistrationSearchQuery();
 
   constructor(
     private messagesService: MessagesService,
@@ -44,9 +45,10 @@ export class RegistrationsListComponent implements OnInit {
         if (periods && periods[0]) {
           this.translate.get('registrations.list.title-with-period', {'period': periods[0].title})
             .subscribe(str => this.titleService.setTitleKey(str));
-          this.fetchValuesForFilters();
+          this.selectedPeriod = periods[0];
+          this.specialtyList = this.selectedPeriod.specialties;
           this.fetchReportTemplateList();
-          this.fetchRegistrationList();
+          this.doReset();
         } else {
           this.messagesService.addMessage({key: 'registrations.common.no-active-registration-period', msgType: MessageType.INFO});
         }
@@ -54,37 +56,48 @@ export class RegistrationsListComponent implements OnInit {
       .catch(error => this.messagesService.showErrorMessage(error));
   }
 
+  fetchRegistrationList(params: {name: string, value: any}[] = []): void {
+    this.registrationsService.fetchRegistrations(params).then(list => this.registrationList = list);
+  }
+
   doSearch(): void {
     this.fetchRegistrationList([
-      {name: 'name', value: this.searchByName && this.searchByName},
-      {name: 'speciality', value: this.searchBySpecialty && this.searchBySpecialty.id},
-      {name: 'funds-source', value: this.searchByFundsSource && this.searchByFundsSource.value},
+      {name: 'period', value: this.selectedPeriod && this.selectedPeriod.id},
+      {name: 'education-institution', value: this.selectedPeriod && this.selectedPeriod.educationInstitution.id},
+      {name: 'specialty', value: this.selectedSpecialty && this.selectedSpecialty.id},
+      {name: 'registration-id', value: this.searchQuery.registrationId},
+      {name: 'name', value: this.searchQuery.enrolleeName},
+      {name: 'funds-source', value: this.searchQuery.fundsSource},
+      {name: 'education-form', value: this.searchQuery.educationForm},
+      {name: 'education-base', value: this.searchQuery.educationBase},
     ]);
   }
 
   doReset(): void {
-    this.searchByName = null;
-    this.searchBySpecialty = null;
-    this.searchByFundsSource = this.fundsSourceList && this.fundsSourceList[0];
-    this.fetchRegistrationList();
+    this.selectedPeriod = this.registrationPeriods && this.registrationPeriods[0];
+    this.selectedSpecialty = null;
+    this.searchQuery.registrationId = null;
+    this.searchQuery.enrolleeName = null;
+    this.searchQuery.fundsSource = null;
+    this.searchQuery.educationForm = null;
+    this.searchQuery.educationBase = null;
+    this.doSearch();
   }
 
-  fetchValuesForFilters(): void {
-//    this.registrationsService.getStudyTypeList()
-//      .then((list: FundsSource[]) => {
-//        this.fundsSourceList = list;
-//        this.searchByFundsSource = list && list[0];
-//      });
-//    this.registrationsService.fetchSpecialties(this.registrationPeriod.id)
-//      .then((specs: Specialty[]) => {
-//        this.specialtyList = specs;
-//        this.searchBySpecialty = specs && specs[0];
-//      });
+  onPeriodChanged(): void {
+    this.specialtyList = this.selectedPeriod.specialties;
+    this.selectedSpecialty = null;
+    this.searchQuery.registrationId = null;
+    this.searchQuery.enrolleeName = null;
+    this.searchQuery.fundsSource = null;
+    this.searchQuery.educationForm = null;
+    this.searchQuery.educationBase = null;
   }
 
-  fetchRegistrationList(params: {name: string, value: any}[] = []): void {
-    params.push({name: 'periodId', value: this.registrationPeriods[0].id});
-    this.registrationsService.fetchRegistrations(params).then(list => this.registrationList = list);
+  onSpecialtyChanged(): void {
+    this.searchQuery.fundsSource = null;
+    this.searchQuery.educationForm = null;
+    this.searchQuery.educationBase = null;
   }
 
   downloadReport(contractId: number): void {

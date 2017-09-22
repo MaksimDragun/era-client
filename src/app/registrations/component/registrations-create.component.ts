@@ -22,9 +22,10 @@ export class RegistrationsCreateComponent implements OnInit {
   selectedPeriod: RegistrationPeriod;
 
   specialtyList: RegisteredSpecialty[];
+  selectedSpecialty: RegisteredSpecialty;
+
   prerogativeList: IMultiSelectOption[];
   outOfCompetitionList: IMultiSelectOption[];
-  selectedSpecialty: RegisteredSpecialty;
 
   documentTypeList = ['P'];
   countryList = ['BY'];
@@ -116,6 +117,7 @@ export class RegistrationsCreateComponent implements OnInit {
   }
 
   onPeriodChanged(): void {
+    this.specialtyList = this.selectedPeriod.specialties;
     this.selectedSpecialty = null;
     this.registration.specialtyId = null;
     this.registration.educationBase = null;
