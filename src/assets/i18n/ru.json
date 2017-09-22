@@ -80,16 +80,19 @@
 			"attestate-avg": "Ср.бал",
 			"contract": "Договор",
 			"contract-type": "Тип договора",
-			"filter": "Фильтр",
 			"full-name": "Ф.И.О.",
-			"funds-source-filter": "Источник средств",
 			"funds-source": "Бюджет/Платное",
-			"name-filter": "Имя",
 			"registration-date": "Дата регистрации",
 			"specialty": "Специальность",
-			"specialty-filter": "Специальность",
 			"title": "Список зарегистрированных абитуриентов",
-			"title-with-period": "Список зарегистрированных абитуриентов: {{period}}"
+			"title-with-period": "Список зарегистрированных абитуриентов: {{period}}",
+			"filter": {
+				"educational-institution": "Учреждение образования",
+				"enrollee-name": "Имя",
+				"registration-id": "Регистрационный номер",
+				"specialty": "Специальность",
+				"title": "Фильтр"
+			}
 		},
 		"certificate": {
 			"add-certificate-title": "Редактирование аттестата",

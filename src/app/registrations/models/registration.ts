@@ -1,5 +1,6 @@
 export class Registration {
   id: number;
+  registrationId: number;
   firstName: string;
   lastName: string;
   middleName: string;

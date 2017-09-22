@@ -26,7 +26,6 @@ export class RegistrationsListComponent implements OnInit {
   selectedReportTemplate: ReportTemplate;
   reportTemplateList: ReportTemplate[];
 
-  specialtyList: RegisteredSpecialty[];
   selectedSpecialty: RegisteredSpecialty;
 
   searchQuery = new RegistrationSearchQuery();
@@ -45,10 +44,8 @@ export class RegistrationsListComponent implements OnInit {
         if (periods && periods[0]) {
           this.translate.get('registrations.list.title-with-period', {'period': periods[0].title})
             .subscribe(str => this.titleService.setTitleKey(str));
-          this.selectedPeriod = periods[0];
-          this.specialtyList = this.selectedPeriod.specialties;
-          this.fetchReportTemplateList();
           this.doReset();
+          this.fetchReportTemplateList();
         } else {
           this.messagesService.addMessage({key: 'registrations.common.no-active-registration-period', msgType: MessageType.INFO});
         }
@@ -75,29 +72,30 @@ export class RegistrationsListComponent implements OnInit {
 
   doReset(): void {
     this.selectedPeriod = this.registrationPeriods && this.registrationPeriods[0];
-    this.selectedSpecialty = null;
+    this.selectedSpecialty = this.selectedPeriod.specialties && this.selectedPeriod.specialties[0];
+    this.resetSpecialities();
     this.searchQuery.registrationId = null;
     this.searchQuery.enrolleeName = null;
-    this.searchQuery.fundsSource = null;
-    this.searchQuery.educationForm = null;
-    this.searchQuery.educationBase = null;
     this.doSearch();
   }
 
   onPeriodChanged(): void {
-    this.specialtyList = this.selectedPeriod.specialties;
-    this.selectedSpecialty = null;
+    this.selectedSpecialty = this.selectedPeriod.specialties && this.selectedPeriod.specialties[0];
+    this.resetSpecialities();
     this.searchQuery.registrationId = null;
     this.searchQuery.enrolleeName = null;
-    this.searchQuery.fundsSource = null;
-    this.searchQuery.educationForm = null;
-    this.searchQuery.educationBase = null;
   }
 
   onSpecialtyChanged(): void {
-    this.searchQuery.fundsSource = null;
-    this.searchQuery.educationForm = null;
-    this.searchQuery.educationBase = null;
+    this.resetSpecialities();
+  }
+
+  resetSpecialities(): void {
+    if (this.selectedSpecialty) {
+      this.searchQuery.educationBase = this.selectedSpecialty.separateByEducationBase ? this.selectedSpecialty.educationBases[0] : null;
+      this.searchQuery.educationForm = this.selectedSpecialty.separateByEducationForm ? this.selectedSpecialty.educationForms[0] : null;
+      this.searchQuery.fundsSource = this.selectedSpecialty.separateByFundsSource ? this.selectedSpecialty.fundsSources[0] : null;
+    }
   }
 
   downloadReport(contractId: number): void {
