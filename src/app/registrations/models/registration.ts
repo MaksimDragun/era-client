@@ -4,10 +4,21 @@ export class Registration {
   firstName: string;
   lastName: string;
   middleName: string;
+  attestateAvg: number;
+
+  prerogatives: string[];
+  outOfCompetitions: string[];
 
   specialty: string;
-  attestateAvg: number;
-  registrationDate: string;
-
   fundsSource: string;
+  educationForm: string;
+  educationBase: string;
+
+  status: string;
+  registrationDate: Date;
+  registeredById: number;
+  registeredBy: string;
+  verificationDate: Date;
+  verifiedById: number;
+  verifiedBy: string;
 }

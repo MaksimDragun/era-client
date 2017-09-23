@@ -103,26 +103,68 @@
 	</div>
 	<hr/>
 	<div class="row">
-		<div class="col-lg-10 col-md-9 col-xs-12">
+		<div class="col-lg-12 col-md-12 col-xs-12">
+			<h3><span>{{selectedSpecialty.specialty}}</span>
+				<span *ngIf="searchQuery.fundsSource">/ {{'registrations.funds-source.' + searchQuery.fundsSource | translate}}</span>			
+				<span *ngIf="searchQuery.educationForm">/ {{'registrations.education-form.' + searchQuery.educationForm | translate}}</span>
+				<span *ngIf="searchQuery.educationBase">/ {{'registrations.education-base.' + searchQuery.educationBase | translate}}</span>
+			</h3>
+		</div>
+		<div class="col-lg-12 col-md-12 col-xs-12">
 			<table class="table table-striped">
 				<tr>
 					<th>#</th>
 					<th>{{'registrations.list.full-name' | translate}}</th>
-					<th>{{'registrations.list.specialty' | translate}}</th>
-					<th>{{'registrations.funds-source.title' | translate}}</th>
 					<th>{{'registrations.list.attestate-avg' | translate}}</th>
+					<th>{{'registrations.funds-source.title' | translate}}</th>
+					<th>{{'registrations.education-base.title' | translate}}</th>
+					<th>{{'registrations.education-form.title' | translate}}</th>
+					<th>{{'registrations.list.out-of-competitions' | translate}}</th>
+					<th>{{'registrations.list.prerogatives' | translate}}</th>
+					<th>{{'registrations.list.registered-by' | translate}}</th>
 					<th>{{'registrations.list.registration-date' | translate}}</th>
+					<th>{{'registrations.list.status' | translate}}</th>
+					<th>{{'registrations.list.verified-by' | translate}}</th>
+					<th>{{'registrations.list.verification-date' | translate}}</th>
 					<th class="text-center">{{'registrations.list.contract' | translate}}</th>
 				</tr>
-				<tr *ngFor="let reg of registrationList; let i = index">
+				<tr *ngFor="let reg of registrationList">
 					<td>{{reg.registrationId}}.</td>
 					<td data-toggle="tooltip" title="{{reg.lastName}} {{reg.firstName}} {{reg.middleName}}">
-						{{reg.lastName}} {{reg.firstName.charAt(0)}}. {{reg.middleName.charAt(0)}}.
+						{{reg.lastName}} {{reg.firstName.charAt(0)}}.{{reg.middleName.charAt(0)}}.
 					</td>
-					<td>{{reg.specialty}}</td>
-					<td>{{'registrations.funds-source.' + reg.fundsSource | translate}}</td>
 					<td>{{reg.attestateAvg|number:'.2'}}</td>
-					<td>{{reg.registrationDate}}</td>
+					<td>{{'registrations.funds-source.' + reg.fundsSource | translate}}</td>
+					<td>{{'registrations.education-base.' + reg.educationBase | translate}}</td>
+					<td>{{'registrations.education-form.' + reg.educationForm | translate}}</td>
+					<td>
+						<div *ngIf="reg.outOfCompetitions">
+							<div *ngFor="let o of reg.outOfCompetitions">{{o}}</div>
+						</div>
+						<div *ngIf="!reg.outOfCompetitions">-</div>
+					</td>
+					<td>
+						<div *ngIf="reg.prerogatives">
+							<div *ngFor="let p of reg.prerogatives">{{p}}</div>
+						</div>
+						<div *ngIf="!reg.prerogatives">-</div>
+					</td>
+					<td>{{reg.registeredBy}}</td>
+					<td>
+						<div>{{reg.registrationDate | date: 'dd.MM.yyyy'}}</div>
+						<div>{{reg.registrationDate | date: 'HH:mm:ss'}}</div>
+					</td>
+					<td>{{'registrations.status.'+ reg.status | translate}}</td>
+					<td>{{reg.verifiedBy ? reg.verifiedBy : '-'}}</td>
+					<td>
+						<div *ngIf="reg.verificationDate">
+							<div>{{reg.verificationDate | date: 'dd.MM.yyyy'}}</div>
+							<div>{{reg.verificationDate | date: 'HH:mm:ss'}}</div>
+						</div>
+						<div *ngIf="!reg.verificationDate">
+							-
+						</div>
+					</td>
 					<td class="text-center" data-toggle="tooltip" title="{{'common.download' | translate}}">
 						<button type="button" (click)="downloadReport(reg.id)" class="btn btn-default" aria-label="Left Align">
 							<span class="glyphicon  glyphicon-save-file" aria-hidden="true"></span>
@@ -130,14 +172,6 @@
 					</td>
 				</tr>
 			</table>
-		</div>
-		<div class="form-group col-lg-2 col-md-3 col-xs-12">
-			<label>{{'registrations.list.contract-type' | translate}}</label>
-			<select [(ngModel)]="selectedReportTemplate"
-				name="selected-report-template"
-				class="form-control">
-				<option *ngFor="let tmplt of reportTemplateList" [ngValue]="tmplt">{{tmplt.fileName}}</option>
-			</select>
 		</div>
 	</div>
 </div>
