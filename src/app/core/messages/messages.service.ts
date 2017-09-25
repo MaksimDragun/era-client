@@ -37,7 +37,7 @@ export class MessagesService {
     const fieldIssuesMap: Map<string, Message[]> = new Map();
     this.addMessages(issues.map(issue => {
       const msg = {
-        msgType: MessageType.ERROR,
+        msgType: Issue.ERROR === issue.type ? MessageType.ERROR : MessageType.WARNING,
         key: issue.errorCode,
         params: issue.params,
         expired: true

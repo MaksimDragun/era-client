@@ -1,3 +1,4 @@
+import {Issue} from '../../core/http/issue';
 import {Component, OnInit} from '@angular/core';
 import {MessageType} from '../../core/messages/message';
 import {MessagesService} from '../../core/messages/messages.service';
@@ -36,6 +37,8 @@ export class RegistrationsCreateComponent implements OnInit {
 
   msTexts: IMultiSelectTexts = {};
   msSettings: IMultiSelectSettings = {};
+
+  onlyWarnings = false;
 
   constructor(
     private messagesService: MessagesService,
@@ -107,7 +110,21 @@ export class RegistrationsCreateComponent implements OnInit {
         this.router.navigate(['/registrations/list']);
         this.loading = false;
       })
-      .catch(error => this.loading = false);
+      .catch((error: {issues: Issue[], error: any}) => {
+        let warnings = 0;
+        let errors = 0;
+        error.issues.forEach(issue => {
+          if (Issue.ERROR === issue.type) {
+            errors++;
+          }
+          if (Issue.WARNING === issue.type) {
+            warnings++;
+          }
+        });
+        this.onlyWarnings = errors === 0 && warnings !== 0;
+        console.log(`only warnings: ${this.onlyWarnings}`);
+        this.loading = false;
+      });
   }
 
   onSpecialtyChanged(): void {

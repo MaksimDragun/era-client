@@ -1,9 +1,10 @@
+import {AbstractCRUD} from '../../shared/models/abstract-crud';
 import {CertificateCRUD} from './certificate-crud';
 import {PersonCRUD} from './person-crud';
 import {RegistrationPeriod} from './registration-period';
 import {FundsSource} from './funds-source';
 
-export class RegistrationCRUD {
+export class RegistrationCRUD extends AbstractCRUD {
   fundsSource: string;
   educationForm: string;
   educationBase: string;

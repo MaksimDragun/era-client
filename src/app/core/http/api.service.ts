@@ -55,15 +55,15 @@ export class Api {
           if (result) {
             if (result.issues && result.issues.length !== 0) {
               this.messageService.addIssues(result.issues);
-              reject(result.issues);
+              reject({issues: result.issues, error: null});
             }
             return resolve(result.value);
           }
-          return reject(null);
+          return reject({issues: [], error: null});
         })
         .catch(error => {
           this.messageService.showErrorMessage(error);
-          reject(error);
+          reject({issues: [], error: error});
         });
     });
   }
