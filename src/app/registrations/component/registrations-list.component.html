@@ -131,7 +131,7 @@
 				<tr *ngFor="let reg of registrationList">
 					<td>{{reg.registrationId}}.</td>
 					<td data-toggle="tooltip" title="{{reg.lastName}} {{reg.firstName}} {{reg.middleName}}">
-						{{reg.lastName}} {{reg.firstName.charAt(0)}}.{{reg.middleName && reg.middleName.charAt(0)}}.
+						{{reg.lastName}} {{reg.firstName.charAt(0)}}.{{reg.middleName && reg.middleName.charAt(0) + '.'}}
 					</td>
 					<td>{{reg.attestateAvg && reg.attestateAvg|number:'.2'}}</td>
 					<td>{{'registrations.funds-source.' + reg.fundsSource | translate}}</td>
