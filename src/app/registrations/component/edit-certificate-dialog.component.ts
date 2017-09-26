@@ -13,7 +13,8 @@ export class EditCertificateDialogComponent implements OnInit, OnChanges {
   @Input() sourceCertificate: CertificateCRUD;
   editableCertificate: CertificateCRUD;
 
-  subjectList: Subject[];
+  subjectList: Subject[] = [];
+  extraSubjectList: Subject[] = [];
 
   subjectMarkMask = [ /[0-9]/,  /[0-9]/];
 
@@ -24,7 +25,13 @@ export class EditCertificateDialogComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.certificationService.fetchSubjectList()
       .then(list => {
-        this.subjectList = list;
+        list.forEach(subject => {
+          if (subject.base) {
+            this.subjectList.push(subject);
+          } else {
+            this.extraSubjectList.push(subject);
+          }
+        });
         this.resetCertificate();
       });
   }
