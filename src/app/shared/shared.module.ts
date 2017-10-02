@@ -8,14 +8,14 @@ import {HasRolesDirective} from './security/has-roles.directive';
 import {TranslateModule} from '@ngx-translate/core';
 import {MultiselectDropdownModule} from 'angular-2-dropdown-multiselect';
 import {TextMaskModule} from 'angular2-text-mask';
-import {Ng2AutoCompleteModule} from 'ng2-auto-complete';
+import {NguiAutoCompleteModule} from '@ngui/auto-complete';
 
 @NgModule({
   imports: [
     CommonModule,
     MultiselectDropdownModule,
     NKDatetimeModule,
-    Ng2AutoCompleteModule,
+    NguiAutoCompleteModule,
     TextMaskModule,
     TranslateModule.forChild()
   ],
@@ -33,7 +33,7 @@ import {Ng2AutoCompleteModule} from 'ng2-auto-complete';
     LoadingImageComponent,
     MultiselectDropdownModule,
     NKDatetimeModule,
-    Ng2AutoCompleteModule,
+    NguiAutoCompleteModule,
     TextMaskModule,
     TranslateModule
   ],

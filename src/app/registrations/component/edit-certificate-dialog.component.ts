@@ -19,7 +19,7 @@ export class EditCertificateDialogComponent implements OnInit, OnChanges {
   subjectList: Subject[] = [];
   extraSubjectList: Subject[] = [];
 
-  myData: any;
+  educationInstitution: EducationInstitution;
   mySource: any[] = [];
 
   subjectMarkMask = [/[0-9]/, /[0-9]/];
@@ -43,9 +43,17 @@ export class EditCertificateDialogComponent implements OnInit, OnChanges {
       });
   }
 
-  getBaseInstitutions = () => {
+  getBaseInstitutions = (value: string): Observable<EducationInstitution[]> => {
     return Observable.from(
-      this.educationInstitutionService.fetchInstitutionBaseList('99', 'BY'));
+      this.educationInstitutionService.fetchInstitutionBaseList(value, 'BY'));
+  }
+
+  formatInstitution = (ei: EducationInstitution): string => {
+    return `${ei.name}`;
+  }
+
+  unknownInstitution(name: string) {
+    this.editableCertificate.institution = {id: null, name: name};
   }
 
   resetCertificate(): void {

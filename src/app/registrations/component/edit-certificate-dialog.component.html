@@ -12,10 +12,18 @@
 					<div class="col-md-8">
 						<div class="form-group">
 							<label>{{'registrations.certificate.institution' | translate}}</label>
-							<input auto-complete [(ngModel)]="myData" 
+							<input auto-complete 
+								type="text"
+								[(ngModel)]="editableCertificate.institution" 
 								[source]="getBaseInstitutions" 
-								required  name="cInstitution" #cInstitution="ngModel"
-								type="text" class="form-control"/>
+								[list-formatter]="formatInstitution"
+								[value-formatter]="formatInstitution"
+								[select-on-blur]="true"
+								[no-match-found-text]="'common.auto-complete.no-results' | translate"
+								(customSelected)="newInstitution($event)"
+								required  
+								name="cInstitution" #cInstitution="ngModel"
+								class="form-control"/>
 						</div>
 					</div>
 					<div class="col-md-4">

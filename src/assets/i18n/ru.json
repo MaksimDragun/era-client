@@ -211,6 +211,9 @@
 			"select": "Сделайте выбор",
 			"select-all": "Выбрать все",
 			"unselect-all": "Отменить выбор"
+		},
+		"auto-complete": {
+			"no-results": "Ничего не найдено"
 		}
 	},
 	"country": {

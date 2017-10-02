@@ -1,7 +1,8 @@
-import { Subject } from '../../core/certificates/subject';
+import {Subject} from '../../core/certificates/subject';
+import {EducationInstitution} from '../../core/institution/education-institution';
 export class CertificateCRUD {
   id: number;
   year: number;
-  institution: string;
+  institution: EducationInstitution;
   marks: {subject: Subject, mark: number}[] = [];
 }
