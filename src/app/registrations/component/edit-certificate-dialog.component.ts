@@ -2,7 +2,10 @@ import {Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChange,
 import {CertificationService} from '../../core/certificates/certification.service';
 
 import {Subject} from '../../core/certificates/subject';
+import {EducationInstitution} from '../../core/institution/education-institution';
+import {EducationInstitutionService} from '../../core/institution/education-institution.service';
 import {CertificateCRUD} from '../models/certificate-crud';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-edit-certificate-dialog',
@@ -16,11 +19,15 @@ export class EditCertificateDialogComponent implements OnInit, OnChanges {
   subjectList: Subject[] = [];
   extraSubjectList: Subject[] = [];
 
-  subjectMarkMask = [ /[0-9]/,  /[0-9]/];
+  myData: any;
+  mySource: any[] = [];
+
+  subjectMarkMask = [/[0-9]/, /[0-9]/];
 
   @Output() onSave: EventEmitter<CertificateCRUD> = new EventEmitter();
 
-  constructor(private certificationService: CertificationService) {}
+  constructor(private certificationService: CertificationService,
+    public educationInstitutionService: EducationInstitutionService) {}
 
   ngOnInit(): void {
     this.certificationService.fetchSubjectList()
@@ -34,6 +41,11 @@ export class EditCertificateDialogComponent implements OnInit, OnChanges {
         });
         this.resetCertificate();
       });
+  }
+
+  getBaseInstitutions = () => {
+    return Observable.from(
+      this.educationInstitutionService.fetchInstitutionBaseList('99', 'BY'));
   }
 
   resetCertificate(): void {

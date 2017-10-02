@@ -12,8 +12,10 @@
 					<div class="col-md-8">
 						<div class="form-group">
 							<label>{{'registrations.certificate.institution' | translate}}</label>
-							<input required [(ngModel)]="editableCertificate.institution" name="cInstitution" #cInstitution="ngModel"
-								value={{editableCertificate.institution}} type="text" class="form-control"/>
+							<input auto-complete [(ngModel)]="myData" 
+								[source]="getBaseInstitutions" 
+								required  name="cInstitution" #cInstitution="ngModel"
+								type="text" class="form-control"/>
 						</div>
 					</div>
 					<div class="col-md-4">
