@@ -5,7 +5,7 @@ import {Subject} from '../../core/certificates/subject';
 import {EducationInstitution} from '../../core/institution/education-institution';
 import {EducationInstitutionService} from '../../core/institution/education-institution.service';
 import {CertificateCRUD} from '../models/certificate-crud';
-import {Observable} from 'rxjs';
+import {Observable} from 'rxjs/Rx';
 
 @Component({
   selector: 'app-edit-certificate-dialog',
@@ -13,14 +13,15 @@ import {Observable} from 'rxjs';
 })
 export class EditCertificateDialogComponent implements OnInit, OnChanges {
 
+  @Input() countryList: string[];
   @Input() sourceCertificate: CertificateCRUD;
   editableCertificate: CertificateCRUD;
+  selectedCountry: string;
+  selectedInstitution: EducationInstitution;
+  selectedInstitutionValue: any;
 
   subjectList: Subject[] = [];
   extraSubjectList: Subject[] = [];
-
-  educationInstitution: EducationInstitution;
-  mySource: any[] = [];
 
   subjectMarkMask = [/[0-9]/, /[0-9]/];
 
@@ -45,22 +46,38 @@ export class EditCertificateDialogComponent implements OnInit, OnChanges {
 
   getBaseInstitutions = (value: string): Observable<EducationInstitution[]> => {
     return Observable.from(
-      this.educationInstitutionService.fetchInstitutionBaseList(value, 'BY'));
+      this.educationInstitutionService.fetchInstitutionBaseList(value, this.selectedCountry));
   }
 
   formatInstitution = (ei: EducationInstitution): string => {
     return `${ei.name}`;
   }
 
-  unknownInstitution(name: string) {
-    this.editableCertificate.institution = {id: null, name: name};
+  selectInstitution(value: EducationInstitution): void {
+    this.selectedInstitution = value;
+  }
+
+  newInstitution(name: string): void {
+    this.selectedInstitution = {
+      id: null,
+      name: name,
+      country: this.selectedCountry
+    };
   }
 
   resetCertificate(): void {
     this.editableCertificate = new CertificateCRUD();
     this.editableCertificate.id = this.sourceCertificate.id;
-    this.editableCertificate.institution = this.sourceCertificate.institution;
     this.editableCertificate.year = this.sourceCertificate.year;
+    if (this.sourceCertificate.institution) {
+      this.selectedInstitutionValue = this.sourceCertificate.institution.name;
+      this.selectedInstitution = this.sourceCertificate.institution;
+      this.selectedCountry = this.sourceCertificate.institution.country;
+    } else {
+      this.selectedInstitutionValue = null;
+      this.selectedInstitution = null;
+      this.selectedCountry = this.countryList[0];
+    }
 
     this.editableCertificate.marks = this.subjectList.map(subject => {
       return {subject: subject, mark: null};
@@ -76,13 +93,19 @@ export class EditCertificateDialogComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    const change: SimpleChange = changes['sourceCertificate'];
+    let change: SimpleChange;
+    change = changes['sourceCertificate'];
     if (change && !change.firstChange) {
       this.resetCertificate();
+    }
+    change = changes['countryList'];
+    if (change && change.currentValue) {
+      this.selectedCountry = change.currentValue[0];
     }
   }
 
   onSaveAction(): void {
+    this.editableCertificate.institution = this.selectedInstitution;
     this.onSave.emit(this.editableCertificate);
   }
 

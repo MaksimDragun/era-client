@@ -9,17 +9,18 @@
 			</div>
 			<div class="modal-body">
 				<div *ngIf="editableCertificate" class="row">
-					<div class="col-md-8">
+					<div class="col-md-5">
 						<div class="form-group">
 							<label>{{'registrations.certificate.institution' | translate}}</label>
 							<input auto-complete 
 								type="text"
-								[(ngModel)]="editableCertificate.institution" 
+								[(ngModel)]="selectedInstitutionValue" 
 								[source]="getBaseInstitutions" 
 								[list-formatter]="formatInstitution"
 								[value-formatter]="formatInstitution"
 								[select-on-blur]="true"
 								[no-match-found-text]="'common.auto-complete.no-results' | translate"
+								(valueChanged)="selectInstitution($event)"
 								(customSelected)="newInstitution($event)"
 								required  
 								name="cInstitution" #cInstitution="ngModel"
@@ -27,6 +28,14 @@
 						</div>
 					</div>
 					<div class="col-md-4">
+						<div class="form-group">
+							<label>{{'registrations.crud.country' | translate}}</label>
+							<select required *ngIf="countryList" [(ngModel)]="selectedCountry" name="eiCountry" #eiCountry="ngModel" class="form-control">
+								<option *ngFor="let countryCode of countryList" [ngValue]="countryCode">{{'country.' + countryCode | translate}}</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-3">
 						<div class="form-group">
 							<label>{{'registrations.certificate.year' | translate}}</label>
 							<input required [(ngModel)]="editableCertificate.year" name="cYear" #cYear="ngModel"

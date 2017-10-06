@@ -16,6 +16,7 @@ import {MenuService} from './menu/menu.service';
 import {FieldMessagesService} from './messages/field-messages.service';
 import {MessagesComponent} from './messages/messages.component';
 import {MessagesService} from './messages/messages.service';
+import {CountryService} from './services/country.service';
 import {TitleService} from './services/title.service';
 
 import {HttpClientModule, HttpClient} from '@angular/common/http';
@@ -55,6 +56,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AuthenticationService,
     AuthGuard,
     CertificationService,
+    CountryService,
     EducationInstitutionService,
     FieldMessagesService,
     MenuService,

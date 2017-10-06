@@ -2,6 +2,7 @@ import {Issue} from '../../core/http/issue';
 import {Component, OnInit} from '@angular/core';
 import {MessageType} from '../../core/messages/message';
 import {MessagesService} from '../../core/messages/messages.service';
+import {CountryService} from '../../core/services/country.service';
 import {TitleService} from '../../core/services/title.service';
 import {CertificateCRUD} from '../models/certificate-crud';
 import {RegisteredSpecialty} from '../models/registered-specialty';
@@ -29,7 +30,7 @@ export class RegistrationsCreateComponent implements OnInit {
   outOfCompetitionList: IMultiSelectOption[];
 
   documentTypeList = ['P'];
-  countryList = ['BY'];
+  countryList: string[];
 
   loading = false;
 
@@ -41,6 +42,7 @@ export class RegistrationsCreateComponent implements OnInit {
   onlyWarnings = false;
 
   constructor(
+    private countryService: CountryService,
     private messagesService: MessagesService,
     private registrationsService: RegistrationsService,
     private router: Router,
@@ -64,8 +66,16 @@ export class RegistrationsCreateComponent implements OnInit {
         }
 
         this.fetchBenefits();
+        this.fetchCountries();
 
         this.registration.enrollee.document.type = this.documentTypeList[0];
+      });
+  }
+
+  fetchCountries(): void {
+    this.countryService.fetchList()
+      .then(list => {
+        this.countryList = list;
         this.registration.enrollee.address.country = this.countryList[0];
         this.registration.enrollee.document.citizenship = this.countryList[0];
       });
