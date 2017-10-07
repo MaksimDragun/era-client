@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChange, SimpleChanges} from '@angular/core';
 import {CertificationService} from '../../core/certificates/certification.service';
 
-import {Subject} from '../../core/certificates/subject';
+import {SubjectCrudCRUD} from '../../core/certificates/subject-crud';
 import {EducationInstitution} from '../../core/institution/education-institution';
 import {EducationInstitutionService} from '../../core/institution/education-institution.service';
 import {CertificateCRUD} from '../models/certificate-crud';
@@ -20,10 +20,10 @@ export class EditCertificateDialogComponent implements OnInit, OnChanges {
   selectedInstitution: EducationInstitution;
   selectedInstitutionValue: any;
 
-  subjectList: Subject[] = [];
-  extraSubjectSourceList: Subject[] = [];
-  extraSubjectList: Subject[] = [];
-  extraSubject: Subject;
+  subjectList: SubjectCrudCRUD[] = [];
+  extraSubjectSourceList: SubjectCrudCRUD[] = [];
+  extraSubjectList: SubjectCrudCRUD[] = [];
+  extraSubject: SubjectCrudCRUD;
 
   subjectMarkMask = [/[0-9]/, /[0-9]/];
 
@@ -32,7 +32,7 @@ export class EditCertificateDialogComponent implements OnInit, OnChanges {
   constructor(private certificationService: CertificationService,
     public educationInstitutionService: EducationInstitutionService) {}
 
-  subjectComparator = (s1: Subject, s2: Subject): number => {
+  subjectComparator = (s1: SubjectCrudCRUD, s2: SubjectCrudCRUD): number => {
     return s1.title > s2.title ? s1.title < s2.title ? -1 : 1 : 0;
   }
 
@@ -99,7 +99,7 @@ export class EditCertificateDialogComponent implements OnInit, OnChanges {
     });
   }
 
-  findMark(subject: Subject): number {
+  findMark(subject: SubjectCrudCRUD): number {
     const result = this.sourceCertificate.marks.find(mark => subject.id === mark.subject.id);
     return result && result.mark;
   }
@@ -148,7 +148,7 @@ export class EditCertificateDialogComponent implements OnInit, OnChanges {
     }
   }
 
-  removeExtraSubject(extraSubjectMark: {subject: Subject, mark: number}): void {
+  removeExtraSubject(extraSubjectMark: {subject: SubjectCrudCRUD, mark: number}): void {
     const index = this.editableCertificate.extraMarks.indexOf(extraSubjectMark, 0);
     if (index > -1) {
       this.editableCertificate.extraMarks.splice(index, 1);
@@ -157,5 +157,10 @@ export class EditCertificateDialogComponent implements OnInit, OnChanges {
       this.extraSubjectList.push(extraSubjectMark.subject);
       this.extraSubjectList = this.extraSubjectList.sort(this.subjectComparator);
     }
+  }
+
+  isAddSubjectButtonDisabled(): boolean {
+    return !this.extraSubject || !this.extraSubject.title || this.extraSubject.title.length < 3
+      || this.editableCertificate.extraMarks.find(sm => sm.subject.title === this.extraSubject.title) !== undefined;
   }
 }

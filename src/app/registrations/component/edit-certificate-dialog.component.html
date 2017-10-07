@@ -117,7 +117,7 @@
 									</div>
 									<div class="col-lg-3 col-md-3 col-xs-3">
 										<button type="button"
-											[disabled]="!extraSubject || !extraSubject.title || extraSubject.title.length < 3"
+											[disabled]="isAddSubjectButtonDisabled()"
 											(click)="addExtraSubject()" class="btn btn-success"
 											aria-label="Left Align">
 											<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
