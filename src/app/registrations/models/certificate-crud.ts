@@ -5,4 +5,5 @@ export class CertificateCRUD {
   year: number;
   institution: EducationInstitution;
   marks: {subject: Subject, mark: number}[] = [];
+  extraMarks: {subject: Subject, mark: number}[] = [];
 }

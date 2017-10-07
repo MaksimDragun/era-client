@@ -21,7 +21,9 @@ export class EditCertificateDialogComponent implements OnInit, OnChanges {
   selectedInstitutionValue: any;
 
   subjectList: Subject[] = [];
+  extraSubjectSourceList: Subject[] = [];
   extraSubjectList: Subject[] = [];
+  extraSubject: Subject;
 
   subjectMarkMask = [/[0-9]/, /[0-9]/];
 
@@ -30,6 +32,10 @@ export class EditCertificateDialogComponent implements OnInit, OnChanges {
   constructor(private certificationService: CertificationService,
     public educationInstitutionService: EducationInstitutionService) {}
 
+  subjectComparator = (s1: Subject, s2: Subject): number => {
+    return s1.title > s2.title ? s1.title < s2.title ? -1 : 1 : 0;
+  }
+
   ngOnInit(): void {
     this.certificationService.fetchSubjectList()
       .then(list => {
@@ -37,6 +43,8 @@ export class EditCertificateDialogComponent implements OnInit, OnChanges {
           if (subject.base) {
             this.subjectList.push(subject);
           } else {
+            this.extraSubjectSourceList.push(subject);
+            this.extraSubjectSourceList = this.extraSubjectSourceList.sort(this.subjectComparator);
             this.extraSubjectList.push(subject);
           }
         });
@@ -85,6 +93,10 @@ export class EditCertificateDialogComponent implements OnInit, OnChanges {
     this.editableCertificate.marks.forEach(mark => {
       mark.mark = this.findMark(mark.subject);
     });
+
+    this.sourceCertificate.extraMarks.forEach(mark => {
+      this.editableCertificate.extraMarks.push({...mark});
+    });
   }
 
   findMark(subject: Subject): number {
@@ -105,12 +117,45 @@ export class EditCertificateDialogComponent implements OnInit, OnChanges {
   }
 
   onSaveAction(): void {
+    this.extraSubjectSourceList = [];
+    this.extraSubjectList.forEach(subject => this.extraSubjectSourceList.push(subject));
     this.editableCertificate.institution = this.selectedInstitution;
     this.onSave.emit(this.editableCertificate);
   }
 
   onCancelAction(): void {
+    this.extraSubjectList = [];
+    this.extraSubjectSourceList.forEach(subject => this.extraSubjectList.push(subject));
     this.resetCertificate();
   }
 
+  newSubject(title: string): void {
+    this.extraSubject = {
+      id: null,
+      title: title,
+      base: false
+    };
+  }
+
+  addExtraSubject(): void {
+    if (this.extraSubject && this.extraSubject.title) {
+      this.editableCertificate.extraMarks.push({subject: this.extraSubject, mark: null});
+      const index = this.extraSubjectList.indexOf(this.extraSubject, 0);
+      if (index > -1) {
+        this.extraSubjectList.splice(index, 1);
+      }
+      this.extraSubject = null;
+    }
+  }
+
+  removeExtraSubject(extraSubjectMark: {subject: Subject, mark: number}): void {
+    const index = this.editableCertificate.extraMarks.indexOf(extraSubjectMark, 0);
+    if (index > -1) {
+      this.editableCertificate.extraMarks.splice(index, 1);
+    }
+    if (extraSubjectMark.subject.id) {
+      this.extraSubjectList.push(extraSubjectMark.subject);
+      this.extraSubjectList = this.extraSubjectList.sort(this.subjectComparator);
+    }
+  }
 }
