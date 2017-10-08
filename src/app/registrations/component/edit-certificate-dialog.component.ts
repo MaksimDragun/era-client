@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChange, SimpleChanges} from '@angular/core';
 import {CertificationService} from '../../core/certificates/certification.service';
 
-import {SubjectCrudCRUD} from '../../core/certificates/subject-crud';
+import {SubjectCRUD} from '../../core/certificates/subject-crud';
 import {EducationInstitution} from '../../core/institution/education-institution';
 import {EducationInstitutionService} from '../../core/institution/education-institution.service';
 import {CertificateCRUD} from '../models/certificate-crud';
@@ -20,10 +20,12 @@ export class EditCertificateDialogComponent implements OnInit, OnChanges {
   selectedInstitution: EducationInstitution;
   selectedInstitutionValue: any;
 
-  subjectList: SubjectCrudCRUD[] = [];
-  extraSubjectSourceList: SubjectCrudCRUD[] = [];
-  extraSubjectList: SubjectCrudCRUD[] = [];
-  extraSubject: SubjectCrudCRUD;
+  subjectList: SubjectCRUD[] = [];
+  extraSubjectSourceList: SubjectCRUD[] = [];
+  extraSubjectList: SubjectCRUD[] = [];
+  extraSubject: SubjectCRUD;
+
+  averageMark = 0;
 
   subjectMarkMask = [/[0-9]/, /[0-9]/];
 
@@ -32,7 +34,7 @@ export class EditCertificateDialogComponent implements OnInit, OnChanges {
   constructor(private certificationService: CertificationService,
     public educationInstitutionService: EducationInstitutionService) {}
 
-  subjectComparator = (s1: SubjectCrudCRUD, s2: SubjectCrudCRUD): number => {
+  subjectComparator = (s1: SubjectCRUD, s2: SubjectCRUD): number => {
     return s1.title > s2.title ? s1.title < s2.title ? -1 : 1 : 0;
   }
 
@@ -49,6 +51,7 @@ export class EditCertificateDialogComponent implements OnInit, OnChanges {
           }
         });
         this.resetCertificate();
+        this.calculateAverageMark();
       });
   }
 
@@ -97,9 +100,11 @@ export class EditCertificateDialogComponent implements OnInit, OnChanges {
     this.sourceCertificate.extraMarks.forEach(mark => {
       this.editableCertificate.extraMarks.push({...mark});
     });
+
+    this.calculateAverageMark();
   }
 
-  findMark(subject: SubjectCrudCRUD): number {
+  findMark(subject: SubjectCRUD): number {
     const result = this.sourceCertificate.marks.find(mark => subject.id === mark.subject.id);
     return result && result.mark;
   }
@@ -148,7 +153,7 @@ export class EditCertificateDialogComponent implements OnInit, OnChanges {
     }
   }
 
-  removeExtraSubject(extraSubjectMark: {subject: SubjectCrudCRUD, mark: number}): void {
+  removeExtraSubject(extraSubjectMark: {subject: SubjectCRUD, mark: number}): void {
     const index = this.editableCertificate.extraMarks.indexOf(extraSubjectMark, 0);
     if (index > -1) {
       this.editableCertificate.extraMarks.splice(index, 1);
@@ -157,10 +162,63 @@ export class EditCertificateDialogComponent implements OnInit, OnChanges {
       this.extraSubjectList.push(extraSubjectMark.subject);
       this.extraSubjectList = this.extraSubjectList.sort(this.subjectComparator);
     }
+    this.calculateAverageMark();
   }
 
   isAddSubjectButtonDisabled(): boolean {
     return !this.extraSubject || !this.extraSubject.title || this.extraSubject.title.length < 3
       || this.editableCertificate.extraMarks.find(sm => sm.subject.title === this.extraSubject.title) !== undefined;
+  }
+
+  reloadSubjects(): void {
+    this.certificationService.fetchSubjectList()
+      .then(list => {
+        list.forEach(subject => {
+          if (!subject.base) {
+            this.refreshSubject(subject);
+          }
+        });
+      });
+  }
+
+  refreshSubject(subject: SubjectCRUD): void {
+    this.extraSubjectList.forEach(s => {
+      if (!s.id && s.title === subject.title) {
+        s.id = subject.id;
+      }
+    });
+    this.extraSubjectSourceList.forEach(s => {
+      if (!s.id && s.title === subject.title) {
+        s.id = subject.id;
+      }
+    });
+    this.editableCertificate.extraMarks.forEach(sm => {
+      if (!sm.subject.id && sm.subject.title === subject.title) {
+        sm.subject.id = subject.id;
+      }
+    });
+    this.sourceCertificate.extraMarks.forEach(sm => {
+      if (!sm.subject.id && sm.subject.title === subject.title) {
+        sm.subject.id = subject.id;
+      }
+    });
+  }
+
+  calculateAverageMark(): void {
+    let sum = 0;
+    let count = 0;
+    this.editableCertificate.marks.forEach(sm => {
+      if (sm.mark) {
+        sum = sum + +sm.mark.toString().trim();
+        count++;
+      }
+    });
+    this.editableCertificate.extraMarks.forEach(sm => {
+      if (sm.mark) {
+        sum = sum + +sm.mark.toString().trim();
+        count++;
+      }
+    });
+    this.averageMark = sum && count ? sum / count : 0;
   }
 }

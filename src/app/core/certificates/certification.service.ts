@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Api} from '../http/api.service';
 import {defaultOptions} from '../http/http.utils';
-import {SubjectCrudCRUD} from './subject-crud';
+import {SubjectCRUD} from './subject-crud';
 
 @Injectable()
 export class CertificationService {
@@ -10,7 +10,7 @@ export class CertificationService {
 
   constructor(private api: Api) {}
 
-  fetchSubjectList(): Promise<SubjectCrudCRUD[]> {
+  fetchSubjectList(): Promise<SubjectCRUD[]> {
     return this.api.get(CertificationService.fetchSubjectList, defaultOptions());
   }
 }

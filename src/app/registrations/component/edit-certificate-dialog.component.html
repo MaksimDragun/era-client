@@ -8,8 +8,9 @@
 					data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<h4 class="modal-title" id="exampleModalLabel">{{'registrations.certificate.add-certificate-title'
-					| translate}}</h4>
+				<h4 class="modal-title" id="exampleModalLabel">
+					{{'registrations.certificate.add-certificate-title' | translate}} /
+					{{'registrations.certificate.average-mark' | translate: {"averageMark" : averageMark | number:'.3'} }}</h4>
 			</div>
 			<div class="modal-body">
 				<div *ngIf="editableCertificate" class="row">
@@ -66,6 +67,7 @@
 											<div class="col-lg-2 col-md-2 col-xs-2">
 												<input [name]="'subject.' + subjectMark.subject.id"
 													[(ngModel)]="subjectMark.mark" value={{subjectMark.mark}}
+													(change)="calculateAverageMark()"
 													type="text" class="form-control"
 													[textMask]="{mask: subjectMarkMask, placeholderChar: ' '}" />
 											</div>
@@ -86,9 +88,9 @@
 												<h4>{{subjectMark.subject.title}}</h4>
 											</div>
 											<div class="col-lg-2 col-md-2 col-xs-4">
-												<input
-													[name]="'subject.' + (subjectMark.subject.id ? subjectMark.subject.id : -i)"
+												<input [name]="'subject.' + (subjectMark.subject.id ? subjectMark.subject.id : -i)"
 													[(ngModel)]="subjectMark.mark" value={{subjectMark.mark}}
+													(change)="calculateAverageMark()"
 													type="text" class="form-control"
 													[textMask]="{mask: subjectMarkMask, placeholderChar: ' '}" />
 											</div>

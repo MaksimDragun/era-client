@@ -1,5 +1,5 @@
 import {Issue} from '../../core/http/issue';
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {MessageType} from '../../core/messages/message';
 import {MessagesService} from '../../core/messages/messages.service';
 import {CountryService} from '../../core/services/country.service';
@@ -10,6 +10,7 @@ import {RegistrationCRUD} from '../models/registration-crud';
 import {RegistrationPeriod} from '../models/registration-period';
 import {Specialty} from '../models/specialty';
 import {RegistrationsService} from '../services/registrations.service';
+import {EditCertificateDialogComponent} from './edit-certificate-dialog.component';
 import {Router} from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
 import {IMultiSelectOption, IMultiSelectSettings, IMultiSelectTexts} from 'angular-2-dropdown-multiselect';
@@ -19,6 +20,9 @@ import {IMultiSelectOption, IMultiSelectSettings, IMultiSelectTexts} from 'angul
   templateUrl: './registrations-create.component.html'
 })
 export class RegistrationsCreateComponent implements OnInit {
+
+  @ViewChild('editCertificateDialog')
+  private editCertificateDialog: EditCertificateDialogComponent;
 
   registrationPeriods: RegistrationPeriod[];
   selectedPeriod: RegistrationPeriod;
@@ -132,7 +136,7 @@ export class RegistrationsCreateComponent implements OnInit {
           }
         });
         this.onlyWarnings = errors === 0 && warnings !== 0;
-        console.log(`only warnings: ${this.onlyWarnings}`);
+        this.editCertificateDialog.reloadSubjects();
         this.loading = false;
       });
   }

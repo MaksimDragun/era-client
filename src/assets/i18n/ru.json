@@ -41,7 +41,7 @@
 			"add-payer": "Добавить плательшика",
 			"address-info": "Адрес",
 			"birthdate": "Дата рождения",
-			"certificate": "Аттестат",
+			"certificate": "Аттестат: {{averageMark}}",
 			"city": "Нас.пункт",
 			"contact-details": "Контактная информация",
 			"country": "Страна",
@@ -102,6 +102,7 @@
 		},
 		"certificate": {
 			"add-certificate-title": "Редактирование аттестата",
+			"average-mark": "Ср.балл: {{averageMark}}",
 			"base-subjects": "Основные предметы",
 			"extra-subjects": "Доп. предметы",
 			"institution": "Образование",

@@ -187,7 +187,7 @@
 								</div>
 								<div class="col-lg-3 col-md-3 col-xs-3">
 									<button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#editCertificateDialog" data-backdrop="static">
-										{{'registrations.crud.certificate' | translate}}
+										{{'registrations.crud.certificate' | translate: {"averageMark" : editCertificateDialog.averageMark | number:'.3'} }}
 									</button>						
 								</div>
 								<div *ngIf="registration.educationBase === '11'" class="col-lg-3 col-md-3 col-xs-3">
@@ -233,7 +233,8 @@
 	</div>
 </form>
 
-<app-edit-certificate-dialog 
+<app-edit-certificate-dialog
+	#editCertificateDialog 
 	[sourceCertificate]="registration.certificate"
 	[countryList]="countryList"
 	(onSave)="updateCertificate($event)">
