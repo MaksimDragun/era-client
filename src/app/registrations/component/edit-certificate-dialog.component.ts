@@ -87,7 +87,7 @@ export class EditCertificateDialogComponent implements OnInit, OnChanges {
     } else {
       this.selectedInstitutionValue = null;
       this.selectedInstitution = null;
-      this.selectedCountry = this.countryList[0];
+      this.selectedCountry = this.countryList && this.countryList[0];
     }
 
     this.editableCertificate.marks = this.subjectList.map(subject => {
