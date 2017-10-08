@@ -1,10 +1,6 @@
 <div *ngIf="registrationPeriods && registrationPeriods[0]" class="row">
 	<div class="row">
-		<div class="col-lg-12 col-md-12 col-xs-12">
-			<button data-target="#searchPanel" class="btn btn-primary" data-toggle="collapse">{{'registrations.list.filter.title' | translate}}</button>
-		</div>
-		<hr/>
-		<div id="searchPanel" class="collapse col-lg-12 col-md-12 col-xs-12">
+		<div id="searchPanel" class="col-lg-12 col-md-12 col-xs-12">
 			<div class="row">
 				<div class="col-lg-6 col-md-6 col-xs-12">
 					<div class="col-lg-6 col-md-6 col-xs-12">
@@ -51,11 +47,11 @@
 							<label>{{'registrations.funds-source.title' | translate}}</label>
 							<div>
 								<label *ngIf="!selectedSpecialty.separateByFundsSource" class="radio-inline">
-									<input type="radio" value={{null}} name="fundsSource" [(ngModel)]="searchQuery.fundsSource">
+									<input type="radio" (change)="doSearch()" value={{null}} name="fundsSource" [(ngModel)]="searchQuery.fundsSource">
 									{{'registrations.funds-source.A' | translate}}
 								</label>
 								<label *ngFor="let source of selectedSpecialty.fundsSources" class="radio-inline">
-									<input type="radio" value={{source}} name="fundsSource" [(ngModel)]="searchQuery.fundsSource">
+									<input type="radio" (change)="doSearch()" value={{source}} name="fundsSource" [(ngModel)]="searchQuery.fundsSource">
 									{{'registrations.funds-source.' + source | translate}}
 								</label>
 							</div>
@@ -66,11 +62,11 @@
 							<label>{{'registrations.education-form.title' | translate}}</label>
 							<div>
 								<label *ngIf="!selectedSpecialty.separateByEducationForm" class="radio-inline">
-									<input type="radio" value={{null}} name="educationForm" [(ngModel)]="searchQuery.educationForm">
+									<input type="radio" (change)="doSearch()" value={{null}} name="educationForm" [(ngModel)]="searchQuery.educationForm">
 									{{'registrations.education-form.A' | translate}}
 								</label>
 								<label *ngFor="let form of selectedSpecialty.educationForms" class="radio-inline">
-									<input type="radio" value={{form}} name="educationForm" [(ngModel)]="searchQuery.educationForm">
+									<input type="radio" (change)="doSearch()" value={{form}} name="educationForm" [(ngModel)]="searchQuery.educationForm">
 									{{'registrations.education-form.' + form | translate}}
 								</label>
 							</div>
@@ -81,11 +77,11 @@
 							<label>{{'registrations.education-base.title' | translate}}</label>
 							<div>
 								<label *ngIf="!selectedSpecialty.separateByEducationForm" class="radio-inline">
-									<input type="radio" value={{null}} name="educationBase" [(ngModel)]="searchQuery.educationBase">
+									<input type="radio" (change)="doSearch()" value={{null}} name="educationBase" [(ngModel)]="searchQuery.educationBase">
 									{{'registrations.education-base.A' | translate}}
 								</label>
 								<label *ngFor="let base of selectedSpecialty.educationBases" class="radio-inline">
-									<input type="radio" value={{base}} name="educationBase" [(ngModel)]="searchQuery.educationBase">
+									<input type="radio" (change)="doSearch()" value={{base}} name="educationBase" [(ngModel)]="searchQuery.educationBase">
 									{{'registrations.education-base.' + base | translate}}
 								</label>
 							</div>

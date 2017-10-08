@@ -44,6 +44,9 @@ export class RegistrationsListComponent implements OnInit {
         if (periods && periods[0]) {
           this.translate.get('registrations.list.title-with-period', {'period': periods[0].title})
             .subscribe(str => this.titleService.setTitleKey(str));
+          this.selectedPeriod = this.registrationPeriods && this.registrationPeriods[0];
+          this.selectedSpecialty = this.selectedPeriod.specialties && this.selectedPeriod.specialties[0];
+          this.resetSpecialities();
           this.doReset();
           this.fetchReportTemplateList();
         } else {
@@ -68,12 +71,10 @@ export class RegistrationsListComponent implements OnInit {
       {name: 'education-form', value: this.searchQuery.educationForm},
       {name: 'education-base', value: this.searchQuery.educationBase},
     ]);
+    console.log('do search');
   }
 
   doReset(): void {
-    this.selectedPeriod = this.registrationPeriods && this.registrationPeriods[0];
-    this.selectedSpecialty = this.selectedPeriod.specialties && this.selectedPeriod.specialties[0];
-    this.resetSpecialities();
     this.searchQuery.registrationId = null;
     this.searchQuery.enrolleeName = null;
     this.doSearch();
@@ -84,10 +85,12 @@ export class RegistrationsListComponent implements OnInit {
     this.resetSpecialities();
     this.searchQuery.registrationId = null;
     this.searchQuery.enrolleeName = null;
+    this.doSearch();
   }
 
   onSpecialtyChanged(): void {
     this.resetSpecialities();
+    this.doSearch();
   }
 
   resetSpecialities(): void {
