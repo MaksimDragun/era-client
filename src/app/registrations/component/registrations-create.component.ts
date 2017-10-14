@@ -5,12 +5,13 @@ import {MessagesService} from '../../core/messages/messages.service';
 import {CountryService} from '../../core/services/country.service';
 import {TitleService} from '../../core/services/title.service';
 import {CertificateCRUD} from '../models/certificate-crud';
+import {PersonCRUD} from '../models/person-crud';
 import {RegisteredSpecialty} from '../models/registered-specialty';
 import {RegistrationCRUD} from '../models/registration-crud';
 import {RegistrationPeriod} from '../models/registration-period';
 import {Specialty} from '../models/specialty';
 import {RegistrationsService} from '../services/registrations.service';
-import {EditCertificateDialogComponent} from './edit-certificate-dialog.component';
+import {EditCertificateModalComponent} from './edit-certificate-modal.component';
 import {Router} from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
 import {IMultiSelectOption, IMultiSelectSettings, IMultiSelectTexts} from 'angular-2-dropdown-multiselect';
@@ -21,8 +22,8 @@ import {IMultiSelectOption, IMultiSelectSettings, IMultiSelectTexts} from 'angul
 })
 export class RegistrationsCreateComponent implements OnInit {
 
-  @ViewChild('editCertificateDialog')
-  private editCertificateDialog: EditCertificateDialogComponent;
+  @ViewChild('editCertificateModal')
+  private editCertificateModal: EditCertificateModalComponent;
 
   registrationPeriods: RegistrationPeriod[];
   selectedPeriod: RegistrationPeriod;
@@ -136,7 +137,7 @@ export class RegistrationsCreateComponent implements OnInit {
           }
         });
         this.onlyWarnings = errors === 0 && warnings !== 0;
-        this.editCertificateDialog.reloadSubjects();
+        this.editCertificateModal.reloadSubjects();
         this.loading = false;
       });
   }
@@ -160,4 +161,8 @@ export class RegistrationsCreateComponent implements OnInit {
     this.registration.certificate = certificate;
   }
 
+  updatePayer(payer: PersonCRUD): void {
+    this.registration.payer = payer;
+    console.log('update payer');
+  }
 }

@@ -163,7 +163,9 @@
 									</label>
 								</div>
 								<div *ngIf="registration.fundsSource === 'P'" class="col-lg-6 col-md-6 col-xs-6">
-									<button type="button" class="btn btn-primary">{{'registrations.crud.add-payer' | translate}}</button>						
+									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editPayerModal" data-backdrop="static">
+									   {{'registrations.crud.add-payer' | translate}}
+									</button>						
 								</div>
 							</div>
 						</div>
@@ -186,8 +188,8 @@
 									</label>
 								</div>
 								<div class="col-lg-3 col-md-3 col-xs-3">
-									<button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#editCertificateDialog" data-backdrop="static">
-										{{'registrations.crud.certificate' | translate: {"averageMark" : editCertificateDialog.averageMark | number:'.3'} }}
+									<button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#editCertificateModal" data-backdrop="static">
+										{{'registrations.crud.certificate' | translate: {"averageMark" : editCertificateModal.averageMark | number:'.3'} }}
 									</button>						
 								</div>
 								<div *ngIf="registration.educationBase === '11'" class="col-lg-3 col-md-3 col-xs-3">
@@ -233,8 +235,16 @@
 	</div>
 </form>
 
+<app-edit-payer-modal
+    #editPayerModal
+    [sourcePayer]="registration.payer"
+    [documentTypeList]="documentTypeList"
+    [countryList]="countryList"
+    (onSave)="updatePayer($event)">
+</app-edit-payer-modal>
+
 <app-edit-certificate-dialog
-	#editCertificateDialog 
+	#editCertificateModal 
 	[sourceCertificate]="registration.certificate"
 	[countryList]="countryList"
 	(onSave)="updateCertificate($event)">

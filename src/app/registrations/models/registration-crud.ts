@@ -17,4 +17,5 @@ export class RegistrationCRUD extends AbstractCRUD {
   specialtyId: number;
   prerogatives: number[];
   outOfCompetitions: number[];
+  payer: PersonCRUD = new PersonCRUD();
 }

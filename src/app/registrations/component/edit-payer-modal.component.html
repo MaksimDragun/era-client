@@ -1,0 +1,177 @@
+<div class="modal fade" id="editPayerModal" tabindex="-1" role="dialog"
+	aria-labelledby="editPayerModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" (click)="onCancelAction()" class="close"
+					data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="editPayerModalLabel">Payer</h4>
+			</div>
+			<div class="modal-body">
+				<div *ngIf="editablePayer" class="row">
+			     	<div class="col-md-6">
+						<div class="form-group" [appFieldHasError]="'pFirstName'">
+							<label>{{'registrations.crud.first-name' | translate}}</label>
+							 <input
+								required [(ngModel)]="editablePayer.firstName" name="pFirstName"
+								#pFirstName="ngModel" value={{editablePayer.firstName}}
+								type="text" class="form-control" />
+						</div>
+						<div class="form-group" [appFieldHasError]="'pLastName'">
+							<label>{{'registrations.crud.last-name' | translate}}</label>
+							<input
+								required [(ngModel)]="editablePayer.lastName" name="pLastName"
+								#pLastName="ngModel" value={{editablePayer.lastName}} type="text"
+								class="form-control" />
+						</div>
+						<div class="form-group" [appFieldHasError]="'pMiddleName'">
+							<label>{{'registrations.crud.middle-name' | translate}}</label>
+							<input
+								required [(ngModel)]="editablePayer.middleName" name="pLastName"
+								#pMiddleName="ngModel" value={{editablePayer.middleName}}
+								type="text" class="form-control" />
+						</div>
+						<div class="form-group" [appFieldHasError]="'pBirthdate'">
+							<label>{{'registrations.crud.birthdate' | translate}}</label>
+							<datetime required [(ngModel)]="editablePayer.birthdate"
+								name="pBirthdate" #pBirthdate="ngModel" [timepicker]="false"
+								[datepicker]="{autoclose: 'true', language: 'ru', placeholder: ' '}"></datetime>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+							  {{'registrations.crud.address-info' | translate}}
+							</div>
+							<div class="panel-body">
+								<div class="form-group" [appFieldHasError]="'paCountry'">
+									<label>{{'registrations.crud.country' | translate}}</label>
+									<select
+										required *ngIf="countryList"
+										[(ngModel)]="editablePayer.address.country" name="paCountry"
+										#paCountry="ngModel" class="form-control">
+										<option *ngFor="let countryCode of countryList"
+											[ngValue]="countryCode">{{'country.' + countryCode | translate}}</option>
+									</select>
+								</div>
+								<div class="form-group" [appFieldHasError]="'paCity'">
+									<label>{{'registrations.crud.city' | translate}}</label>
+									<input
+										required [(ngModel)]="editablePayer.address.city" name="paCity"
+										#paCity="ngModel" value={{editablePayer.address.city}}
+										type="text" class="form-control" />
+								</div>
+								<div class="form-group" [appFieldHasError]="'paStreet'">
+									<label>{{'registrations.crud.street' | translate}}</label>
+									<input
+										required [(ngModel)]="editablePayer.address.street"
+										name="paStreet" #paStreet="ngModel"
+										value={{editablePayer.address.street}} type="text"
+										class="form-control" />
+								</div>
+								<div class="col-md-4 col-md-4 col-md-12">
+									<div class="form-group" [appFieldHasError]="'paHouse'">
+										<label>{{'registrations.crud.house' | translate}}</label>
+										<input
+											required [(ngModel)]="editablePayer.address.house"
+											name="paHouse" #paHouse="ngModel"
+											value={{editablePayer.address.house}} type="text"
+											class="form-control" />
+									</div>
+								</div>
+								<div class="col-md-4 col-md-4 col-md-12">
+									<div class="form-group" [appFieldHasError]="'paHousing'">
+										<label>{{'registrations.crud.housing' | translate}}</label>
+										<input
+											required [(ngModel)]="editablePayer.address.housing"
+											name="paHousing" #paHousing="ngModel"
+											value={{editablePayer.address.housing}} type="text"
+											class="form-control" />
+									</div>
+								</div>
+								<div class="col-md-4 col-md-4 col-md-12">
+									<div class="form-group" [appFieldHasError]="'paFlat'">
+										<label>{{'registrations.crud.flat' | translate}}</label>
+										<input
+											required [(ngModel)]="editablePayer.address.flat"
+											name="paFlat" #paFlat="ngModel"
+											value={{editablePayer.address.flat}} type="text"
+											class="form-control" />
+									</div>
+								</div>
+								<div class="form-group" [appFieldHasError]="'paZipCode'">
+									<label>{{'registrations.crud.zip-code' | translate}}</label>
+									<input
+										required [(ngModel)]="editablePayer.address.zipCode"
+										name="paZipCode" #paZipCode="ngModel"
+										value={{editablePayer.address.zipCode}} type="text"
+										class="form-control" />
+								</div>
+							</div>
+						</div>
+				    </div>
+	                <div class="col-md-6">
+	                    <div class="panel panel-default">
+	                        <div class="panel-heading">{{'registrations.crud.document-info' | translate}}</div>
+	                        <div class="panel-body">
+	                            <div class="form-group" [appFieldHasError]="'pdType'">
+	                                <label>{{'registrations.crud.document-type' | translate}}</label>
+	                                <select required *ngIf="documentTypeList" [(ngModel)]="editablePayer.document.type" name="pdType" #pdType="ngModel" class="form-control">
+	                                    <option *ngFor="let type of documentTypeList" [ngValue]="type">{{'registrations.document.type.' + type | translate}}</option>
+	                                </select>
+	                            </div>
+	                            <div class="form-group" [appFieldHasError]="'pdId'">
+	                                <label>{{'registrations.crud.id' | translate}}</label>
+	                                <input required [(ngModel)]="editablePayer.document.id" name="pdId" #pdId="ngModel"
+	                                    value={{editablePayer.document.id}} type="text" class="form-control"/>
+	                            </div>
+	                            <div class="form-group" [appFieldHasError]="'pdDocumentId'">
+	                                <label>{{'registrations.crud.document-id' | translate}}</label>
+	                                <input required [(ngModel)]="editablePayer.document.documentId" name="pdDocumentId" #pdDocumentId="ngModel"
+	                                    value={{editablePayer.document.documentId}} type="text" class="form-control"/>
+	                            </div>
+	                            <div class="form-group" [appFieldHasError]="'pdIssueDate'">
+	                                <label>{{'registrations.crud.document-issue-date' | translate}}</label>
+	                                <datetime required [(ngModel)]="editablePayer.document.issueDate" name="pdIssueDate" #pdIssueDate="ngModel"
+	                                    [timepicker]="false" [datepicker]="{autoclose: 'true', language: 'ru', placeholder: ' '}" ></datetime>
+	                            </div>
+	                            <div class="form-group" [appFieldHasError]="'pdIssuedBy'">
+	                                <label>{{'registrations.crud.document-issued-by' | translate}}</label>
+	                                <input required [(ngModel)]="editablePayer.document.issuedBy" name="pdIssuedBy" #pdIssuedBy="ngModel"
+	                                    value={{editablePayer.document.issuedBy}} type="text" class="form-control"/>
+	                            </div>
+	                            <div class="form-group" [appFieldHasError]="'pdCitizenship'">
+	                                <label>{{'registrations.crud.document-citizenship' | translate}}</label>
+	                                <select required *ngIf="countryList" [(ngModel)]="editablePayer.document.citizenship" name="pdCitizenship" #pdCitizenship="ngModel" class="form-control">
+	                                    <option *ngFor="let countryCode of countryList" [ngValue]="countryCode">{{'country.' + countryCode | translate}}</option>
+	                                </select>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <div class="panel panel-default">
+	                        <div class="panel-heading">{{'registrations.crud.contact-details' | translate}}</div>
+	                        <div class="panel-body">
+	                            <div class="form-group" [appFieldHasError]="'pePhone'">
+	                                <label>{{'registrations.crud.phone' | translate}}</label>
+	                                <input required [(ngModel)]="editablePayer.contactDetails.phone" name="pePhone" #pePhone="ngModel"
+	                                    value={{editablePayer.contactDetails.phone}} type="text" class="form-control"/>
+	                            </div>
+	                            <div class="form-group" [appFieldHasError]="'peEmail'">
+	                                <label>{{'registrations.crud.email' | translate}}</label>
+	                                <input required [(ngModel)]="editablePayer.contactDetails.email" name="peEmail" #peEmail="ngModel"
+	                                    value={{editablePayer.contactDetails.email}} type="text" class="form-control"/>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+                </div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal"
+					(click)="onSaveAction()">{{'common.save' | translate}}</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal"
+					(click)="onCancelAction()">{{'common.cancel' | translate}}</button>
+			</div>
+		</div>
+	</div>
+</div>

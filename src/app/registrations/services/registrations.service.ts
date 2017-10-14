@@ -5,7 +5,7 @@ import {Http, Response} from '@angular/http';
 import {defaultOptions, fileOptions, searchOptions} from '../../core/http/http.utils';
 import {Result} from '../../core/http/result';
 import {Api} from '../../core/http/api.service';
-import {Benefit} from '../models/Benefit';
+import {Benefit} from '../models/benefit';
 import {FundsSource} from '../models/funds-source';
 import {Registration} from '../models/registration';
 import {RegistrationCRUD} from '../models/registration-crud';

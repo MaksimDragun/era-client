@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChange, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, OnChanges, Output, SimpleChange, SimpleChanges} from '@angular/core';
 import {CertificationService} from '../../core/certificates/certification.service';
 
 import {SubjectCRUD} from '../../core/certificates/subject-crud';
@@ -9,9 +9,9 @@ import {Observable} from 'rxjs/Rx';
 
 @Component({
   selector: 'app-edit-certificate-dialog',
-  templateUrl: './edit-certificate-dialog.component.html'
+  templateUrl: './edit-certificate-modal.component.html'
 })
-export class EditCertificateDialogComponent implements OnInit, OnChanges {
+export class EditCertificateModalComponent implements OnInit, OnChanges {
 
   @Input() countryList: string[];
   @Input() sourceCertificate: CertificateCRUD;
