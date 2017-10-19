@@ -14,6 +14,7 @@ export class EditPayerModalComponent implements OnInit, OnChanges {
   @Input() documentTypeList;
   @Input() sourcePayer: PersonCRUD;
   editablePayer: PersonCRUD;
+  enrolleeAsPayer: boolean;
 
   @Output() onSave: EventEmitter<PersonCRUD> = new EventEmitter();
 

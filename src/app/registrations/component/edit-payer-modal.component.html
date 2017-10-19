@@ -7,7 +7,16 @@
 					data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<h4 class="modal-title" id="editPayerModalLabel">Payer</h4>
+				<div>
+                    <h4 class="modal-title" id="editPayerModalLabel">
+                        {{'registrations.crud.payer.title' | translate}}
+                    </h4>
+                    <div class="checkbox">
+	                    <label><input type="checkbox" [(ngModel)]="enrolleeAsPayer" name="enrolleeAsPayer">
+	                        {{'registrations.crud.payer.enrollee-as-payer' | translate}}
+	                    </label>
+	                </div>
+				</div>
 			</div>
 			<div class="modal-body">
 				<div *ngIf="editablePayer" class="row">
