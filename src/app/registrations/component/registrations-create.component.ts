@@ -110,6 +110,7 @@ export class RegistrationsCreateComponent implements OnInit {
 
   createRegistrationAccount(): void {
     this.loading = true;
+    console.log(this.registration.enrolleeAsPayer);
     this.messagesService.reset();
     this.registration.periodId = this.selectedPeriod.id;
     this.registration.educationInstitutionId = this.selectedPeriod.educationInstitution.id;
