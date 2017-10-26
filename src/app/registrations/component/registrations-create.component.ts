@@ -1,3 +1,4 @@
+import {ExamSubjectCRUD} from '../../core/certificates/exam-subject-crud';
 import {Issue} from '../../core/http/issue';
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MessageType} from '../../core/messages/message';
@@ -5,6 +6,7 @@ import {MessagesService} from '../../core/messages/messages.service';
 import {CountryService} from '../../core/services/country.service';
 import {TitleService} from '../../core/services/title.service';
 import {CertificateCRUD} from '../models/certificate-crud';
+import { EducationBase, L11 } from '../models/education-base';
 import {PersonCRUD} from '../models/person-crud';
 import {RegisteredSpecialty} from '../models/registered-specialty';
 import {RegistrationCRUD} from '../models/registration-crud';
@@ -115,6 +117,11 @@ export class RegistrationsCreateComponent implements OnInit {
     this.registration.periodId = this.selectedPeriod.id;
     this.registration.educationInstitutionId = this.selectedPeriod.educationInstitution.id;
     this.registration.specialtyId = this.selectedSpecialty && this.selectedSpecialty.id;
+
+    if (this.registration.educationBase !== L11.value) {
+      this.registration.examSubjectMarks = null;
+    }
+
     this.registrationsService.createRegistration(this.registration)
       .then(result => {
         this.messagesService.addMessage(
@@ -165,5 +172,10 @@ export class RegistrationsCreateComponent implements OnInit {
   updatePayer(payer: PersonCRUD): void {
     this.registration.payer = payer;
     console.log('update payer');
+  }
+
+  updateExamSubjects(examSubjectMarks: {subject: ExamSubjectCRUD, mark: number}[]): void {
+    this.registration.examSubjectMarks = examSubjectMarks;
+    console.log('update exam subjects');
   }
 }

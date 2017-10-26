@@ -1,3 +1,4 @@
+import {ExamSubjectCRUD} from '../../core/certificates/exam-subject-crud';
 import {AbstractCRUD} from '../../shared/models/abstract-crud';
 import {CertificateCRUD} from './certificate-crud';
 import {PersonCRUD} from './person-crud';
@@ -19,4 +20,5 @@ export class RegistrationCRUD extends AbstractCRUD {
   outOfCompetitions: number[];
   payer: PersonCRUD = new PersonCRUD();
   enrolleeAsPayer = false;
+  examSubjectMarks: {subject: ExamSubjectCRUD, mark: number}[] = [];
 }

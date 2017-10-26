@@ -1,0 +1,49 @@
+<div class="modal fade" id="editExamSubjectsModal" tabindex="-1"
+	role="dialog" aria-labelledby="editExamSubjectsModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" (click)="onCancelAction()" class="close"
+					data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="editCertificateModalLabel">
+					{{'registrations.exam-subjects.add-exam-subjects-title' | translate}} /
+					{{'registrations.exam-subjects.average-mark' | translate: {"averageMark" : averageMark | number:'.3'} }}</h4>
+			</div>
+			<div class="modal-body">
+				<div *ngIf="editableExamSubjectMarks"
+					class="list-group pre-scrollable">
+					<div *ngFor="let subjectMark of editableExamSubjectMarks; let i = index"
+						class="list-group-item">
+						<div class="row">
+							<div class="col-lg-10 col-md-10 col-xs-10">
+								<select [name]="'examSubject.' + subjectMark.subject.id"
+									[(ngModel)]="subjectMark.subject"
+									[disabled]="examSubjects[i].length === 1"
+									class="form-control">
+									<option *ngFor="let es of examSubjects[i]" [ngValue]="es">
+										{{es.title}}
+									</option>
+								</select>
+							</div>
+							<div class="col-lg-2 col-md-2 col-xs-2">
+								<input [name]="'subject.' + subjectMark.subject.id"
+									[(ngModel)]="subjectMark.mark" value={{subjectMark.mark}}
+									type="text" class="form-control"
+									[textMask]="{mask: subjectMarkMask, placeholderChar: ' '}" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal"
+					(click)="onSaveAction()">{{'common.save' | translate}}</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal"
+					(click)="onCancelAction()">{{'common.cancel' | translate}}</button>
+			</div>
+		</div>
+	</div>
+</div>

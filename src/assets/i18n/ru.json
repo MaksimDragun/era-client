@@ -112,6 +112,10 @@
 			"institution": "Образование",
 			"year": "Год выпуска"
 		},
+		"exam-subjects": {
+			"add-exam-subjects-title": "Результаты ЦТ",
+			"average-mark": "Ср.балл: {{averageMark}}"
+		},
 		"document": {
 			"type": {
 				"P": "Паспорт"

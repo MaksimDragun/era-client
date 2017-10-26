@@ -8,7 +8,7 @@ import {CertificateCRUD} from '../models/certificate-crud';
 import {Observable} from 'rxjs/Rx';
 
 @Component({
-  selector: 'app-edit-certificate-dialog',
+  selector: 'app-edit-certificate-modal',
   templateUrl: './edit-certificate-modal.component.html'
 })
 export class EditCertificateModalComponent implements OnInit, OnChanges {

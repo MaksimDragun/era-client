@@ -193,7 +193,9 @@
 									</button>						
 								</div>
 								<div *ngIf="registration.educationBase === '11'" class="col-lg-3 col-md-3 col-xs-3">
-									<button type="button" class="btn btn-primary btn-block">{{'registrations.crud.exams' | translate}}</button>						
+									<button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#editExamSubjectsModal" data-backdrop="static">
+										{{'registrations.crud.exams' | translate}}
+									</button>						
 								</div>
 							</div>
 						</div>
@@ -243,9 +245,16 @@
     (onSave)="updatePayer($event)">
 </app-edit-payer-modal>
 
-<app-edit-certificate-dialog
+<app-edit-certificate-modal
 	#editCertificateModal 
 	[sourceCertificate]="registration.certificate"
 	[countryList]="countryList"
 	(onSave)="updateCertificate($event)">
-</app-edit-certificate-dialog>
+</app-edit-certificate-modal>
+
+<app-edit-exam-subjects-modal
+	#editExamSubjectsModal
+	[sourceExamSubjectMarks]="registration.examSubjectMarks"
+	[examSubjects]="selectedSpecialty ? selectedSpecialty.examSubjects : null"
+	(onSave)="updateExamSubjects($event)">
+</app-edit-exam-subjects-modal>

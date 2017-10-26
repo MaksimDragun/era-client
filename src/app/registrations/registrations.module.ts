@@ -4,6 +4,7 @@ import {NgModule} from '@angular/core';
 
 import {RegistrationsRoutingModule} from './registrations-routing.module';
 import {EditCertificateModalComponent} from './component/edit-certificate-modal.component';
+import {EditExamSubjectsModalComponent} from './component/edit-exam-subjects-modal.component';
 import {EditPayerModalComponent} from './component/edit-payer-modal.component';
 import {RegistrationPeriodListComponent} from './component/registration-period-list.component';
 import {RegistrationsCreateComponent} from './component/registrations-create.component';
@@ -18,6 +19,7 @@ import {RegistrationsService} from './services/registrations.service';
   ],
   declarations: [
     EditCertificateModalComponent,
+    EditExamSubjectsModalComponent,
     EditPayerModalComponent,
     RegistrationPeriodListComponent,
     RegistrationsCreateComponent,

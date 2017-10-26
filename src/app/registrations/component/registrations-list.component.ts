@@ -71,7 +71,6 @@ export class RegistrationsListComponent implements OnInit {
       {name: 'education-form', value: this.searchQuery.educationForm},
       {name: 'education-base', value: this.searchQuery.educationBase},
     ]);
-    console.log('do search');
   }
 
   doReset(): void {
