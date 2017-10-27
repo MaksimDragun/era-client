@@ -1,5 +1,5 @@
 import {PersonCRUD} from '../models/person-crud';
-import {Component, EventEmitter, Input, OnInit, OnChanges, Output, SimpleChange, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, Output, SimpleChange, SimpleChanges} from '@angular/core';
 
 @Component({
   selector: 'app-edit-payer-modal',
@@ -8,36 +8,44 @@ import {Component, EventEmitter, Input, OnInit, OnChanges, Output, SimpleChange,
     '.modal-dialog {width: 50%;}'
   ]
 })
-export class EditPayerModalComponent implements OnInit, OnChanges {
+export class EditPayerModalComponent implements OnChanges {
 
   @Input() countryList: string[];
   @Input() documentTypeList;
   @Input() sourcePayer: PersonCRUD;
-  editablePayer: PersonCRUD;
+  @Input() sourceEnrolleeAsPayer: boolean;
+  editablePayer: PersonCRUD = new PersonCRUD();
   enrolleeAsPayer: boolean;
 
-  @Output() onSave: EventEmitter<PersonCRUD> = new EventEmitter();
-
-  ngOnInit(): void {
-    console.log('Init payer modal');
-    this.editablePayer = new PersonCRUD();
-  }
+  @Output() onSave: EventEmitter<{payer: PersonCRUD, enrolleeAsPayer: boolean}> = new EventEmitter();
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
+    let change: SimpleChange;
+    change = changes['sourcePayer'];
+    if (change && change.currentValue) {
+      this.resetPayer();
+    }
+    change = changes['countryList'];
+    if (change && change.currentValue) {
+      this.editablePayer.address.country = change.currentValue[0];
+      this.editablePayer.document.citizenship = change.currentValue[0];
+    }
+    change = changes['documentTypeList'];
+    if (change && change.currentValue) {
+      this.editablePayer.document.type = change.currentValue[0];
+    }
   }
 
   resetPayer(): void {
-    console.log('reset payer');
+    this.enrolleeAsPayer = this.sourceEnrolleeAsPayer;
+    this.editablePayer = {... this.sourcePayer};
   }
 
   onCancelAction(): void {
-    console.log('cancel payer');
     this.resetPayer();
   }
 
   onSaveAction(): void {
-    console.log('save payer');
-    this.onSave.emit(this.editablePayer);
+    this.onSave.emit({payer: this.editablePayer, enrolleeAsPayer: this.enrolleeAsPayer});
   }
 }

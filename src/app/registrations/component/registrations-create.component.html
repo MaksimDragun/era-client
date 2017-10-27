@@ -240,6 +240,7 @@
 <app-edit-payer-modal
     #editPayerModal
     [sourcePayer]="registration.payer"
+    [sourceEnrolleeAsPayer]="registration.enrolleeAsPayer"
     [documentTypeList]="documentTypeList"
     [countryList]="countryList"
     (onSave)="updatePayer($event)">

@@ -169,8 +169,9 @@ export class RegistrationsCreateComponent implements OnInit {
     this.registration.certificate = certificate;
   }
 
-  updatePayer(payer: PersonCRUD): void {
-    this.registration.payer = payer;
+  updatePayer(payer: {payer: PersonCRUD, enrolleeAsPayer: boolean}): void {
+    this.registration.payer = payer.payer;
+    this.registration.enrolleeAsPayer = payer.enrolleeAsPayer;
     console.log('update payer');
   }
 
