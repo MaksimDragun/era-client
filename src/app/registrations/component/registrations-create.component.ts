@@ -6,7 +6,7 @@ import {MessagesService} from '../../core/messages/messages.service';
 import {CountryService} from '../../core/services/country.service';
 import {TitleService} from '../../core/services/title.service';
 import {CertificateCRUD} from '../models/certificate-crud';
-import { EducationBase, L11 } from '../models/education-base';
+import {EducationBase, L11} from '../models/education-base';
 import {PersonCRUD} from '../models/person-crud';
 import {RegisteredSpecialty} from '../models/registered-specialty';
 import {RegistrationCRUD} from '../models/registration-crud';
@@ -128,6 +128,7 @@ export class RegistrationsCreateComponent implements OnInit {
           {
             msgType: MessageType.SUCCESS,
             key: 'registrations.crud.messages.success-created',
+            params: {registrationId: result.registrationId},
             expired: false
           });
         this.router.navigate(['/registrations/list']);

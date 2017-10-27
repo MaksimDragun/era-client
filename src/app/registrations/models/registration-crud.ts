@@ -6,6 +6,7 @@ import {RegistrationPeriod} from './registration-period';
 import {FundsSource} from './funds-source';
 
 export class RegistrationCRUD extends AbstractCRUD {
+  registrationId: number;
   fundsSource: string;
   educationForm: string;
   educationBase: string;
