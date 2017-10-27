@@ -114,7 +114,7 @@
 		},
 		"exam-subjects": {
 			"add-exam-subjects-title": "Результаты ЦТ",
-			"average-mark": "Ср.балл: {{averageMark}}"
+			"sum-mark": "Сумма баллов: {{sumMark}}"
 		},
 		"document": {
 			"type": {
@@ -314,6 +314,12 @@
 				"year-is-in-future": "Год получения аттестата не может быть в будущем",
 				"mark-is-less": "Предмет «{{0}}» имеет отметку ниже {{1}}",
 				"mark-is-greater": "Предмет «{{0}}» имеет отметку выше {{1}}"
+			},
+			"exam-subjects": {
+				"is-empty": "Не заполнены результаты ЦТ",
+				"mark-is-empty": "Не заполнен результат для предмета {{0}}",
+				"mark-already-exists": "Результат для предмета {{0}} уже перекрыт предметом {{1}}",
+				"extra-mark-provided": "Предоставлены лишние результаты по ЦТ"
 			}
 		},
 		"education-institution": {

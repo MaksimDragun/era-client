@@ -13,14 +13,14 @@ export class EditExamSubjectsModalComponent implements OnInit, OnChanges {
   @Input() sourceExamSubjectMarks: {subject: ExamSubjectCRUD, mark: number}[];
   editableExamSubjectMarks: {subject: ExamSubjectCRUD, mark: number}[];
 
-  averageMark = 0;
+  sumMark = 0;
 
   subjectMarkMask = [/[0-9]/, /[0-9]/, /[0-9]/];
 
   @Output() onSave: EventEmitter<{subject: ExamSubjectCRUD, mark: number}[]> = new EventEmitter();
 
   ngOnInit(): void {
-
+    this.calculateSumMark();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -48,6 +48,7 @@ export class EditExamSubjectsModalComponent implements OnInit, OnChanges {
     this.sourceExamSubjectMarks.forEach(es => {
       this.editableExamSubjectMarks.push({...es});
     });
+    this.calculateSumMark();
   }
 
   onSaveAction(): void {
@@ -56,5 +57,15 @@ export class EditExamSubjectsModalComponent implements OnInit, OnChanges {
 
   onCancelAction(): void {
     this.resetExamSubjectMaks();
+  }
+
+  calculateSumMark(): void {
+    let sum = 0;
+    this.editableExamSubjectMarks.forEach(esm => {
+      if (esm.mark) {
+        sum = sum + +esm.mark.toString().trim();
+      }
+    });
+    this.sumMark = sum;
   }
 }

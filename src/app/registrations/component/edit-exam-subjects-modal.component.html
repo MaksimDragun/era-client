@@ -10,11 +10,11 @@
 				</button>
 				<h4 class="modal-title" id="editCertificateModalLabel">
 					{{'registrations.exam-subjects.add-exam-subjects-title' | translate}} /
-					{{'registrations.exam-subjects.average-mark' | translate: {"averageMark" : averageMark | number:'.3'} }}</h4>
+					{{'registrations.exam-subjects.sum-mark' | translate: {"sumMark" : sumMark} }}</h4>
 			</div>
 			<div class="modal-body">
 				<div *ngIf="editableExamSubjectMarks"
-					class="list-group pre-scrollable">
+					class="list-group">
 					<div *ngFor="let subjectMark of editableExamSubjectMarks; let i = index"
 						class="list-group-item">
 						<div class="row">
@@ -31,6 +31,7 @@
 							<div class="col-lg-2 col-md-2 col-xs-2">
 								<input [name]="'subject.' + subjectMark.subject.id"
 									[(ngModel)]="subjectMark.mark" value={{subjectMark.mark}}
+									(change)="calculateSumMark()"
 									type="text" class="form-control"
 									[textMask]="{mask: subjectMarkMask, placeholderChar: ' '}" />
 							</div>
