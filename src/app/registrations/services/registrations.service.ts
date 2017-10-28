@@ -25,17 +25,12 @@ export class RegistrationsService {
   static fetchPeriodListUrl = 'api/registrations/get-periods';
   static fetchBenefitListUrl = 'api/registrations/get-benefits';
   private fetchRegistrationListUrl = 'api/registrations/get-list';
-  private fetchReportTemplateUrl = 'api/registrations/get-report-templates';
   private fetchSpecialtiesUrl = 'api/specialties/get-list-for-registrations';
 
   constructor(private api: Api, private http: Http) {}
 
   fetchRegistrations(params: {name: string, value: any}[]): Promise<Registration[]> {
     return this.api.get(this.fetchRegistrationListUrl, searchOptions(params));
-  }
-
-  fetchReportTemplates(): Promise<ReportTemplate[]> {
-    return this.api.get(this.fetchReportTemplateUrl, defaultOptions());
   }
 
   fetchSpecialties(periodId: number): Promise<Specialty[]> {
@@ -51,13 +46,16 @@ export class RegistrationsService {
     return this.api.post(RegistrationsService.createRegistrationUrl, registration, defaultOptions());
   }
 
-  downloadReport(contractId: number, reportTemplate: ReportTemplate): void {
-    this.http.get(
-      `api/registrations/get-contract/${contractId}/template/${reportTemplate.id}`,
-      fileOptions(reportTemplate.mimeType)).toPromise()
-      .then((res: Response) => {
-        FileSaver.saveAs(res.blob(), reportTemplate.fileName);
+  downloadReport(registrationId: number): void {
+    this.api.get(`api/registrations/get-contract-info/${registrationId}`, defaultOptions())
+      .then((template: ReportTemplate) => {
+        this.http.get(
+          `api/registrations/download-contract/${registrationId}`, fileOptions(template.mimeType)).toPromise()
+          .then((res: Response) => {
+            FileSaver.saveAs(res.blob(), template.fileName);
+          });
       });
+
   }
 
   fetchActiveRegistrationPeriods(): Promise<RegistrationPeriod[]> {

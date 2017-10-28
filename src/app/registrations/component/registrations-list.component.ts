@@ -5,7 +5,6 @@ import {FundsSource} from '../models/funds-source';
 import {RegisteredSpecialty} from '../models/registered-specialty';
 import {Registration} from '../models/registration';
 import {RegistrationPeriod} from '../models/registration-period';
-import {ReportTemplate} from '../models/report-template';
 import {RegistrationSearchQuery} from '../models/registration-search-query';
 import {RegistrationsService} from '../services/registrations.service';
 import {Component, OnInit} from '@angular/core';
@@ -22,9 +21,6 @@ export class RegistrationsListComponent implements OnInit {
 
   registrationPeriods: RegistrationPeriod[];
   selectedPeriod: RegistrationPeriod;
-
-  selectedReportTemplate: ReportTemplate;
-  reportTemplateList: ReportTemplate[];
 
   selectedSpecialty: RegisteredSpecialty;
 
@@ -48,7 +44,6 @@ export class RegistrationsListComponent implements OnInit {
           this.selectedSpecialty = this.selectedPeriod.specialties && this.selectedPeriod.specialties[0];
           this.resetSpecialities();
           this.doReset();
-          this.fetchReportTemplateList();
         } else {
           this.messagesService.addMessage({key: 'registrations.common.no-active-registration-period', msgType: MessageType.INFO});
         }
@@ -101,17 +96,7 @@ export class RegistrationsListComponent implements OnInit {
   }
 
   downloadReport(contractId: number): void {
-    this.registrationsService.downloadReport(contractId, this.selectedReportTemplate);
-  }
-
-  fetchReportTemplateList(): void {
-    this.registrationsService.fetchReportTemplates()
-      .then(reportTemplates => {
-        this.reportTemplateList = reportTemplates;
-        this.selectedReportTemplate = this.reportTemplateList && this.reportTemplateList[0];
-      })
-      .catch(error => this.messagesService.showErrorMessage(error));
-
+    this.registrationsService.downloadReport(contractId);
   }
 
 }
