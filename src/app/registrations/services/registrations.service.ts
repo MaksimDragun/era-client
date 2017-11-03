@@ -66,4 +66,8 @@ export class RegistrationsService {
     return this.api.get(RegistrationsService.fetchPeriodListUrl, defaultOptions());
   }
 
+  fetchDetails(id: number): Promise<RegistrationCRUD> {
+    return this.api.get(`api/registrations/get-details/${id}`, defaultOptions());
+  }
+
 }

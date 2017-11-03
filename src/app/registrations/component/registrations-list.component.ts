@@ -8,6 +8,7 @@ import {RegistrationPeriod} from '../models/registration-period';
 import {RegistrationSearchQuery} from '../models/registration-search-query';
 import {RegistrationsService} from '../services/registrations.service';
 import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
 
 
@@ -29,6 +30,7 @@ export class RegistrationsListComponent implements OnInit {
   constructor(
     private messagesService: MessagesService,
     private registrationsService: RegistrationsService,
+    private router: Router,
     private titleService: TitleService,
     private translate: TranslateService) {}
 
@@ -97,6 +99,10 @@ export class RegistrationsListComponent implements OnInit {
 
   downloadReport(contractId: number): void {
     this.registrationsService.downloadReport(contractId);
+  }
+
+  navigateToDetails(registrationId: number): void {
+    this.router.navigate([`/registrations/details/${registrationId}`]);
   }
 
 }

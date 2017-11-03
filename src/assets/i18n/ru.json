@@ -104,6 +104,9 @@
 				"title": "Фильтр"
 			}
 		},
+		"details": {
+			"title": "Информация о регистрации"
+		},
 		"certificate": {
 			"add-certificate-title": "Редактирование аттестата",
 			"average-mark": "Ср.балл: {{averageMark}}",
