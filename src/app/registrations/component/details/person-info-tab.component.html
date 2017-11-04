@@ -1,0 +1,130 @@
+<div *ngIf="person" class="col-lg-3 col-md-3 col-xs-3">
+	<div class="panel panel-default">
+		<div class="panel-heading">{{'registrations.details.personal-info' | translate}}</div>
+ 			<div class="panel-body">
+			<div class="col-lg-12 col-md-12 col-xs-12">
+				<div class="form-group">
+					<label>{{'common.last-name' | translate}}</label>
+					<div>{{person.lastName}}</div>
+				</div>
+			</div>
+			<div class="col-lg-12 col-md-12 col-xs-12">
+				<div class="form-group">
+					<label>{{'common.first-name' | translate}}</label>
+					<div>{{person.firstName}}</div>
+				</div>
+			</div>
+			<div class="col-lg-12 col-md-12 col-xs-12">
+				<div class="form-group">
+					<label>{{'common.middle-name' | translate}}</label>
+					<div>{{person.middleName}}</div>
+				</div>
+			</div>
+			<div class="col-lg-12 col-md-12 col-xs-12">
+				<div class="form-group">
+					<label>{{'common.birthdate' | translate}}</label>
+					<div>{{person.birthdate | date: 'dd.MM.yyyy'}}</div>
+				</div>
+			</div>
+			<div class="col-lg-12 col-md-12 col-xs-12">
+				<div class="form-group">
+					<br/>
+					<br/>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="col-lg-3 col-md-3 col-xs-3">
+	<div class="panel panel-default">
+		<div class="panel-heading">{{'common.address.address-info' | translate}}</div>
+ 			<div class="panel-body">
+			<div class="col-lg-12 col-md-12 col-xs-12">
+				<div class="form-group">
+					<label>{{'common.address.country' | translate}}</label>
+					<div>{{'country.' + person.address.country | translate}}</div>
+				</div>
+			</div>
+			<div class="col-lg-12 col-md-12 col-xs-12">
+				<div class="form-group">
+					<label>{{'common.address.city' | translate}}</label>
+					<div>{{person.address.city}}</div>
+				</div>
+			</div>
+			<div class="col-lg-12 col-md-12 col-xs-12">
+				<div class="form-group">
+					<label>{{'common.address.address' | translate}}</label>
+					<div>{{buildAddressLine(person.address)}}</div>
+				</div>
+			</div>
+			<div class="col-lg-12 col-md-12 col-xs-12">
+				<div class="form-group">
+					<label>{{'common.address.zip-code' | translate}}</label>
+					<div>{{person.address.zipCode}}</div>
+				</div>
+			</div>
+			<div class="col-lg-12 col-md-12 col-xs-12">
+				<div class="form-group">
+					<br/>
+					<br/>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="col-lg-3 col-md-3 col-xs-3">
+	<div class="panel panel-default">
+		<div class="panel-heading">{{'common.document.document-info' | translate}}</div>
+ 			<div class="panel-body">
+			<div class="col-lg-12 col-md-12 col-xs-12">
+				<div class="form-group">
+					<label>{{'common.document.document-type' | translate}}</label>
+					<div>{{'common.document.type.' + person.document.type | translate}}</div>
+				</div>
+			</div>
+			<div class="col-lg-12 col-md-12 col-xs-12">
+				<div class="form-group">
+					<label>{{'common.document.document-id' | translate}}</label>
+					<div>{{person.document.documentId}}</div>
+				</div>
+			</div>
+			<div class="col-lg-12 col-md-12 col-xs-12">
+				<div class="form-group">
+					<label>{{'common.document.personal-id' | translate}}</label>
+					<div>{{person.document.id}}</div>
+				</div>
+			</div>
+			<div class="col-lg-12 col-md-12 col-xs-12">
+				<div class="form-group">
+					<label>{{'common.document.issued' | translate}}</label>
+					<div>{{person.document.issueDate | date: 'dd.MM.yyyy'}}, {{person.document.issuedBy}}</div>
+				</div>
+			</div>
+			<div class="col-lg-12 col-md-12 col-xs-12">
+				<div class="form-group">
+					<label>{{'common.document.citizenship' | translate}}</label>
+					<div>{{'country.' + person.document.citizenship | translate}}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="col-lg-3 col-md-3 col-xs-3">
+	<div class="panel panel-default">
+		<div class="panel-heading">{{'common.contact-details' | translate}}</div>
+ 			<div class="panel-body">
+			<div class="col-lg-12 col-md-12 col-xs-12">
+				<div class="form-group">
+					<label>{{'common.phone' | translate}}</label>
+					<div>{{person.contactDetails.phone}}</div>
+				</div>
+			</div>
+			<div class="col-lg-12 col-md-12 col-xs-12">
+				<div class="form-group">
+					<label>{{'common.email' | translate}}</label>
+					<div>{{person.contactDetails.email}}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

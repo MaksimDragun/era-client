@@ -108,8 +108,8 @@
 			"title": "Информация о регистрации",
 			"certificate": "Аттестат",
 			"educational-institution": "Учреждение образования",
-			"enrollee": "Информация об абитуриенте",
-			"full-name": "Ф.И.О.",
+			"enrollee": "Абитуриент",
+			"personal-info": "Личная информация",
 			"registered-by": "Кем зарегистрирован",
 			"registration-date": "Дата регистрации",
 			"registration-id": "Регистрационный номер",
@@ -216,20 +216,48 @@
 		"actions": "Действия",
 		"add-new": "Добавить",
 		"back": "Назад",
+		"birthdate": "Дата рождения",
 		"cancel": "Отмена",
 		"close": "Закрыть",
 		"confirm": "Подтвердить",
 		"confirmation-header": "Подтвердите действие",
+		"contact-details": "Контактная информация",
 		"create": "Создать",
 		"delete": "Удалить",
 		"download": "Скачать",
 		"edit": "Редактировать",
+		"email": "E-mail",
+		"first-name": "Имя",
 		"ignore-warnings": "Игнорировать предупреждения?",
+		"last-name": "Фамилия",
+		"middle-name": "Отчество",
+		"phone": "Телефон",
 		"reset": "Сброс",
 		"save": "Сохранить",
 		"search": "Поиск",
 		"status": "Статус",
 		"view": "Посмотреть",
+		"address": {
+			"address": "Адрес",
+			"address-info": "Адресная информация",
+			"city": "Нас. пункт",
+			"country": "Страна",
+			"zip-code": "Почтовый код"
+		},
+		"auto-complete": {
+			"no-results": "Ничего не найдено"
+		},
+		"document": {
+			"citizenship": "Гражданство",
+			"document-id": "Номер документа",
+			"document-info": "Информация о документе",
+			"document-type": "Тип документа",
+			"personal-id": "Идентификационный номер",
+			"issued": "Выдан",
+			"type": {
+				"P": "Паспорт"
+			}
+		},
 		"multiselect": {
 			"all-selected": "Выбраны все значения",
 			"item-selected": "выбран",
@@ -238,9 +266,6 @@
 			"select": "Сделайте выбор",
 			"select-all": "Выбрать все",
 			"unselect-all": "Отменить выбор"
-		},
-		"auto-complete": {
-			"no-results": "Ничего не найдено"
 		}
 	},
 	"country": {

@@ -98,6 +98,11 @@
 						{{'registrations.details.enrollee' | translate}}
 					</a>
 				</li>
+				<li *ngIf="registration.fundsSource === 'P'">
+					<a data-toggle="tab" href="#payerTab">
+						{{'registrations.details.enrollee' | translate}}
+					</a>
+				</li>
 				<li>
 					<a data-toggle="tab" href="#certificateTab">
 						{{'registrations.details.certificate' | translate}}
@@ -110,12 +115,18 @@
 						<div class="col-lg-12 col-md-12 col-xs-12">
 							<br/>
 						</div>
-						<div class="col-lg-4 col-md-4 col-xs-12">
-							<div class="form-group">
-								<label>{{'registrations.details.full-name' | translate}}</label>
-								<div>{{registration.enrollee.lastName}} {{registration.enrollee.firstName}} {{registration.enrollee.middleName}}</div>
-							</div>
+						<app-person-info-tab [person]="registration.enrollee"></app-person-info-tab>
+					</div>
+				</div>
+				<div *ngIf="registration.fundsSource === 'P'" id="payerTab" class="tab-pane fade in">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-xs-12">
+							<br/>
 						</div>
+						<div *ngIf="registration.enrolleeAsPayer" class="col-lg-12 col-md-12 col-xs-12">
+							<h4>{{'registrations.crud.payer.enrollee-as-payer' | translate}}</h4>
+						</div>
+						<app-person-info-tab [person]="registration.payer"></app-person-info-tab>
 					</div>
 				</div>
 				<div id="certificateTab" class="tab-pane fade in">

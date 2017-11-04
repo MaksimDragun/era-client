@@ -1,6 +1,6 @@
 import {TitleService} from '../../../core/services/title.service';
 import {RegistrationCRUD} from '../../models/registration-crud';
-import { RegistrationDetails } from '../../models/registration-details';
+import {RegistrationDetails} from '../../models/registration-details';
 import {RegistrationsService} from '../../services/registrations.service';
 import {Component, OnInit} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
@@ -37,4 +37,5 @@ export class RegistrationsDetailsComponent implements OnInit {
   navigateBackToList(): void {
     this.router.navigate(['/registrations/list']);
   }
+
 }

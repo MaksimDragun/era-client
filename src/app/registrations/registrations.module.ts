@@ -1,4 +1,5 @@
 import {SharedModule} from '../shared/shared.module';
+import {PersonInfoTabComponent} from './component/details/person-info-tab.component';
 import {RegistrationsDetailsComponent} from './component/details/registration-details.component';
 import {FormsModule} from '@angular/forms';
 import {NgModule} from '@angular/core';
@@ -22,6 +23,7 @@ import {RegistrationsService} from './services/registrations.service';
     EditCertificateModalComponent,
     EditExamSubjectsModalComponent,
     EditPayerModalComponent,
+    PersonInfoTabComponent,
     RegistrationsDetailsComponent,
     RegistrationPeriodListComponent,
     RegistrationsCreateComponent,
