@@ -1,5 +1,6 @@
 import {TitleService} from '../../../core/services/title.service';
 import {RegistrationCRUD} from '../../models/registration-crud';
+import { RegistrationDetails } from '../../models/registration-details';
 import {RegistrationsService} from '../../services/registrations.service';
 import {Component, OnInit} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
@@ -10,7 +11,7 @@ import {Router, ActivatedRoute} from '@angular/router';
 })
 export class RegistrationsDetailsComponent implements OnInit {
 
-  registration: RegistrationCRUD;
+  registration: RegistrationDetails;
 
   constructor(
     private route: ActivatedRoute,
@@ -28,6 +29,7 @@ export class RegistrationsDetailsComponent implements OnInit {
       this.registrationService.fetchDetails(params['id'])
         .then(registration => {
           this.registration = registration;
+          console.log(registration);
         });
     });
   }

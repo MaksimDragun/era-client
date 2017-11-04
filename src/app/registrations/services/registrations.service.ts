@@ -9,6 +9,7 @@ import {Benefit} from '../models/benefit';
 import {FundsSource} from '../models/funds-source';
 import {Registration} from '../models/registration';
 import {RegistrationCRUD} from '../models/registration-crud';
+import {RegistrationDetails} from '../models/registration-details';
 import {RegistrationPeriod} from '../models/registration-period';
 import {ReportTemplate} from '../models/report-template';
 import {Specialty} from '../models/specialty';
@@ -66,7 +67,7 @@ export class RegistrationsService {
     return this.api.get(RegistrationsService.fetchPeriodListUrl, defaultOptions());
   }
 
-  fetchDetails(id: number): Promise<RegistrationCRUD> {
+  fetchDetails(id: number): Promise<RegistrationDetails> {
     return this.api.get(`api/registrations/get-details/${id}`, defaultOptions());
   }
 

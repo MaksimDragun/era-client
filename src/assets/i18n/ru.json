@@ -105,7 +105,19 @@
 			}
 		},
 		"details": {
-			"title": "Информация о регистрации"
+			"title": "Информация о регистрации",
+			"certificate": "Аттестат",
+			"educational-institution": "Учреждение образования",
+			"enrollee": "Информация об абитуриенте",
+			"full-name": "Ф.И.О.",
+			"registered-by": "Кем зарегистрирован",
+			"registration-date": "Дата регистрации",
+			"registration-id": "Регистрационный номер",
+			"specialty-code": "Код специальности",
+			"specialty-name": "Специальность",
+			"specialty-qualification": "Квалификация",
+			"verified-by": "Кем верифицирован",
+			"verification-date": "Дата верификации"
 		},
 		"certificate": {
 			"add-certificate-title": "Редактирование аттестата",
@@ -216,6 +228,7 @@
 		"reset": "Сброс",
 		"save": "Сохранить",
 		"search": "Поиск",
+		"status": "Статус",
 		"view": "Посмотреть",
 		"multiselect": {
 			"all-selected": "Выбраны все значения",
