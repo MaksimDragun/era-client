@@ -25,9 +25,14 @@
 						{{'common.certificate' | translate}}
 					</a>
 				</li>
-				<li>
+				<li *ngIf="registration.educationBase === '11'">
 					<a data-toggle="tab" href="#examResultsTab">
 						{{'common.exam-results' | translate}}
+					</a>
+				</li>
+				<li *ngIf="registration.prerogatives && registration.prerogatives.length || registration.outOfCompetitions && registration.outOfCompetitions.length > 0">
+					<a data-toggle="tab" href="#benefitsTab">
+						{{'common.benefits' | translate}}
 					</a>
 				</li>
 			</ul>
@@ -65,6 +70,17 @@
 							<br/>
 						</div>
 						<app-exam-results-tab [examMarks]="registration.examSubjectMarks"></app-exam-results-tab>
+					</div>
+				</div>
+				<div id="benefitsTab" class="tab-pane fade in">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-xs-12">
+							<br/>
+						</div>
+						<app-benefits-tab
+							[prerogatives]="registration.prerogatives"
+							[outOfCompetitions]="registration.outOfCompetitions">
+						</app-benefits-tab>
 					</div>
 				</div>
 			</div>

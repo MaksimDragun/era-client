@@ -1,0 +1,28 @@
+<div *ngIf="prerogatives && prerogatives.length > 0" class="col-lg-3 col-md-3 col-xs-3">
+	<div class="panel panel-default">
+		<div class="panel-heading">{{'common.prerogatives' | translate}}</div>
+ 			<div class="panel-body">
+			<div class="col-lg-12 col-md-12 col-xs-12">
+				<ul class="list-group">
+				  	<li *ngFor="let p of prerogatives" class="list-group-item">
+				  		{{p}}
+				  	</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<div *ngIf="outOfCompetitions && outOfCompetitions.length > 0" class="col-lg-3 col-md-3 col-xs-3">
+	<div class="panel panel-default">
+		<div class="panel-heading">{{'common.out-of-competitions' | translate}}</div>
+ 			<div class="panel-body">
+			<div class="col-lg-12 col-md-12 col-xs-12">
+				<ul class="list-group">
+				  	<li *ngFor="let o of outOfCompetitions" class="list-group-item">
+				  		{{o}}
+				  	</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

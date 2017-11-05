@@ -1,4 +1,5 @@
 import {SharedModule} from '../shared/shared.module';
+import {BenefitsTabComponent} from './component/details/benefits-tab.component';
 import {CertificateInfoTabComponent} from './component/details/certificate-info-tab.component';
 import {ExamResultsTabComponent} from './component/details/exam-results-tab.component';
 import {PersonInfoTabComponent} from './component/details/person-info-tab.component';
@@ -23,6 +24,7 @@ import {RegistrationsService} from './services/registrations.service';
     RegistrationsRoutingModule
   ],
   declarations: [
+    BenefitsTabComponent,
     CertificateInfoTabComponent,
     EditCertificateModalComponent,
     EditExamSubjectsModalComponent,
