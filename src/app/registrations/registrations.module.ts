@@ -1,6 +1,9 @@
 import {SharedModule} from '../shared/shared.module';
+import {CertificateInfoTabComponent} from './component/details/certificate-info-tab.component';
+import {ExamResultsTabComponent} from './component/details/exam-results-tab.component';
 import {PersonInfoTabComponent} from './component/details/person-info-tab.component';
-import {RegistrationsDetailsComponent} from './component/details/registration-details.component';
+import {RegistrationDetailsComponent} from './component/details/registration-details.component';
+import {RegistrationInfoPanelComponent} from './component/details/registration-info-panel.component';
 import {FormsModule} from '@angular/forms';
 import {NgModule} from '@angular/core';
 
@@ -20,11 +23,14 @@ import {RegistrationsService} from './services/registrations.service';
     RegistrationsRoutingModule
   ],
   declarations: [
+    CertificateInfoTabComponent,
     EditCertificateModalComponent,
     EditExamSubjectsModalComponent,
     EditPayerModalComponent,
+    ExamResultsTabComponent,
     PersonInfoTabComponent,
-    RegistrationsDetailsComponent,
+    RegistrationDetailsComponent,
+    RegistrationInfoPanelComponent,
     RegistrationPeriodListComponent,
     RegistrationsCreateComponent,
     RegistrationsListComponent

@@ -1,5 +1,5 @@
 import {AuthGuard} from '../core/auth/auth.guard';
-import {RegistrationsDetailsComponent} from './component/details/registration-details.component';
+import {RegistrationDetailsComponent} from './component/details/registration-details.component';
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 
@@ -16,7 +16,7 @@ import {RegistrationsListComponent} from './component/registrations-list.compone
     },
     {
       path: 'details/:id',
-      component: RegistrationsDetailsComponent,
+      component: RegistrationDetailsComponent,
       canActivate: [AuthGuard]
     },
     {

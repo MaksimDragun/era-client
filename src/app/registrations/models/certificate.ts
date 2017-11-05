@@ -6,5 +6,5 @@ export class Certificate {
   year: number;
   institution: string;
   country: string;
-  marks: Map<String, number>;
+  marks: {subject: SubjectCRUD, mark: number}[];
 }

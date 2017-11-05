@@ -1,3 +1,4 @@
+import {ExamSubjectCRUD} from '../../core/certificates/exam-subject-crud';
 import {Certificate} from './certificate';
 import {PersonCRUD} from './person-crud';
 import {Specialty} from './specialty';
@@ -22,7 +23,7 @@ export class RegistrationDetails {
   outOfCompetitions: string[];
 
   certificate: Certificate;
-  examSubjectMarks: Map<String, number>;
+  examSubjectMarks: {subject: ExamSubjectCRUD, mark: number}[];
 
   registrationDate: Date;
   registeredById: number;

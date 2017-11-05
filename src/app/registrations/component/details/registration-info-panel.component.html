@@ -1,0 +1,84 @@
+<div class="row">
+	<div class="col-lg-4 col-md-4 col-xs-12">
+		<div class="form-group">
+			<label>{{'common.education-institution' | translate}}</label>
+			<div>{{registration.educationInstitution}}</div>
+		</div>
+	</div>
+	<div class="col-lg-4 col-md-4 col-xs-12">
+		<div class="form-group">
+			<label>{{'common.specialty' | translate}}</label>
+			<div>{{registration.specialty.name}}</div>
+		</div>
+	</div>
+	<div class="col-lg-2 col-md-2 col-xs-12">
+		<div class="form-group">
+			<label>{{'common.specialty-code' | translate}}</label>
+			<div>{{registration.specialty.code}}</div>
+		</div>
+	</div>
+	<div class="col-lg-2 col-md-2 col-xs-12">
+		<div class="form-group">
+			<label>{{'common.qualification' | translate}}</label>
+			<div>{{registration.specialty.qualification}}</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-2 col-md-2 col-xs-12">
+		<div class="form-group">
+			<label>{{'common.registration-id' | translate}}</label>
+			<div>{{registration.registrationId}}</div>
+		</div>
+	</div>
+	<div class="col-lg-2 col-md-2 col-xs-12">
+		<div class="form-group">
+			<label>{{'registrations.funds-source.title' | translate}}</label>
+			<div>{{'registrations.funds-source.' + registration.fundsSource | translate}}</div>
+		</div>
+	</div>
+	<div class="col-lg-2 col-md-2 col-xs-12">
+		<div class="form-group">
+			<label>{{'registrations.education-base.title' | translate}}</label>
+			<div>{{'registrations.education-base.' + registration.educationBase | translate}}</div>
+		</div>
+	</div>
+	<div class="col-lg-2 col-md-2 col-xs-12">
+		<div class="form-group">
+			<label>{{'registrations.education-form.title' | translate}}</label>
+			<div>{{'registrations.education-form.' + registration.educationForm | translate}}</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-2 col-md-2 col-xs-12">
+		<div class="form-group">
+			<label>{{'common.registered-by' | translate}}</label>
+			<div>{{registration.registeredBy}}</div>
+		</div>
+	</div>
+	<div class="col-lg-2 col-md-2 col-xs-12">
+		<div class="form-group">
+			<label>{{'common.registration-date' | translate}}</label>
+			<div>{{registration.registrationDate | date: 'dd.MM.yyyy HH:mm:ss'}}</div>
+		</div>
+	</div>
+	<div class="col-lg-2 col-md-2 col-xs-12">
+		<div class="form-group">
+			<label>{{'common.status' | translate}}</label>
+			<div>{{'registrations.status.'+ registration.status | translate}}</div>
+		</div>
+	</div>
+	<div *ngIf="registration.verifiedBy" class="col-lg-2 col-md-2 col-xs-12">
+		<div class="form-group">
+			<label>{{'common.verified-by' | translate}}</label>
+			<div>{{registration.verifiedBy}}</div>
+		</div>
+	</div>
+	<div *ngIf="registration.verificationDate" class="col-lg-2 col-md-2 col-xs-12">
+		<div class="form-group">
+			<label>{{'common.verification-date' | translate}}</label>
+			<div>{{registration.verificationDate | date: 'dd.MM.yyyy HH:mm:ss'}}</div>
+		</div>
+	</div>
+</div>

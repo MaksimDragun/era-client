@@ -1,0 +1,40 @@
+<div *ngIf="certificate" class="col-lg-3 col-md-3 col-xs-3">
+	<div class="panel panel-default">
+		<div class="panel-heading">{{'common.general-info' | translate}}</div>
+ 			<div class="panel-body">
+			<div class="col-lg-12 col-md-12 col-xs-12">
+				<div class="form-group">
+					<label>{{'common.education-institution' | translate}}</label>
+					<div>{{certificate.institution}}</div>
+				</div>
+			</div>
+			<div class="col-lg-12 col-md-12 col-xs-12">
+				<div class="form-group">
+					<label>{{'common.address.country' | translate}}</label>
+					<div>{{'country.' + certificate.country | translate}}</div>
+				</div>
+			</div>
+			<div class="col-lg-12 col-md-12 col-xs-12">
+				<div class="form-group">
+					<label>{{'common.year' | translate}}</label>
+					<div>{{certificate.year}}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div *ngIf="certificate" class="col-lg-9 col-md-9 col-xs-9">
+	<div class="panel panel-default">
+		<div class="panel-heading">{{'common.marks' | translate}} ({{'common.average-mark' | translate}}: {{averageMark | number: '.3'}})</div>
+ 			<div class="panel-body">
+			<div *ngFor="let group of markGroups" class="col-lg-4 col-md-4 col-xs-4">
+				<table class="table table-striped">
+					<tr *ngFor="let sm of group">
+						<td>{{sm.subject.title}}</td>
+						<td>{{sm.mark}}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

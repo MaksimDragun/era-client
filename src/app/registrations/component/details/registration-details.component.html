@@ -7,105 +7,27 @@
 	</div>
 	<hr/>
 	<div *ngIf="registration" class="col-lg-12 col-md-12 col-xs-12">
-		<div class="row">
-			<div class="col-lg-4 col-md-4 col-xs-12">
-				<div class="form-group">
-					<label>{{'registrations.details.educational-institution' | translate}}</label>
-					<div>{{registration.educationInstitution}}</div>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-4 col-xs-12">
-				<div class="form-group">
-					<label>{{'registrations.details.specialty-name' | translate}}</label>
-					<div>{{registration.specialty.name}}</div>
-				</div>
-			</div>
-			<div class="col-lg-2 col-md-2 col-xs-12">
-				<div class="form-group">
-					<label>{{'registrations.details.specialty-code' | translate}}</label>
-					<div>{{registration.specialty.code}}</div>
-				</div>
-			</div>
-			<div class="col-lg-2 col-md-2 col-xs-12">
-				<div class="form-group">
-					<label>{{'registrations.details.specialty-qualification' | translate}}</label>
-					<div>{{registration.specialty.qualification}}</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-2 col-md-2 col-xs-12">
-				<div class="form-group">
-					<label>{{'registrations.details.registration-id' | translate}}</label>
-					<div>{{registration.registrationId}}</div>
-				</div>
-			</div>
-			<div class="col-lg-2 col-md-2 col-xs-12">
-				<div class="form-group">
-					<label>{{'registrations.funds-source.title' | translate}}</label>
-					<div>{{'registrations.funds-source.' + registration.fundsSource | translate}}</div>
-				</div>
-			</div>
-			<div class="col-lg-2 col-md-2 col-xs-12">
-				<div class="form-group">
-					<label>{{'registrations.education-base.title' | translate}}</label>
-					<div>{{'registrations.education-base.' + registration.educationBase | translate}}</div>
-				</div>
-			</div>
-			<div class="col-lg-2 col-md-2 col-xs-12">
-				<div class="form-group">
-					<label>{{'registrations.education-form.title' | translate}}</label>
-					<div>{{'registrations.education-form.' + registration.educationForm | translate}}</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-2 col-md-2 col-xs-12">
-				<div class="form-group">
-					<label>{{'registrations.details.registered-by' | translate}}</label>
-					<div>{{registration.registeredBy}}</div>
-				</div>
-			</div>
-			<div class="col-lg-2 col-md-2 col-xs-12">
-				<div class="form-group">
-					<label>{{'registrations.details.registration-date' | translate}}</label>
-					<div>{{registration.registrationDate | date: 'dd.MM.yyyy HH:mm:ss'}}</div>
-				</div>
-			</div>
-			<div class="col-lg-2 col-md-2 col-xs-12">
-				<div class="form-group">
-					<label>{{'common.status' | translate}}</label>
-					<div>{{'registrations.status.'+ registration.status | translate}}</div>
-				</div>
-			</div>
-			<div *ngIf="registration.verifiedBy" class="col-lg-2 col-md-2 col-xs-12">
-				<div class="form-group">
-					<label>{{'registrations.details.verified-by' | translate}}</label>
-					<div>{{registration.verifiedBy}}</div>
-				</div>
-			</div>
-			<div *ngIf="registration.verificationDate" class="col-lg-2 col-md-2 col-xs-12">
-				<div class="form-group">
-					<label>{{'registrations.details.verification-date' | translate}}</label>
-					<div>{{registration.verificationDate | date: 'dd.MM.yyyy HH:mm:ss'}}</div>
-				</div>
-			</div>
-		</div>
+		<app-registration-info-panel [registration]="registration"></app-registration-info-panel>
 		<div class="row">
 			<ul class="nav nav-tabs">
 				<li class="active">
 					<a data-toggle="tab" href="#enrolleeTab">
-						{{'registrations.details.enrollee' | translate}}
+						{{'common.enrollee' | translate}}
 					</a>
 				</li>
 				<li *ngIf="registration.fundsSource === 'P'">
 					<a data-toggle="tab" href="#payerTab">
-						{{'registrations.details.enrollee' | translate}}
+						{{'common.payer' | translate}}
 					</a>
 				</li>
 				<li>
 					<a data-toggle="tab" href="#certificateTab">
-						{{'registrations.details.certificate' | translate}}
+						{{'common.certificate' | translate}}
+					</a>
+				</li>
+				<li>
+					<a data-toggle="tab" href="#examResultsTab">
+						{{'common.exam-results' | translate}}
 					</a>
 				</li>
 			</ul>
@@ -130,7 +52,20 @@
 					</div>
 				</div>
 				<div id="certificateTab" class="tab-pane fade in">
-					Certificate
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-xs-12">
+							<br/>
+						</div>
+						<app-certificate-info-tab [certificate]="registration.certificate"></app-certificate-info-tab>
+					</div>
+				</div>
+				<div id="examResultsTab" class="tab-pane fade in">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-xs-12">
+							<br/>
+						</div>
+						<app-exam-results-tab [examMarks]="registration.examSubjectMarks"></app-exam-results-tab>
+					</div>
 				</div>
 			</div>
 		</div>

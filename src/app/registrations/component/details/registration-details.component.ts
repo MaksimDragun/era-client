@@ -9,7 +9,7 @@ import {Router, ActivatedRoute} from '@angular/router';
   selector: module.id,
   templateUrl: './registration-details.component.html'
 })
-export class RegistrationsDetailsComponent implements OnInit {
+export class RegistrationDetailsComponent implements OnInit {
 
   registration: RegistrationDetails;
 

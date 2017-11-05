@@ -1,0 +1,15 @@
+<div *ngIf="examMarks" class="col-lg-3 col-md-3 col-xs-3">
+	<div class="panel panel-default">
+		<div class="panel-heading">{{'common.exam-results-short' | translate}} ({{'common.sum' | translate}}: {{averageMark}})</div>
+ 			<div class="panel-body">
+			<div class="col-lg-12 col-md-12 col-xs-12">
+				<table class="table table-striped">
+					<tr *ngFor="let sm of examMarks">
+						<td>{{sm.subject.title}}</td>
+						<td>{{sm.mark}}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
