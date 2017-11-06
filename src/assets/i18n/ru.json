@@ -77,7 +77,9 @@
 				"enrollee-as-payer": "Абитуриент сам оплатит обучение"
 			},
 			"messages": {
-				"success-created": "Абитуриент успешно зарегистрирован! Номер абитуриента: {{registrationId}}"
+				"success-created": "Абитуриент успешно зарегистрирован! Номер абитуриента: {{registrationId}}",
+				"success-approved": "Верификация данных абитуриента «{{fullName}}» прошла успешно!",
+				"success-cancelled": "Абитуриент «{{fullName}}» успешно забрал документы!"
 			}
 		},
 		"list": {
@@ -105,7 +107,9 @@
 			}
 		},
 		"details": {
-			"title": "Информация о регистрации"
+			"title": "Информация о регистрации",
+			"confirmation-approval": "Вы согласны с тем, что все данные введены правильно?",
+			"confirmation-cancel": "Данным действием Вы подтверждаете, что абитуриент забрал документы и более не учавствует во вступительной кампании"
 		},
 		"certificate": {
 			"add-certificate-title": "Редактирование аттестата",
@@ -216,6 +220,7 @@
 		"create": "Создать",
 		"delete": "Удалить",
 		"download": "Скачать",
+		"download-contract": "Скачать договор",
 		"edit": "Редактировать",
 		"education-institution": "Учреждение образования",
 		"email": "E-mail",
@@ -224,6 +229,7 @@
 		"exam-results-short": "ЦТ",
 		"first-name": "Имя",
 		"general-info": "Общая информация",
+		"give-back-documents": "Забрать документы",
 		"ignore-warnings": "Игнорировать предупреждения?",
 		"last-name": "Фамилия",
 		"marks": "Отметки",
@@ -246,6 +252,7 @@
 		"sum": "Сумма",
 		"verified-by": "Кем верифицирован",
 		"verification-date": "Дата верификации",
+		"verify": "Верифицировать",
 		"view": "Посмотреть",
 		"year": "Год",
 		"address": {
@@ -290,6 +297,9 @@
 		},
 		"action": {
 			"ROLE_ADMIN_VIEW": "Просмотр",
+			"ROLE_REGISTRATIONS_ACCEPT": "Зачисление",
+			"ROLE_REGISTRATIONS_APPROVE": "Верификация",
+			"ROLE_REGISTRATIONS_CANCEL": "Отмена",
 			"ROLE_REGISTRATIONS_VIEW": "Просмотр",
 			"ROLE_REGISTRATIONS_CREATE": "Регистрирование",
 			"ROLE_REGISTRATIONS_DELETE": "Удаление",
@@ -302,6 +312,17 @@
 	},
 	"validation": {
 		"registration": {
+			"approve": {
+				"registration-not-exist": "Регистрация с таким номером не существует!",
+				"registration-is-in-different-institution": "Вы не моджете верефицировать регистрацию в другом учебном заведении!",
+				"registration-is-in-incorrect-status": "Регистрация должна иметь статус «Не верефицирован»!",
+				"registration-couldnt-be-approved-by-initiator": "Инициатор регистрации не может верефицировать запись!"
+			},
+			"cancel": {
+				"registration-not-exist": "Регистрация с таким номером не существует!",
+				"registration-is-in-different-institution": "Вы не моджете верефицировать регистрацию в другом учебном заведении!",
+				"registration-is-in-incorrect-status": "Абитуриент уже забрал документы!"
+			},
 			"education-institution-is-empty": "Не сделан выбор для поля «Учреждение образования»",
 			"education-institution-is-wrong": "Выбранное учреждение образования недоступно для регистрации",
 			"specialty-is-empty": "Не сделан выбор для поля «Специальность»",

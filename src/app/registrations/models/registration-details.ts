@@ -4,6 +4,7 @@ import {PersonCRUD} from './person-crud';
 import {Specialty} from './specialty';
 export class RegistrationDetails {
   id: number;
+  version: number;
   registrationId: number;
   status: string;
   note: string;

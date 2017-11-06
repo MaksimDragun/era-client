@@ -21,6 +21,8 @@ const STUDY_TYPES = [{name: 'A', value: null}, {name: 'B', value: 'B'}, {name: '
 @Injectable()
 export class RegistrationsService {
 
+  static approveRegistrationUrl = 'api/registrations/approve';
+  static cancelRegistrationUrl = 'api/registrations/cancel';
   static createRegistrationUrl = 'api/registrations/create';
   static fetchActivePeriodUrl = 'api/registrations/get-active-periods';
   static fetchPeriodListUrl = 'api/registrations/get-periods';
@@ -71,4 +73,11 @@ export class RegistrationsService {
     return this.api.get(`api/registrations/get-details/${id}`, defaultOptions());
   }
 
+  approveRegistration(registration: RegistrationCRUD): Promise<RegistrationCRUD> {
+    return this.api.post(RegistrationsService.approveRegistrationUrl, registration, defaultOptions());
+  }
+
+   cancelRegistration(registration: RegistrationCRUD): Promise<RegistrationCRUD> {
+    return this.api.post(RegistrationsService.cancelRegistrationUrl, registration, defaultOptions());
+  }
 }

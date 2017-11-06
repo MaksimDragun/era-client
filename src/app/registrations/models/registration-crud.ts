@@ -7,6 +7,7 @@ import {FundsSource} from './funds-source';
 
 export class RegistrationCRUD extends AbstractCRUD {
   registrationId: number;
+  status: string;
   fundsSource: string;
   educationForm: string;
   educationBase: string;
