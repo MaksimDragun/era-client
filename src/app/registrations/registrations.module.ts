@@ -15,6 +15,7 @@ import {EditExamSubjectsModalComponent} from './component/edit/common/edit-exam-
 import {EditPayerModalComponent} from './component/edit/common/edit-payer-modal.component';
 import {EditRegistrationDetailsComponent} from './component/edit/common/edit-registration-details.component';
 import {RegistrationsCreateComponent} from './component/edit/registration-create.component';
+import {RegistrationUpdateComponent} from './component/edit/registration-update.component';
 import {RegistrationPeriodListComponent} from './component/registration-period-list.component';
 import {RegistrationsListComponent} from './component/registrations-list.component';
 import {RegistrationsService} from './services/registrations.service';
@@ -38,6 +39,7 @@ import {RegistrationsService} from './services/registrations.service';
     RegistrationDetailsComponent,
     RegistrationInfoPanelComponent,
     RegistrationPeriodListComponent,
+    RegistrationUpdateComponent,
     RegistrationsCreateComponent,
     RegistrationsListComponent
   ],

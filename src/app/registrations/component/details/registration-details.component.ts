@@ -46,6 +46,7 @@ export class RegistrationDetailsComponent implements OnInit {
   }
 
   setButtonState(): void {
+    this.isEditBtnDisabled = false;
     this.isDownloadBtnDisabled = UNCOMPLETE.value === this.registration.status || CANCELED.value === this.registration.status;
     this.isCancelBtnDisabled = ACCEPTED.value === this.registration.status || CANCELED.value === this.registration.status;
     this.isVerificationBtnDisabled = NOT_VERIFIED.value !== this.registration.status;
@@ -60,7 +61,7 @@ export class RegistrationDetailsComponent implements OnInit {
   }
 
   edit(): void {
-    console.log('edit registration');
+    this.router.navigate([`/registrations/update/${this.registration.id}`]);
   }
 
   approve(): void {

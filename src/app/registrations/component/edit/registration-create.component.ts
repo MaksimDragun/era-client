@@ -5,10 +5,9 @@ import {TitleService} from '../../../core/services/title.service';
 import {RegistrationCRUD} from '../../models/registration-crud';
 import {RegistrationsService} from '../../services/registrations.service';
 import {AbstractRegistrationEditComponent} from './common/abstract-registration-edit.component';
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
-import {IMultiSelectOption, IMultiSelectSettings, IMultiSelectTexts} from 'angular-2-dropdown-multiselect';
 
 @Component({
   selector: module.id,

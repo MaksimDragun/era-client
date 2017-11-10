@@ -71,6 +71,8 @@
 			"street": "Улица",
 			"title-create": "Регистрация нового абитуриента",
 			"title-create-with-period": "Регистрация нового абитуриента: {{period}}",
+			"title-update": "Регистрация нового абитуриента",
+			"title-update-with-period": "Регистрация нового абитуриента: {{period}}",
 			"zip-code": "Индекс",
 			"payer": {
 				"title": "Информация о плательщике",
@@ -78,6 +80,7 @@
 			},
 			"messages": {
 				"success-created": "Абитуриент успешно зарегистрирован! Номер абитуриента: {{registrationId}}",
+				"success-updated": "Абитуриент под номером {{registrationId}} успешно обновлен!",
 				"success-approved": "Верификация данных абитуриента «{{fullName}}» прошла успешно!",
 				"success-cancelled": "Абитуриент «{{fullName}}» успешно забрал документы!"
 			}
