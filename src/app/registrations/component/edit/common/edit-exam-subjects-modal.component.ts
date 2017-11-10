@@ -1,4 +1,4 @@
-import {ExamSubjectCRUD} from '../../core/certificates/exam-subject-crud';
+import {ExamSubjectCRUD} from '../../../../core/certificates/exam-subject-crud';
 import {Component, EventEmitter, Input, OnInit, OnChanges, Output, SimpleChange, SimpleChanges} from '@angular/core';
 
 import {Observable} from 'rxjs/Rx';

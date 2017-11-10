@@ -1,10 +1,9 @@
+import {CertificationService} from '../../../../core/certificates/certification.service';
+import {SubjectCRUD} from '../../../../core/certificates/subject-crud';
+import {EducationInstitution} from '../../../../core/institution/education-institution';
+import {EducationInstitutionService} from '../../../../core/institution/education-institution.service';
+import {CertificateCRUD} from '../../../models/certificate-crud';
 import {Component, EventEmitter, Input, OnInit, OnChanges, Output, SimpleChange, SimpleChanges} from '@angular/core';
-import {CertificationService} from '../../core/certificates/certification.service';
-
-import {SubjectCRUD} from '../../core/certificates/subject-crud';
-import {EducationInstitution} from '../../core/institution/education-institution';
-import {EducationInstitutionService} from '../../core/institution/education-institution.service';
-import {CertificateCRUD} from '../models/certificate-crud';
 import {Observable} from 'rxjs/Rx';
 
 @Component({
@@ -26,6 +25,7 @@ export class EditCertificateModalComponent implements OnInit, OnChanges {
   extraSubject: SubjectCRUD;
 
   averageMark = 0;
+  @Output() averageMarkChanged: EventEmitter<number> = new EventEmitter();
 
   subjectMarkMask = [/[0-9]/, /[0-9]/];
 
@@ -220,5 +220,6 @@ export class EditCertificateModalComponent implements OnInit, OnChanges {
       }
     });
     this.averageMark = sum && count ? sum / count : 0;
+    this.averageMarkChanged.emit(this.averageMark);
   }
 }

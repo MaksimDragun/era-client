@@ -1,10 +1,10 @@
 import {AuthGuard} from '../core/auth/auth.guard';
 import {RegistrationDetailsComponent} from './component/details/registration-details.component';
+import { RegistrationsCreateComponent } from './component/edit/registration-create.component';
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 
 import {RegistrationPeriodListComponent} from './component/registration-period-list.component';
-import {RegistrationsCreateComponent} from './component/registrations-create.component';
 import {RegistrationsListComponent} from './component/registrations-list.component';
 
 @NgModule({

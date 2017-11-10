@@ -1,4 +1,4 @@
-import {PersonCRUD} from '../models/person-crud';
+import {PersonCRUD} from '../../../models/person-crud';
 import {Component, EventEmitter, Input, OnChanges, Output, SimpleChange, SimpleChanges} from '@angular/core';
 
 @Component({

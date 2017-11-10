@@ -1,0 +1,31 @@
+<form *ngIf="registration" (ngSubmit)="submitRegistration()" #f="ngForm">
+	<div class="row">
+		<div class="col-lg-7 col-md-8 col-xs-12">
+			<app-edit-enrollee
+				[enrollee]="registration.enrollee"
+				[countryList]="countryList"
+				[documentTypeList]="documentTypeList">
+			</app-edit-enrollee>
+		</div>
+		<div class="col-lg-5 col-md-4 col-xs-12">
+			<app-edit-registration-details
+				#editRegistrationDetails
+				[registration]="registration"
+				[complexTitle]="'registrations.crud.title-create-with-period'"
+				[countryList]="countryList"
+				[documentTypeList]="documentTypeList">
+			</app-edit-registration-details>
+		</div>
+		<div class="form-group col-lg-12 col-md-12 col-xs-12">
+			<div class="col-lg-2 col-md-2 col-xs-6">
+	        	<button type="submit" [disabled]="loading" class="btn btn-primary">{{'registrations.crud.register' | translate}}</button>
+				<app-loading *ngIf="loading" [loading]="loading"></app-loading>
+			</div>
+			<div *ngIf="onlyWarnings" class="col-lg-3 col-md-3 col-xs-6">
+				<div class="checkbox">
+				  <label><input type="checkbox" [(ngModel)]="registration.ignoreWarnings" name="ignoreWarnings">{{'common.ignore-warnings' | translate}}</label>
+				</div>
+			</div>
+      	</div>
+	</div>
+</form>
