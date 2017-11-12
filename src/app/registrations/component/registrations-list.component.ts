@@ -102,7 +102,7 @@ export class RegistrationsListComponent implements OnInit {
   }
 
   navigateToDetails(registrationId: number): void {
-    this.router.navigate([`/registrations/details/${registrationId}`]);
+    this.router.navigate([`/registration/registrations/details/${registrationId}`]);
   }
 
 }

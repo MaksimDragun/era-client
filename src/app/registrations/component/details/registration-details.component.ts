@@ -61,7 +61,7 @@ export class RegistrationDetailsComponent implements OnInit {
   }
 
   edit(): void {
-    this.router.navigate([`/registrations/update/${this.registration.id}`]);
+    this.router.navigate([`/registration/registrations/update/${this.registration.id}`]);
   }
 
   approve(): void {
@@ -85,7 +85,7 @@ export class RegistrationDetailsComponent implements OnInit {
             },
             expired: false
           });
-        this.router.navigate(['/registrations/list']);
+        this.router.navigate(['/registration/registrations/list']);
         this.loading = false;
       })
       .catch(error => {
@@ -114,7 +114,7 @@ export class RegistrationDetailsComponent implements OnInit {
             },
             expired: false
           });
-        this.router.navigate(['/registrations/list']);
+        this.router.navigate(['/registration/registrations/list']);
         this.loading = false;
       })
       .catch(error => {

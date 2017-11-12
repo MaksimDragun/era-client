@@ -2,14 +2,14 @@ import { MenuItem } from './menu-item';
 
 export const mainMenu: MenuItem[] = [
   {
-    action: '/registrations',
+    action: '/registration',
     title: 'main.menu.registrations.main',
     authorities: [
       'ROLE_REGISTRATIONS_VIEW'
     ],
     subMenu: [
       {
-        action: '/registrations/list',
+        action: '/registration/registrations',
         title: 'main.menu.registrations.list',
         authorities: [
           'ROLE_REGISTRATIONS_VIEW'
@@ -17,19 +17,11 @@ export const mainMenu: MenuItem[] = [
         subMenu: []
       },
       {
-        action: '/registrations/create',
-        title: 'main.menu.registrations.create',
-        authorities: [
-          'ROLE_REGISTRATIONS_CREATE'
-        ],
-        subMenu: []
-      },
-      {
-        action: '/registrations/periods',
+        action: '/registration/periods',
         title: 'main.menu.registrations.periods',
         authorities: [],
         subMenu: []
-      }
+      } 
     ]
   },
   {

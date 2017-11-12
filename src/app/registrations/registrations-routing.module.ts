@@ -11,22 +11,22 @@ import {RegistrationsListComponent} from './component/registrations-list.compone
 @NgModule({
   imports: [RouterModule.forChild([
     {
-      path: 'list',
+      path: 'registrations',
       component: RegistrationsListComponent,
       canActivate: [AuthGuard]
     },
     {
-      path: 'details/:id',
+      path: 'registrations/details/:id',
       component: RegistrationDetailsComponent,
       canActivate: [AuthGuard]
     },
     {
-      path: 'update/:id',
+      path: 'registrations/update/:id',
       component: RegistrationUpdateComponent,
       canActivate: [AuthGuard]
     },
     {
-      path: 'create',
+      path: 'registrations/create',
       component: RegistrationsCreateComponent,
       canActivate: [AuthGuard]
     },

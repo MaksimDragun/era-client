@@ -12,7 +12,7 @@ export const mainRoutes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
-        path: 'registrations',
+        path: 'registration',
         loadChildren: 'app/registrations/registrations.module#RegistrationsModule',
         canActivate: [AuthGuard]
       },
