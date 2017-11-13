@@ -23,11 +23,11 @@
 					{{'common.back' | translate}}
 				</button>
 			</div>
-			<div class="col-lg-2 col-md-2 col-xs-6">
-	        	<button type="submit" [disabled]="loading" class="btn btn-primary">{{'common.save' | translate}}</button>
+			<div class="col-lg-2 col-md-2 col-xs-6 pull-right">
+	        	<button type="submit" [disabled]="loading" class="btn btn-primary pull-right">{{'common.save' | translate}}</button>
 				<app-loading *ngIf="loading" [loading]="loading"></app-loading>
 			</div>
-			<div *ngIf="onlyWarnings" class="col-lg-3 col-md-3 col-xs-6">
+			<div *ngIf="onlyWarnings" class="col-lg-3 col-md-3 col-xs-6 pull-right">
 				<div class="checkbox">
 				  <label><input type="checkbox" [(ngModel)]="registration.ignoreWarnings" name="ignoreWarnings">{{'common.ignore-warnings' | translate}}</label>
 				</div>

@@ -17,7 +17,7 @@
 			<ul *ngIf="mainMenu" class="nav navbar-nav navbar-left">
 				<li *ngFor="let menuItem of mainMenu"
 					[class.active]="isMenuActive(menuItem.action)">
-					<a [routerLink]="[menuItem.action]">{{menuItem.title | translate}}</a>
+					<a [routerLink]="[menuItem.subMenu[0] ? menuItem.subMenu[0].action : menuItem.action]">{{menuItem.title | translate}}</a>
 				</li>
 			</ul>
 			<button type="button" (click)="logout()" class="btn btn-default navbar-btn navbar-right" style="margin-right: 0px">

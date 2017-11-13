@@ -10,7 +10,7 @@ export const mainMenu: MenuItem[] = [
     subMenu: [
       {
         action: '/registration/registrations',
-        title: 'main.menu.registrations.list',
+        title: 'main.menu.registrations.registrations',
         authorities: [
           'ROLE_REGISTRATIONS_VIEW'
         ],

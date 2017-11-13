@@ -34,10 +34,6 @@ import {RegistrationsListComponent} from './component/registrations-list.compone
       path: 'periods',
       component: RegistrationPeriodListComponent,
       canActivate: [AuthGuard]
-    },
-    {
-      path: '**',
-      redirectTo: 'list'
     }
   ])],
   exports: [RouterModule]

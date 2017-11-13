@@ -19,8 +19,7 @@
 		"menu": {
 			"registrations": {
 				"main": "Регистрирование",
-				"list": "Список регистраций",
-				"create": "Новая регистрация",
+				"registrations": "Регистрации",
 				"periods": "Периоды регистрации"
 			},
 			"settings": {
@@ -237,6 +236,7 @@
 		"last-name": "Фамилия",
 		"marks": "Отметки",
 		"middle-name": "Отчество",
+		"new-registration": "Новая регистрация",
 		"out-of-competitions": "Вне конкурса",
 		"payer": "Плательшик",
 		"personal-info": "Личная информация",

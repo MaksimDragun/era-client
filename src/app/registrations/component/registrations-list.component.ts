@@ -101,6 +101,10 @@ export class RegistrationsListComponent implements OnInit {
     this.registrationsService.downloadReport(contractId);
   }
 
+  navigateToCreate(registrationId: number): void {
+    this.router.navigate([`/registration/registrations/create`]);
+  }
+
   navigateToDetails(registrationId: number): void {
     this.router.navigate([`/registration/registrations/details/${registrationId}`]);
   }

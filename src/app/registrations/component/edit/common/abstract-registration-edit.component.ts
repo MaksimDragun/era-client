@@ -81,7 +81,7 @@ export abstract class AbstractRegistrationEditComponent implements OnInit {
 
     this.submit().then(result => {
       this.messagesService.addMessage(this.getSuccessMessage(result));
-      this.router.navigate(['/registrations/list']);
+      this.navigateBack();
       this.loading = false;
     }).catch((error: {issues: Issue[], error: any}) => {
       let warnings = 0;
@@ -101,4 +101,12 @@ export abstract class AbstractRegistrationEditComponent implements OnInit {
   }
 
   protected abstract submit(): Promise<RegistrationCRUD>;
+
+  navigateBackToList(): void {
+    this.navigateBack();
+  }
+
+  navigateBack(): void {
+    this.router.navigate(['/registration/registrations']);
+  }
 }
