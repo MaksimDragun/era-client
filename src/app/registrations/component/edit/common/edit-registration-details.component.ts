@@ -38,7 +38,9 @@ export class EditRegistrationDetailsComponent implements OnInit {
   msSettings: IMultiSelectSettings = {};
 
   prerogativeList: IMultiSelectOption[];
+  selectedPrerogatives: number[];
   outOfCompetitionList: IMultiSelectOption[];
+  selectedOutOfCompetitions: number[];
 
   constructor(
     protected messagesService: MessagesService,
@@ -56,6 +58,9 @@ export class EditRegistrationDetailsComponent implements OnInit {
         this.translate.get(this.complexTitle, {'period': this.selectedPeriod.title})
           .subscribe(str => this.titleService.setTitleKey(str));
         this.specialtyList = this.selectedPeriod.specialties;
+        if (this.registration.specialty && this.registration.specialty.id) {
+          this.selectedSpecialty = this.specialtyList.find(rs => rs.id === this.registration.specialty.id);
+        }
       } else {
         this.messagesService.addMessage({key: 'registrations.common.no-active-registration-period', msgType: MessageType.INFO});
       }
@@ -92,7 +97,7 @@ export class EditRegistrationDetailsComponent implements OnInit {
   onPeriodChanged(): void {
     this.specialtyList = this.selectedPeriod.specialties;
     this.selectedSpecialty = null;
-    this.registration.specialtyId = null;
+    this.registration.specialty = {id: null, name: '', qualification: '', code: ''};
     this.registration.educationBase = null;
     this.registration.educationForm = null;
     this.registration.fundsSource = null;

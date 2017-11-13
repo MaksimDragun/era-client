@@ -2,7 +2,6 @@ import {MessageType} from '../../../core/messages/message';
 import {MessagesService} from '../../../core/messages/messages.service';
 import {TitleService} from '../../../core/services/title.service';
 import {RegistrationCRUD} from '../../models/registration-crud';
-import {RegistrationDetails} from '../../models/registration-details';
 import {ACCEPTED, UNCOMPLETE, CANCELED, NOT_VERIFIED} from '../../models/registration-status';
 import {RegistrationsService} from '../../services/registrations.service';
 import {Component, OnInit} from '@angular/core';
@@ -14,7 +13,7 @@ import {Router, ActivatedRoute} from '@angular/router';
 })
 export class RegistrationDetailsComponent implements OnInit {
 
-  registration: RegistrationDetails;
+  registration: RegistrationCRUD;
 
   isDownloadBtnDisabled = true;
   isEditBtnDisabled = true;
@@ -53,7 +52,7 @@ export class RegistrationDetailsComponent implements OnInit {
   }
 
   navigateBackToList(): void {
-    this.router.navigate(['/registrations/list']);
+    this.router.navigate(['/registration/registrations']);
   }
 
   downloadContract(): void {

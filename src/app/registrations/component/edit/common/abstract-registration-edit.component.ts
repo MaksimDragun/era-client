@@ -1,21 +1,19 @@
-import {ExamSubjectCRUD} from '../../../../core/certificates/exam-subject-crud';
-import {Issue} from '../../../../core/http/issue';
-import {MessageType, Message} from '../../../../core/messages/message';
-import {MessagesService} from '../../../../core/messages/messages.service';
-import {CountryService} from '../../../../core/services/country.service';
-import {TitleService} from '../../../../core/services/title.service';
-import {CertificateCRUD} from '../../../models/certificate-crud';
-import {L11} from '../../../models/education-base';
-import {PersonCRUD} from '../../../models/person-crud';
-import {RegisteredSpecialty} from '../../../models/registered-specialty';
-import {RegistrationCRUD} from '../../../models/registration-crud';
-import {RegistrationPeriod} from '../../../models/registration-period';
-import {RegistrationsService} from '../../../services/registrations.service';
-import {EditCertificateModalComponent} from './edit-certificate-modal.component';
+import { ExamSubjectCRUD } from '../../../../core/certificates/exam-subject-crud';
+import { Issue } from '../../../../core/http/issue';
+import { MessageType, Message } from '../../../../core/messages/message';
+import { MessagesService } from '../../../../core/messages/messages.service';
+import { CountryService } from '../../../../core/services/country.service';
+import { TitleService } from '../../../../core/services/title.service';
+import { CertificateCRUD } from '../../../models/certificate-crud';
+import { L11 } from '../../../models/education-base';
+import { PersonCRUD } from '../../../models/person-crud';
+import { RegistrationCRUD } from '../../../models/registration-crud';
+import { RegistrationsService } from '../../../services/registrations.service';
+import { EditCertificateModalComponent } from './edit-certificate-modal.component';
 import { EditRegistrationDetailsComponent } from './edit-registration-details.component';
-import {OnInit, ViewChild} from '@angular/core';
-import {Router} from '@angular/router';
-import {TranslateService} from '@ngx-translate/core';
+import { OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 export abstract class AbstractRegistrationEditComponent implements OnInit {
 
@@ -27,11 +25,6 @@ export abstract class AbstractRegistrationEditComponent implements OnInit {
 
   loading = false;
 
-  selectedPeriod: RegistrationPeriod;
-
-  specialtyList: RegisteredSpecialty[];
-  selectedSpecialty: RegisteredSpecialty;
-
   registration: RegistrationCRUD;
 
   onlyWarnings = false;
@@ -42,7 +35,7 @@ export abstract class AbstractRegistrationEditComponent implements OnInit {
     protected registrationsService: RegistrationsService,
     protected router: Router,
     protected titleService: TitleService,
-    protected translate: TranslateService) {}
+    protected translate: TranslateService) { }
 
   ngOnInit(): void {
     this.titleService.setTitleKey(this.getTitle());
@@ -72,18 +65,19 @@ export abstract class AbstractRegistrationEditComponent implements OnInit {
     this.loading = true;
     this.messagesService.reset();
     this.registration.periodId = this.editRegistrationDetails.selectedPeriod.id;
-    this.registration.educationInstitutionId = this.editRegistrationDetails.selectedPeriod.educationInstitution.id;
-    this.registration.specialtyId = this.editRegistrationDetails.selectedSpecialty && this.editRegistrationDetails.selectedSpecialty.id;
-
+    this.registration.educationInstitution = this.editRegistrationDetails.selectedPeriod.educationInstitution;
+    this.registration.specialty = this.editRegistrationDetails.selectedSpecialty && {id: this.editRegistrationDetails.selectedSpecialty.id, name: '', qualification: '', code: ''};
+    this.registration.prerogatives = this.editRegistrationDetails.selectedPrerogatives.map(p => {return {id: p, name: ''}});
+    this.registration.outOfCompetitions = this.editRegistrationDetails.selectedOutOfCompetitions.map(p => {return {id: p, name: ''}});
     if (this.registration.educationBase !== L11.value) {
       this.registration.examSubjectMarks = null;
     }
 
     this.submit().then(result => {
       this.messagesService.addMessage(this.getSuccessMessage(result));
-      this.navigateBack();
+      this.navigateBackToList();
       this.loading = false;
-    }).catch((error: {issues: Issue[], error: any}) => {
+    }).catch((error: { issues: Issue[], error: any }) => {
       let warnings = 0;
       let errors = 0;
       error.issues.forEach(issue => {
@@ -103,10 +97,10 @@ export abstract class AbstractRegistrationEditComponent implements OnInit {
   protected abstract submit(): Promise<RegistrationCRUD>;
 
   navigateBackToList(): void {
-    this.navigateBack();
+    this.router.navigate(['/registration/registrations']);
   }
 
   navigateBack(): void {
-    this.router.navigate(['/registration/registrations']);
+    this.navigateBackToList();
   }
 }

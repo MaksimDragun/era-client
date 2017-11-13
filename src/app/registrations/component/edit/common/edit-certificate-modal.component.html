@@ -65,7 +65,8 @@
 												<h4>{{subjectMark.subject.title}}</h4>
 											</div>
 											<div class="col-lg-2 col-md-2 col-xs-2">
-												<input [name]="'subject.' + subjectMark.subject.id"
+												<input *ngIf="subjectMark.subject"
+													[name]="'subject.' + subjectMark.subject.id"
 													[(ngModel)]="subjectMark.mark" value={{subjectMark.mark}}
 													(change)="calculateAverageMark()"
 													type="text" class="form-control"

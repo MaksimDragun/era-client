@@ -19,7 +19,8 @@
 						class="list-group-item">
 						<div class="row">
 							<div class="col-lg-10 col-md-10 col-xs-10">
-								<select [name]="'examSubject.' + subjectMark.subject.id"
+								<select *ngIf="examSubjects && examSubjects[i]"
+									[name]="'examSubject.' + subjectMark.subject.id"
 									[(ngModel)]="subjectMark.subject"
 									[disabled]="examSubjects[i].length === 1"
 									class="form-control">
