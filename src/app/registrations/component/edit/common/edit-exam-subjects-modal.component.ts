@@ -17,6 +17,8 @@ export class EditExamSubjectsModalComponent implements OnInit, OnChanges {
 
   subjectMarkMask = [/[0-9]/, /[0-9]/, /[0-9]/];
 
+  
+
   @Output() onSave: EventEmitter<{subject: ExamSubjectCRUD, mark: number}[]> = new EventEmitter();
 
   ngOnInit(): void {
@@ -24,19 +26,30 @@ export class EditExamSubjectsModalComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    console.log('change');
+    console.log(changes);
     let change: SimpleChange;
     change = changes['examSubjects'];
     if (change && change.currentValue) {
+      console.log('examSubjects changed');
       this.examSubjects = change.currentValue;
-      this.sourceExamSubjectMarks = this.examSubjects.map(es => {
-        return {subject: es[0], mark: null};
+      this.sourceExamSubjectMarks = this.examSubjects.map(ess => {
+        for (const es of ess) {
+          let esm = this.sourceExamSubjectMarks.find(esm => es.id === es.id);
+          if (esm) {
+            return {subject: esm.subject, mark: esm.mark};
+          }
+        }
+        return {subject: ess[0], mark: null};
       });
       this.resetExamSubjectMaks();
     }
     change = changes['sourceExamSubjectMarks'];
     if (change && change.currentValue) {
+      console.log('sourceexamSubjectsmarks changed');
       this.resetExamSubjectMaks();
     } else {
+      console.log('examSubjects not changed');
       this.editableExamSubjectMarks = this.examSubjects.map(es => {
         return {subject: es[0], mark: null};
       });

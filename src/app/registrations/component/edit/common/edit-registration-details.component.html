@@ -112,7 +112,7 @@
 <app-edit-exam-subjects-modal
 	*ngIf="registration"
 	#editExamSubjectsModal
-	[sourceExamSubjectMarks]="registration.examSubjectMarks"
 	[examSubjects]="selectedSpecialty ? selectedSpecialty.examSubjects : null"
+	[sourceExamSubjectMarks]="registration.examSubjectMarks"
 	(onSave)="updateExamSubjects($event)">
 </app-edit-exam-subjects-modal>
