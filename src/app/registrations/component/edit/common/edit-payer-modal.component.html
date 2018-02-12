@@ -44,7 +44,7 @@
 						</div>
 						<div class="form-group" [appFieldHasError]="'pBirthdate'">
 							<label>{{'registrations.crud.birthdate' | translate}}</label>
-							<datetime [disabled]="enrolleeAsPayer"
+							<datetime [readonly]="enrolleeAsPayer"
 								required [(ngModel)]="editablePayer.birthdate"
 								name="pBirthdate" #pBirthdate="ngModel" [timepicker]="false"
 								[datepicker]="{autoclose: 'true', language: 'ru', placeholder: ' '}"></datetime>
@@ -147,7 +147,7 @@
 	                            </div>
 	                            <div class="form-group" [appFieldHasError]="'pdIssueDate'">
 	                                <label>{{'registrations.crud.document-issue-date' | translate}}</label>
-	                                <datetime [disabled]="enrolleeAsPayer"
+	                                <datetime [readonly]="enrolleeAsPayer"
 										required [(ngModel)]="editablePayer.document.issueDate"
 										name="pdIssueDate" #pdIssueDate="ngModel"
 	                                    [timepicker]="false" [datepicker]="{autoclose: 'true', language: 'ru', placeholder: ' '}" ></datetime>

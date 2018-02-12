@@ -5,13 +5,13 @@
 			<div class="col-lg-12 col-md-12 col-xs-12">
 				<div class="form-group">
 					<label>{{'common.education-institution' | translate}}</label>
-					<div>{{certificate.institution}}</div>
+					<div>{{certificate.institution.name}}</div>
 				</div>
 			</div>
 			<div class="col-lg-12 col-md-12 col-xs-12">
 				<div class="form-group">
 					<label>{{'common.address.country' | translate}}</label>
-					<div>{{'country.' + certificate.country | translate}}</div>
+					<div>{{'country.' + certificate.institution.country | translate}}</div>
 				</div>
 			</div>
 			<div class="col-lg-12 col-md-12 col-xs-12">

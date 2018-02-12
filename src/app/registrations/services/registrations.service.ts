@@ -24,6 +24,7 @@ export class RegistrationsService {
   static approveRegistrationUrl = 'api/registrations/approve';
   static cancelRegistrationUrl = 'api/registrations/cancel';
   static createRegistrationUrl = 'api/registrations/create';
+  static updateRegistrationUrl = 'api/registrations/update';
   static fetchActivePeriodUrl = 'api/registrations/get-active-periods';
   static fetchPeriodListUrl = 'api/registrations/get-periods';
   static fetchBenefitListUrl = 'api/registrations/get-benefits';
@@ -47,6 +48,10 @@ export class RegistrationsService {
 
   createRegistration(registration: RegistrationCRUD): Promise<RegistrationCRUD> {
     return this.api.post(RegistrationsService.createRegistrationUrl, registration, defaultOptions());
+  }
+
+  updateRegistration(registration: RegistrationCRUD): Promise<RegistrationCRUD> {
+    return this.api.post(RegistrationsService.updateRegistrationUrl, registration, defaultOptions());
   }
 
   downloadReport(registrationId: number): void {

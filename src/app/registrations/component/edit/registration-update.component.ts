@@ -35,6 +35,12 @@ export class RegistrationUpdateComponent extends AbstractRegistrationEditCompone
       this.route.params.subscribe(params => {
         this.registrationService.fetchDetails(params['id'])
           .then(crud => {
+            crud.enrollee.birthdate = new Date(crud.enrollee.birthdate);
+            crud.enrollee.document.issueDate = new Date(crud.enrollee.document.issueDate);
+            if (crud.payer) {
+              crud.payer.birthdate = new Date(crud.payer.birthdate);
+              crud.payer.document.issueDate = new Date(crud.payer.document.issueDate);
+            }
             return success(crud);
           })
           .catch(error => reject(error));
@@ -43,7 +49,7 @@ export class RegistrationUpdateComponent extends AbstractRegistrationEditCompone
   }
 
   protected submit(): Promise<RegistrationCRUD> {
-    return this.registrationsService.createRegistration(this.registration);
+    return this.registrationsService.updateRegistration(this.registration);
   }
 
   protected getSuccessMessage(reg: RegistrationCRUD): Message {

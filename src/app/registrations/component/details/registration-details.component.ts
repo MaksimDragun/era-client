@@ -84,7 +84,7 @@ export class RegistrationDetailsComponent implements OnInit {
             },
             expired: false
           });
-        this.router.navigate(['/registration/registrations/list']);
+        this.router.navigate(['/registration/registrations']);
         this.loading = false;
       })
       .catch(error => {
@@ -113,7 +113,7 @@ export class RegistrationDetailsComponent implements OnInit {
             },
             expired: false
           });
-        this.router.navigate(['/registration/registrations/list']);
+        this.router.navigate(['/registration/registrations']);
         this.loading = false;
       })
       .catch(error => {

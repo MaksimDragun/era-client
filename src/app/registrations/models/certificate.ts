@@ -4,7 +4,7 @@ import {EducationInstitution} from '../../core/institution/education-institution
 export class Certificate {
   id: number;
   year: number;
-  institution: string;
+  institution: EducationInstitution;
   country: string;
   marks: {subject: SubjectCRUD, mark: number}[];
 }
