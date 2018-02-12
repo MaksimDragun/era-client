@@ -66,9 +66,10 @@ export abstract class AbstractRegistrationEditComponent implements OnInit {
     this.messagesService.reset();
     this.registration.periodId = this.editRegistrationDetails.selectedPeriod.id;
     this.registration.educationInstitution = this.editRegistrationDetails.selectedPeriod.educationInstitution;
-    this.registration.specialty = this.editRegistrationDetails.selectedSpecialty && {id: this.editRegistrationDetails.selectedSpecialty.id, name: '', qualification: '', code: ''};
-    this.registration.prerogatives = this.editRegistrationDetails.selectedPrerogatives.map(p => {return {id: p, name: ''}});
-    this.registration.outOfCompetitions = this.editRegistrationDetails.selectedOutOfCompetitions.map(p => {return {id: p, name: ''}});
+    this.registration.specialty = this.editRegistrationDetails.selectedSpecialty
+      && {id: this.editRegistrationDetails.selectedSpecialty.id, name: '', qualification: '', code: ''};
+    this.registration.prerogatives = this.editRegistrationDetails.selectedPrerogatives.map(p => ({id: p, name: ''}));
+    this.registration.outOfCompetitions = this.editRegistrationDetails.selectedOutOfCompetitions.map(p => ({id: p, name: ''}));
     if (this.registration.educationBase !== L11.value) {
       this.registration.examSubjectMarks = null;
     }

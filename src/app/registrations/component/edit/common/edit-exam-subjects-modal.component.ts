@@ -17,8 +17,6 @@ export class EditExamSubjectsModalComponent implements OnInit, OnChanges {
 
   subjectMarkMask = [/[0-9]/, /[0-9]/, /[0-9]/];
 
-  
-
   @Output() onSave: EventEmitter<{subject: ExamSubjectCRUD, mark: number}[]> = new EventEmitter();
 
   ngOnInit(): void {
@@ -26,33 +24,34 @@ export class EditExamSubjectsModalComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('change');
-    console.log(changes);
-    let change: SimpleChange;
+    let change = changes['sourceExamSubjectMarks'];
+    if (change && change.currentValue) {
+      this.editableExamSubjectMarks = [];
+      this.sourceExamSubjectMarks.forEach(esm => {
+        this.editableExamSubjectMarks.push({...esm});
+      });
+    }
+
     change = changes['examSubjects'];
     if (change && change.currentValue) {
-      console.log('examSubjects changed');
-      this.examSubjects = change.currentValue;
-      this.sourceExamSubjectMarks = this.examSubjects.map(ess => {
+      const esms: {subject: ExamSubjectCRUD, mark: number}[] = [];
+      this.examSubjects.forEach(ess => {
+        let esm = null;
         for (const es of ess) {
-          let esm = this.sourceExamSubjectMarks.find(esm => es.id === es.id);
+          esm = this.editableExamSubjectMarks.find(esmToFind => esmToFind.subject.id === es.id);
           if (esm) {
-            return {subject: esm.subject, mark: esm.mark};
+            esms.push({subject: es, mark: esm.mark});
+            break;
           }
         }
-        return {subject: ess[0], mark: null};
+        if (!esm) {
+          esms.push({subject: ess[0], mark: null});
+        } else {
+          esm = null;
+        }
       });
-      this.resetExamSubjectMaks();
-    }
-    change = changes['sourceExamSubjectMarks'];
-    if (change && change.currentValue) {
-      console.log('sourceexamSubjectsmarks changed');
-      this.resetExamSubjectMaks();
-    } else {
-      console.log('examSubjects not changed');
-      this.editableExamSubjectMarks = this.examSubjects.map(es => {
-        return {subject: es[0], mark: null};
-      });
+      this.editableExamSubjectMarks = esms;
+      this.calculateSumMark();
     }
   }
 
@@ -61,6 +60,25 @@ export class EditExamSubjectsModalComponent implements OnInit, OnChanges {
     this.sourceExamSubjectMarks.forEach(es => {
       this.editableExamSubjectMarks.push({...es});
     });
+
+    const esms: {subject: ExamSubjectCRUD, mark: number}[] = [];
+    this.examSubjects.forEach(ess => {
+      let esm = null;
+      for (const es of ess) {
+        esm = this.editableExamSubjectMarks.find(esmToFind => esmToFind.subject.id === es.id);
+        if (esm) {
+          esms.push({subject: es, mark: esm.mark});
+          break;
+        }
+      }
+      if (!esm) {
+        esms.push({subject: ess[0], mark: null});
+      } else {
+        esm = null;
+      }
+    });
+    this.editableExamSubjectMarks = esms;
+
     this.calculateSumMark();
   }
 
