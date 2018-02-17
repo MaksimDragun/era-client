@@ -1,8 +1,9 @@
+import { AbstractCRUD } from '../../shared/models/abstract-crud';
 import {AddressCRUD} from './address-crud';
 import {ContactDetails} from './contact-details';
 import {DocumentCRUD} from './document-crud';
 
-export class PersonCRUD {
+export class PersonCRUD extends AbstractCRUD {
   firstName: string;
   lastName: string;
   middleName: string;
